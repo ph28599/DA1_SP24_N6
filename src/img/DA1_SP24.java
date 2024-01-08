@@ -15,7 +15,7 @@ public class DA1_SP24 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("DuAn111111");
+        System.out.println("Hi");
     }
     
 }
