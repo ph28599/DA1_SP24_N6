@@ -693,6 +693,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       new view.contains.thuoctinhsanpham.ViewLoaiAo().setVisible(true);
+      this.disable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
