@@ -17,12 +17,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="905" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel6" min="-2" pref="289" max="-2" attributes="0"/>
-                  <Component id="jLabel27" max="32767" attributes="0"/>
+              <EmptySpace pref="891" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel27" min="-2" pref="181" max="-2" attributes="0"/>
+                  <Component id="jPanel6" min="-2" pref="240" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -33,7 +33,7 @@
                       <Component id="jLabel26" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                       <Component id="jLabel23" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="309" max="32767" attributes="0"/>
+                  <EmptySpace pref="367" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -41,11 +41,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jPanel6" min="-2" pref="182" max="-2" attributes="0"/>
-              <EmptySpace pref="539" max="32767" attributes="0"/>
+              <Component id="jPanel6" min="-2" pref="183" max="-2" attributes="0"/>
+              <EmptySpace pref="586" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -394,7 +394,7 @@
                   <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnTimKiem1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="401" max="32767" attributes="0"/>
+                  <EmptySpace pref="409" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -527,7 +527,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -536,12 +536,12 @@
                       <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbMaTichDiem" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                      <Component id="lbDiemTich" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lbTiemDuocGiam" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="lbTiemDuocGiam" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                      <Component id="lbDiemTich" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtNgaySinh2" alignment="0" pref="215" max="32767" attributes="0"/>
@@ -564,7 +564,6 @@
                       <Component id="btnSua2" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnMoi2" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
