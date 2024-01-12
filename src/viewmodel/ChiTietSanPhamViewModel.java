@@ -157,5 +157,7 @@ public class ChiTietSanPhamViewModel {
         this.trangThai = trangThai;
     }
     
-    
+     public Object[] toDataRow() {
+        return new Object[]{id, ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan,trangThai};
+    }
 }

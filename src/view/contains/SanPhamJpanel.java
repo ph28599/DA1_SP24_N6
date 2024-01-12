@@ -4,6 +4,9 @@
  */
 package view.contains;
 
+import view.contains.thuoctinhsanpham.ViewLoaiAo;
+import view.contains.thuoctinhsanpham.ViewThuongHieu;
+
 /**
  *
  * @author LAPTOP24H
@@ -176,6 +179,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel48.setText("Kích Cỡ");
 
@@ -683,9 +691,17 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      new view.contains.thuoctinhsanpham.ViewLoaiAo().setVisible(true);
-     
+//      new view.contains.thuoctinhsanpham.ViewLoaiAo().setVisible(true);
+        ViewLoaiAo ao = new ViewLoaiAo();
+        ao.setVisible(true);
+       
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        new ViewThuongHieu().setVisible(true);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
