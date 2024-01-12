@@ -40,7 +40,6 @@ public class KhachHangView extends javax.swing.JPanel {
         rdoNam1 = new javax.swing.JRadioButton();
         rdoNu1 = new javax.swing.JRadioButton();
         jLabel17 = new javax.swing.JLabel();
-        txtNgaySinh1 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         txtDiaChi1 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -51,7 +50,6 @@ public class KhachHangView extends javax.swing.JPanel {
         btnThem1 = new javax.swing.JButton();
         btnSua1 = new javax.swing.JButton();
         btnMoi1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -76,6 +74,7 @@ public class KhachHangView extends javax.swing.JPanel {
         lbDiemTich = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         lbTiemDuocGiam = new javax.swing.JLabel();
+        jdcNgaySinh = new com.toedter.calendar.JDateChooser();
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel26.setText("Thông tin khách hàng:");
@@ -112,8 +111,6 @@ public class KhachHangView extends javax.swing.JPanel {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Ngày sinh:");
-
-        txtNgaySinh1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Địa chỉ:");
@@ -157,8 +154,6 @@ public class KhachHangView extends javax.swing.JPanel {
             }
         });
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -184,9 +179,7 @@ public class KhachHangView extends javax.swing.JPanel {
                     .addComponent(jLabel22))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNgaySinh1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                     .addComponent(txtDiaChi1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -197,7 +190,7 @@ public class KhachHangView extends javax.swing.JPanel {
                                 .addComponent(rdoNam1)
                                 .addGap(31, 31, 31)
                                 .addComponent(rdoNu1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,12 +222,8 @@ public class KhachHangView extends javax.swing.JPanel {
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel17))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSua1)
-                            .addComponent(txtNgaySinh1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnSua1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -488,7 +477,9 @@ public class KhachHangView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(891, Short.MAX_VALUE)
+                .addContainerGap(523, Short.MAX_VALUE)
+                .addComponent(jdcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(197, 197, 197)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -508,8 +499,13 @@ public class KhachHangView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel27)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jdcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(536, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -573,7 +569,6 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbTrangThai;
     private javax.swing.JCheckBox cbTrangThai1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -596,6 +591,7 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private javax.swing.JLabel lbDiemTich;
     private javax.swing.JLabel lbMaTichDiem;
     private javax.swing.JLabel lbTiemDuocGiam;
@@ -609,7 +605,6 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmailNV;
     private javax.swing.JTextField txtHoTen1;
     private javax.swing.JTextField txtMaKH1;
-    private javax.swing.JTextField txtNgaySinh1;
     private javax.swing.JTextField txtNgaySinh2;
     private javax.swing.JTextField txtSDT1;
     // End of variables declaration//GEN-END:variables
