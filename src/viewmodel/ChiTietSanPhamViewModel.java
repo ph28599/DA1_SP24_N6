@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package viewmodel;
 
 /**
  *
  * @author LAPTOP24H
  */
-public class ChiTietSanPhamModel {
+public class ChiTietSanPhamViewModel {
 
     private Integer id;
     private String ma;
@@ -25,10 +25,10 @@ public class ChiTietSanPhamModel {
     private float giaBan;
     private boolean trangThai;
 
-    public ChiTietSanPhamModel() {
+    public ChiTietSanPhamViewModel() {
     }
 
-    public ChiTietSanPhamModel(Integer id, String ma, String maVach, String moTa, Integer soLuong, Integer idSP, Integer idTH, Integer idLA, Integer idKC, Integer idMS, Integer idCL, float giaNhap, float giaBan, boolean trangThai) {
+    public ChiTietSanPhamViewModel(Integer id, String ma, String maVach, String moTa, Integer soLuong, Integer idSP, Integer idTH, Integer idLA, Integer idKC, Integer idMS, Integer idCL, float giaNhap, float giaBan, boolean trangThai) {
         this.id = id;
         this.ma = ma;
         this.maVach = maVach;
@@ -156,8 +156,6 @@ public class ChiTietSanPhamModel {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
-    public Object[] toRowData() {
-        return new Object[]{ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan, trangThai};
-    }
+    
+    
 }

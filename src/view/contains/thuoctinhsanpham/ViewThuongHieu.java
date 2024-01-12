@@ -4,17 +4,39 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.ISizeService;
+import service.IThuongHieuService;
+import service.impl.SizeServiceImpl;
+import service.impl.ThuongHieuServiceImpl;
+import viewmodel.SizeViewModel;
+import viewmodel.ThuongHieuViewModel;
+
 /**
  *
  * @author LAPTOP24H
  */
 public class ViewThuongHieu extends javax.swing.JFrame {
 
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private IThuongHieuService iThuongHieuService = new ThuongHieuServiceImpl();
+
     /**
      * Creates new form ViewThuongHieu
      */
     public ViewThuongHieu() {
         initComponents();
+        load(iThuongHieuService.getAll());
+    }
+    
+    public void load(List<ThuongHieuViewModel> list) {
+        dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tb.getModel();
+        for (ThuongHieuViewModel hieuViewModel : list) {
+            dtm.addRow(hieuViewModel.toDataRow());
+        }
+        
     }
 
     /**
@@ -29,7 +51,7 @@ public class ViewThuongHieu extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jTextField25 = new javax.swing.JTextField();
@@ -50,7 +72,7 @@ public class ViewThuongHieu extends javax.swing.JFrame {
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel43.setText("Thương Hiệu");
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -61,7 +83,7 @@ public class ViewThuongHieu extends javax.swing.JFrame {
                 "ID", "Mã Thương Hiệu", "Tên Thương Hiệu"
             }
         ));
-        jScrollPane8.setViewportView(jTable7);
+        jScrollPane8.setViewportView(tb);
 
         jLabel44.setText("Mã ");
 
@@ -231,9 +253,9 @@ public class ViewThuongHieu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
+    private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }

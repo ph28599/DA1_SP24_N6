@@ -21,7 +21,7 @@ public class LoaiAoRepository {
 
     public List<LoaiAoModel> getAll() {
         String sql = "SELECT ID, MA, TEN\n"
-                + "FROM     dbo.CHAT_LIEU";
+                + "FROM     dbo.lOAI_AO";
         try (Connection con = connection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
