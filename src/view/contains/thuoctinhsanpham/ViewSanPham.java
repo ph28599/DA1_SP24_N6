@@ -4,17 +4,35 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.ISanPhamSevice;
+import service.impl.SanPhamServiceImpl;
+import viewmodel.SanPhamViewModel;
+
 /**
  *
  * @author pc
  */
 public class ViewSanPham extends javax.swing.JFrame {
-
+    
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private ISanPhamSevice iSanPhamSevice = new SanPhamServiceImpl();
     /**
      * Creates new form ViewSP
      */
     public ViewSanPham() {
         initComponents();
+        load(iSanPhamSevice.getAll());
+    }
+    public void load(List<SanPhamViewModel> list){
+        dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tbHienThi.getModel();
+        for(SanPhamViewModel sp : list){
+            dtm.addRow(sp.toDataRow());
+        }
+        
     }
 
     /**
@@ -29,7 +47,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tbHienThi = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -54,18 +72,15 @@ public class ViewSanPham extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel25.setText(" Sản Phẩm");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tbHienThi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Mã", "Tên Sản Phẩm", "Loại SP", "Số Lượng"
             }
         ));
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane4.setViewportView(tbHienThi);
 
         jLabel31.setText("Mã ");
 
@@ -77,22 +92,12 @@ public class ViewSanPham extends javax.swing.JFrame {
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         jButton13.setText("Thêm");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Gear.png"))); // NOI18N
         jButton14.setText("Sửa");
 
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search.png"))); // NOI18N
         jButton15.setText("Tìm Kiếm");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Left.png"))); // NOI18N
         jButton16.setText("<|");
@@ -215,14 +220,6 @@ public class ViewSanPham extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -273,11 +270,11 @@ public class ViewSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JTable tbHienThi;
     // End of variables declaration//GEN-END:variables
 }

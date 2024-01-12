@@ -4,19 +4,37 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.ILoaiAoService;
+import service.impl.LoaiAoServiceImpl;
+import viewmodel.LoaiAoViewModel;
+import viewmodel.SanPhamViewModel;
+
 /**
  *
  * @author LAPTOP24H
  */
 public class ViewLoaiAo extends javax.swing.JFrame {
 
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private ILoaiAoService iLoaiAoService = new LoaiAoServiceImpl();
+
     /**
      * Creates new form ViewLoaiAo
      */
     public ViewLoaiAo() {
         initComponents();
+        load(iLoaiAoService.getAll());
     }
-
+     public void load(List<LoaiAoViewModel> list){
+        dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tb.getModel();
+        for(LoaiAoViewModel lavm : list){
+            dtm.addRow(lavm.toDataRow());
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,10 +44,11 @@ public class ViewLoaiAo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel9 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jTextField22 = new javax.swing.JTextField();
@@ -51,7 +70,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel40.setText("Loại Áo");
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -62,7 +81,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                 "ID", "Mã Loại Áo", "Tên Loại Áo"
             }
         ));
-        jScrollPane7.setViewportView(jTable6);
+        jScrollPane7.setViewportView(tb);
 
         jLabel41.setText("Mã ");
 
@@ -225,6 +244,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton49;
     private javax.swing.JButton jButton50;
@@ -236,9 +256,9 @@ public class ViewLoaiAo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
+    private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }

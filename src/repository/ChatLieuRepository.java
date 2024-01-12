@@ -9,40 +9,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.SanPhamModel;
+import model.ChatLieuModel;
+
 import ultility.DBConnection;
+import viewmodel.ChatLieuViewMoel;
 
 /**
  *
  * @author LAPTOP24H
  */
-public class SanPhamRepository {
+public class ChatLieuRepository {
 
     private DBConnection connection;
 
-    public List<SanPhamModel> getAll() {
-        String sql = "SELECT ID, MA, TEN, LOAISANPHAM, SOLUONG\n"
-                + "FROM     dbo.SAN_PHAM";
+    public List<ChatLieuModel> getAll() {
+        String sql = "SELECT ID, MA, TEN\n"
+                + "FROM     dbo.CHAT_LIEU";
         try (Connection con = connection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            List<SanPhamModel> listSP = new ArrayList<>();
+            List<ChatLieuModel> list = new ArrayList<>();
             while (rs.next()) {
-                SanPhamModel sanPhamModel = new SanPhamModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-                listSP.add(sanPhamModel);
+                ChatLieuModel chatLieuModel = new ChatLieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(chatLieuModel);
             }
-            return listSP;
+            return list;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        ArrayList<SanPhamModel> l = (ArrayList<SanPhamModel>) new SanPhamRepository().getAll();
-        for (SanPhamModel sanPham : l) {
-            System.out.println(sanPham.toString());
-        }
-    }
-
 }

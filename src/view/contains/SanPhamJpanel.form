@@ -478,9 +478,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
@@ -1015,8 +1012,9 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jScrollPane2" min="-2" pref="223" max="-2" attributes="0"/>
-                                          <Component id="jTextField10" linkSize="34" min="-2" pref="227" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1072,10 +1070,10 @@
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextField9" linkSize="35" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField10" linkSize="35" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -1168,8 +1166,6 @@
                         <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng Th&#xe1;i"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField10">
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel20">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="M&#xf4; t&#x1ea3; "/>
@@ -1190,6 +1186,11 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="C&#xf2;n H&#xe0;ng"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>

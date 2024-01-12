@@ -118,15 +118,21 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtNgaySinh1" alignment="0" pref="215" max="32767" attributes="0"/>
                       <Component id="txtDiaChi1" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="cbTrangThai" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel25" min="-2" pref="116" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="rdoNam1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="rdoNu1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jDateChooser1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbTrangThai" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel25" min="-2" pref="116" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="rdoNam1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="rdoNu1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -135,7 +141,7 @@
                       <Component id="btnSua1" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnMoi1" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -163,7 +169,6 @@
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtHoTen1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txtNgaySinh1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -171,8 +176,13 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="btnSua1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnSua1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNgaySinh1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -377,6 +387,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoi1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

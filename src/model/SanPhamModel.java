@@ -9,5 +9,65 @@ package model;
  * @author pc
  */
 public class SanPhamModel {
-    
+
+    private Integer id;
+    private String ma;
+    private String ten;
+    private String loaiSanPham;
+    private int soLuong;
+
+    public SanPhamModel() {
+    }
+
+    public SanPhamModel(Integer id, String ma, String ten, String loaiSanPham, int soLuong) {
+        this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.loaiSanPham = loaiSanPham;
+        this.soLuong = soLuong;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public String getLoaiSanPham() {
+        return loaiSanPham;
+    }
+
+    public void setLoaiSanPham(String loaiSanPham) {
+        this.loaiSanPham = loaiSanPham;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public Object[] toDataRow() {
+        return new Object[]{ ma, ten, loaiSanPham, soLuong};
+    }
 }

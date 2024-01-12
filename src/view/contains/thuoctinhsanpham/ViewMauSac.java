@@ -4,17 +4,34 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.IMauSacService;
+import service.impl.MauSacServiceImpl;
+import viewmodel.MauSacViewModel;
+
 /**
  *
  * @author LAPTOP24H
  */
 public class ViewMauSac extends javax.swing.JFrame {
-
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private IMauSacService iMauSacService = new MauSacServiceImpl();
     /**
      * Creates new form ViewMauSac
      */
     public ViewMauSac() {
         initComponents();
+        setLocationRelativeTo(null);
+        load(iMauSacService.getAll());
+    }
+    
+    public void load(List<MauSacViewModel> mauSacViewModel){
+        dtm = (DefaultTableModel) tb.getModel();
+        dtm.setRowCount(0);
+        for (MauSacViewModel model : mauSacViewModel) {
+            dtm.addRow(model.toDataRow());
+        }
     }
 
     /**
@@ -29,7 +46,7 @@ public class ViewMauSac extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
@@ -50,7 +67,7 @@ public class ViewMauSac extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setText("Màu Sắc");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -61,7 +78,7 @@ public class ViewMauSac extends javax.swing.JFrame {
                 "ID", "Mã Màu Sắc", "Tên Màu Sắc"
             }
         ));
-        jScrollPane5.setViewportView(jTable4);
+        jScrollPane5.setViewportView(tb);
 
         jLabel35.setText("Mã ");
 
@@ -255,9 +272,9 @@ public class ViewMauSac extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
+    private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }
