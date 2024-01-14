@@ -38,4 +38,39 @@ public class SizeRepository {
         }
         return null;
     }
+
+    public boolean getAdd(SizeModel m) {
+        int check = 0;
+        String sql = "INSERT [dbo].[SIZE] ( [MA],  [SIZE]) VALUES (?,?)";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public boolean getUpđate(SizeModel m, int id) {
+        int check = 0;
+        String sql = """
+                      UPDATE [dbo].[SIZE]
+                                  SET [MA] = ?
+                                 ,[SIZE] =?
+                                  WHERE id=?
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+            ps.setObject(3, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }

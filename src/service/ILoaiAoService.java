@@ -14,4 +14,7 @@ import viewmodel.LoaiAoViewModel;
  */
 public interface ILoaiAoService {
      List<LoaiAoViewModel> getAll();
+     
+     String add(LoaiAoViewModel la);
+     String update(LoaiAoViewModel la , int id);
 }

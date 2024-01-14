@@ -39,4 +39,39 @@ public class ChatLieuRepository {
         }
         return null;
     }
+
+    public boolean getAdd(ChatLieuModel cl) {
+        int check = 0;
+        String sql = "INSERT [dbo].[CHAT_LIEU] ( [MA], [TEN]) VALUES (?,?)";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, cl.getMa());
+            ps.setObject(2, cl.getTen());
+
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public boolean getUpđate(ChatLieuModel cl, int id) {
+        int check = 0;
+        String sql = """
+                      UPDATE [dbo].[CHAT_LIEU]
+                                  SET [MA] = ?
+                                 ,[TEN] =?
+                                  WHERE id=?
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, cl.getMa());
+            ps.setObject(2, cl.getTen());
+            ps.setObject(3, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }

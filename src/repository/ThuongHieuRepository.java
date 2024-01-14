@@ -37,4 +37,40 @@ public class ThuongHieuRepository {
         }
         return null;
     }
+       
+           
+    public boolean getAdd(ThuongHieuModel m) {
+        int check = 0;
+        String sql = "INSERT [dbo].[THUONG_HIEU] ( [MA], [TEN]) VALUES (?,?)";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public boolean getUpđate(ThuongHieuModel m, int id) {
+        int check = 0;
+        String sql = """
+                      UPDATE [dbo].[THUONG_HIEU]
+                                  SET [MA] = ?
+                                 ,[TEN] =?
+                                  WHERE id=?
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+            ps.setObject(3, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }

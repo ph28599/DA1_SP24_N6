@@ -28,5 +28,26 @@ public class LoaiAoServiceImpl implements ILoaiAoService{
         }
         return viewModels;
     }
+
+    @Override
+    public String add(LoaiAoViewModel la) {
+         LoaiAoModel model = new LoaiAoModel(la.getId(),la.getMa(),la.getTen());
+        boolean them = aoRepository.getAdd(model);
+         if (them) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+       }
+
+    @Override
+    public String update(LoaiAoViewModel la, int id) {
+         LoaiAoModel model = new LoaiAoModel(la.getId(),la.getMa(),la.getTen());
+        boolean s = aoRepository.getUpđate(model,id);
+         if (s) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }}
     
 }

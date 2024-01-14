@@ -14,4 +14,7 @@ import viewmodel.ThuongHieuViewModel;
  */
 public interface IThuongHieuService {
      List<ThuongHieuViewModel> getAll();
+      String getAdd(ThuongHieuViewModel th);
+    
+    String getUpdate(ThuongHieuViewModel th , Integer id);
 }

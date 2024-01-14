@@ -10,7 +10,7 @@ package viewmodel;
  */
 public class SanPhamViewModel {
 
-    private Integer id;
+    private int id;
     private String ma;
     private String ten;
     private String loaiSanPham;
@@ -19,7 +19,7 @@ public class SanPhamViewModel {
     public SanPhamViewModel() {
     }
 
-    public SanPhamViewModel(Integer id, String ma, String ten, String loaiSanPham, int soLuong) {
+    public SanPhamViewModel(int id, String ma, String ten, String loaiSanPham, int soLuong) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -27,11 +27,11 @@ public class SanPhamViewModel {
         this.soLuong = soLuong;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

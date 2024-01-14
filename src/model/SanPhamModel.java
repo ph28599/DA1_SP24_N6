@@ -10,7 +10,7 @@ package model;
  */
 public class SanPhamModel {
 
-    private Integer id;
+    private int id;
     private String ma;
     private String ten;
     private String loaiSanPham;
@@ -19,7 +19,7 @@ public class SanPhamModel {
     public SanPhamModel() {
     }
 
-    public SanPhamModel(Integer id, String ma, String ten, String loaiSanPham, int soLuong) {
+    public SanPhamModel( int id, String ma, String ten, String loaiSanPham, int soLuong) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -27,13 +27,15 @@ public class SanPhamModel {
         this.soLuong = soLuong;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+   
 
     public String getMa() {
         return ma;

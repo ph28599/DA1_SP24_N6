@@ -5,6 +5,7 @@
 package service;
 
 import java.util.List;
+import model.ChatLieuModel;
 import viewmodel.ChatLieuViewMoel;
 
 /**
@@ -13,4 +14,6 @@ import viewmodel.ChatLieuViewMoel;
  */
 public interface IChatLieuService {
      List<ChatLieuViewMoel> getAll();
+     String add(ChatLieuViewMoel cl);
+     String update(ChatLieuViewMoel cl , int id);
 }

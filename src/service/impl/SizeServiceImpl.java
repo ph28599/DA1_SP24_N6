@@ -27,5 +27,25 @@ public class SizeServiceImpl implements ISizeService{
         }
         return viewModels;
     }
+
+    @Override
+    public String getAdd(SizeViewModel s) {
+         SizeModel model = new SizeModel(s.getId(),s.getMa(),s.getTen());
+        boolean them = sizeRepository.getAdd(model);
+         if (them) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }   }
+
+    @Override
+    public String getUpdate(SizeViewModel s, Integer id) {
+        SizeModel model = new SizeModel(s.getId(),s.getMa(),s.getTen());
+        boolean them = sizeRepository.getUpđate(model, id);
+         if (them) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }   }
     
 }

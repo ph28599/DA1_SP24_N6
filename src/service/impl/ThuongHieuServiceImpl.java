@@ -29,4 +29,24 @@ public class ThuongHieuServiceImpl implements IThuongHieuService{
         }
         return viewModels;
     }
+
+    @Override
+    public String getAdd(ThuongHieuViewModel th) {
+       ThuongHieuModel model = new ThuongHieuModel(th.getId(),th.getMa(),th.getTen());
+        boolean them = hieuRepository.getAdd(model);
+         if (them) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }  }
+
+    @Override
+    public String getUpdate(ThuongHieuViewModel th, Integer id) {
+        ThuongHieuModel model = new ThuongHieuModel(th.getId(),th.getMa(),th.getTen());
+        boolean them = hieuRepository.getUpđate(model,id);
+         if (them) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }   }
 }

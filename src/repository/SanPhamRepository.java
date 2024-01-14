@@ -38,6 +38,46 @@ public class SanPhamRepository {
         return null;
     }
 
+    public boolean getAdd(SanPhamModel m) {
+        int check = 0;
+        String sql = "INSERT [dbo].[SAN_PHAM] ( [MA], [TEN] , [LOAISANPHAM], [SOLUONG]) VALUES (?,?,?,?)";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+            ps.setObject(3, m.getLoaiSanPham());
+            ps.setObject(4, m.getSoLuong());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public boolean getUpđate(SanPhamModel m, int id) {
+        int check = 0;
+        String sql = """
+                      UPDATE [dbo].[SAN_PHAM]
+                                  SET [MA] = ?
+                                 ,[TEN] =?
+                                 ,[LOAISANPHAM]= ?
+                                 ,[SOLUONG] = ?
+                                  WHERE id=?
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, m.getMa());
+            ps.setObject(2, m.getTen());
+            ps.setObject(3, m.getLoaiSanPham());
+            ps.setObject(4, m.getSoLuong());
+            ps.setObject(5, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
     public static void main(String[] args) {
         ArrayList<SanPhamModel> l = (ArrayList<SanPhamModel>) new SanPhamRepository().getAll();
         for (SanPhamModel sanPham : l) {
