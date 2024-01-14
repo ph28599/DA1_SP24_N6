@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.HoaDonCTDomain;
-import ultility.DBConnect;
+import ultility.DBConnection;
 import viewmodel.SanPhamHDViewModel;
 
 /**
@@ -24,7 +24,7 @@ public class HoaDonCTRepository implements HoaDonCTRepo {
 
         ArrayList<HoaDonCTDomain> hdct = new ArrayList<>();
         try {
-            Connection cnn = DBConnect.getConnection();
+            Connection cnn = DBConnection.getConnection();
             String sql = "SELECT HDCT.ID,HDCT.ID_HD,HDCT.ID_SPCT, SP.TEN ,TH.TEN,LA.TEN,MS.TEN, CL.TEN , S.SIZE,HDCT.SOLUONG,HDCT.DONGIA \n"
                     + "FROM HOA_DON_CT HDCT\n"
                     + "JOIN\n"

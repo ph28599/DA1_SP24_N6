@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.HoaDonModel;
-import ultility.DBConnect;
+import ultility.DBConnection;
 
 /**
  *
@@ -37,7 +37,7 @@ public class HDRepository {
                          ,[TRANGTHAI]
                      FROM [dbo].[HOA_DON]
                     """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+        try ( Connection con = DBConnection.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
             ResultSet rs = pr.executeQuery();
             List<HoaDonModel> listLTT = new ArrayList<>();
             while (rs.next()) {

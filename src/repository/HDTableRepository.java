@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.HDTableModel;
-import ultility.DBConnect;
+import ultility.DBConnection;
 
 /**
  *
@@ -42,7 +42,7 @@ public class HDTableRepository {
                                               						  join PHIEU_GIAM_GIA_CHI_TIET on PHIEU_GIAM_GIA_CHI_TIET.ID = HOA_DON.ID_PGG where HOA_DON.[TRANGTHAI]=0
                                                                      ORDER BY NGAYTHANHTOAN   ;
                      """;
-        try (Connection con = DBConnect.getConnection(); 
+        try (Connection con = DBConnection.getConnection(); 
             PreparedStatement pr = con.prepareStatement(query)) {
             ResultSet rs = pr.executeQuery();
             List<HDTableModel> listKC = new ArrayList<>();

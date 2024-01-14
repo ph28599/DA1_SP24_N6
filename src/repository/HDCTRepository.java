@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.HoaDonCTModel;
-import ultility.DBConnect;
+import ultility.DBConnection;
 
 /**
  *
@@ -34,7 +34,7 @@ public class HDCTRepository {
                     + "    CHAT_LIEU CL ON SPCT.ID_CL = CL.ID\n"
                     + "JOIN\n"
                     + "    SIZE S ON SPCT.ID_SIZE = S.ID";
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+        try ( Connection con = DBConnection.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
             ResultSet rs = pr.executeQuery();
             List<HoaDonCTModel> listMS = new ArrayList<>();
             while (rs.next()) {

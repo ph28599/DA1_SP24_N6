@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.HoaDonDomain;
-import ultility.DBConnect;
+import ultility.DBConnection;
 
 /**
  *
@@ -22,7 +22,7 @@ public class HoaDonRepository implements HoaDonRepo{
     public List<HoaDonDomain> getall() {
         ArrayList<HoaDonDomain> hd = new ArrayList<>();
         try {
-            Connection cnn = DBConnect.getConnection();
+            Connection cnn = DBConnection.getConnection();
             String sql =  """
                    SELECT [ID]
                          ,[MA]
@@ -62,7 +62,7 @@ public class HoaDonRepository implements HoaDonRepo{
     public HoaDonDomain findByMa(String ma) {
         HoaDonDomain hd = null;
         try {
-            Connection cnn = DBConnect.getConnection();
+            Connection cnn = DBConnection.getConnection();
             String sql =  """
                    SELECT [ID]
                          ,[MA]
