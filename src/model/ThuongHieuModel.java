@@ -9,8 +9,7 @@ package model;
  * @author LAPTOP24H
  */
 public class ThuongHieuModel {
-
-    private int id;
+     private int id;
     private String ma;
     private String ten;
 
@@ -52,7 +51,8 @@ public class ThuongHieuModel {
         return this.ten;
     }
 
-    public Object[] toDataRow() {
+    
+      public Object[] toDataRow() {
         return new Object[]{id, ma, ten};
     }
 }

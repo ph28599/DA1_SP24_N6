@@ -153,13 +153,6 @@ public class ChiTietSanPhamModel {
         return trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "ChiTietSanPhamModel{" + "id=" + id + ", ma=" + ma + ", maVach=" + maVach + ", moTa=" + moTa + ", soLuong=" + soLuong + ", idSP=" + idSP + ", idTH=" + idTH + ", idLA=" + idLA + ", idKC=" + idKC + ", idMS=" + idMS + ", idCL=" + idCL + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", trangThai=" + trangThai + '}';
-    }
-
-    
-    
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
