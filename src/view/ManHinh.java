@@ -27,7 +27,7 @@ public class ManHinh extends javax.swing.JFrame {
      */
     public ManHinh() {
         initComponents();
-        panel = new BanHang();
+        panel = new SanPhamJpanel();
         setPanel(panel);
     }
 
@@ -267,8 +267,8 @@ public class ManHinh extends javax.swing.JFrame {
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
 
-            panel = new ViewThongKe();
-            setPanel(panel);
+        panel = new ViewThongKe();
+        setPanel(panel);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
@@ -283,11 +283,11 @@ public class ManHinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
-    
+
     }//GEN-LAST:event_btnDangxuatActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-       
+
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
