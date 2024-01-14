@@ -47,6 +47,13 @@ public class LoaiAoModel {
     public void setTen(String ten) {
         this.ten = ten;
     }
+
+    @Override
+    public String toString() {
+        return "LoaiAoModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+    }
+    
+    
     
       public Object[] toDataRow() {
         return new Object[]{id, ma, ten};

@@ -69,6 +69,13 @@ public class SanPhamModel {
         this.soLuong = soLuong;
     }
 
+    @Override
+    public String toString() {
+        return "SanPhamModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", loaiSanPham=" + loaiSanPham + ", soLuong=" + soLuong + '}';
+    }
+
+    
+    
     public Object[] toDataRow() {
         return new Object[]{ ma, ten, loaiSanPham, soLuong};
     }

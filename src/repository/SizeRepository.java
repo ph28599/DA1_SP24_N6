@@ -73,4 +73,7 @@ public class SizeRepository {
         }
         return check > 0;
     }
+     public static void main(String[] args) {
+        
+    }
 }

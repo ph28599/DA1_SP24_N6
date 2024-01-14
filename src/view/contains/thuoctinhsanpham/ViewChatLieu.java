@@ -29,6 +29,7 @@ public class ViewChatLieu extends javax.swing.JFrame {
     public ViewChatLieu() {
         setUndecorated(true);
         initComponents();
+         setLocationRelativeTo(null);
         load(ichatLieuService.getAll());
     }
 

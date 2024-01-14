@@ -72,4 +72,7 @@ public class LoaiAoRepository {
         }
         return check > 0;
     }
+    public static void main(String[] args) {
+        
+    }
 }

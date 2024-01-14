@@ -159,10 +159,7 @@ public class CTSPModel {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "CTSPModel{" + "id=" + id + ", ma=" + ma + ", maVach=" + maVach + ", moTa=" + moTa + ", soLuong=" + soLuong + ", idSP=" + idSP + ", idTH=" + idTH + ", idLA=" + idLA + ", idKC=" + idKC + ", idMS=" + idMS + ", idCL=" + idCL + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", trangThai=" + trangThai + '}';
-    }
+    
 
     
 

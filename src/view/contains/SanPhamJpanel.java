@@ -27,6 +27,7 @@ import service.impl.ThuongHieuServiceImpl;
 import view.contains.thuoctinhsanpham.ViewChatLieu;
 import view.contains.thuoctinhsanpham.ViewLoaiAo;
 import view.contains.thuoctinhsanpham.ViewMauSac;
+import view.contains.thuoctinhsanpham.ViewSanPham;
 import view.contains.thuoctinhsanpham.ViewSize;
 import view.contains.thuoctinhsanpham.ViewThuongHieu;
 import viewmodel.CTSPViewModel;
@@ -43,7 +44,7 @@ import viewmodel.ThuongHieuViewModel;
  * @author LAPTOP24H
  */
 public class SanPhamJpanel extends javax.swing.JPanel {
-
+    
     private DefaultTableModel dtm = new DefaultTableModel();
     private ICTSPService iCTSPService = new CTSPServiceImpl();
 
@@ -55,27 +56,27 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private IChatLieuService ichatLieuService = new ChatLieuServiceImpl();
     private List<String> listCbbCL = new ArrayList<>();
     private DefaultComboBoxModel dcbCL = new DefaultComboBoxModel();
-
+    
     private List<SizeViewModel> listKC = new ArrayList<>();
     private ISizeService iSizeService = new SizeServiceImpl();
     private List<String> listCbbKC = new ArrayList<>();
     private DefaultComboBoxModel dcbKC = new DefaultComboBoxModel();
-
+    
     private List<SanPhamViewModel> listSP = new ArrayList<>();
     private ISanPhamSevice iSanPhamSevice = new SanPhamServiceImpl();
     private List<String> listCbbSP = new ArrayList<>();
     private DefaultComboBoxModel dcbSP = new DefaultComboBoxModel();
-
+    
     private List<LoaiAoViewModel> listLA = new ArrayList<>();
     private ILoaiAoService iLoaiAoService = new LoaiAoServiceImpl();
     private List<String> listCbbLA = new ArrayList<>();
     private DefaultComboBoxModel dcbLA = new DefaultComboBoxModel();
-
+    
     private List<MauSacViewModel> listMS = new ArrayList<>();
     private IMauSacService iMauSacService = new MauSacServiceImpl();
     private List<String> listCbbMS = new ArrayList<>();
     private DefaultComboBoxModel dcbMS = new DefaultComboBoxModel();
-
+    
     private List<ThuongHieuViewModel> listTH = new ArrayList<>();
     private IThuongHieuService iThuongHieuService = new ThuongHieuServiceImpl();
     private List<String> listCbbTH = new ArrayList<>();
@@ -140,17 +141,17 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             listCbbCL.add(sp.getTen());
         }
         showDataCBO(listCbbCL, dcbCL);
-
+        
     }
-
-    public void load(List<ChiTietSanPhamViewModel> list) {
+    
+    private void load(List<ChiTietSanPhamViewModel> list) {
         dtm.setRowCount(0);
         dtm = (DefaultTableModel) tb.getModel();
         for (ChiTietSanPhamViewModel chiTietSanPhamViewModel : list) {
             dtm.addRow(chiTietSanPhamViewModel.toDataRow());
         }
     }
-
+    
     private void showDataCBO(List<String> lisString, DefaultComboBoxModel cbo) {
         for (String string : lisString) {
             cbo.addElement(string);
@@ -158,8 +159,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     }
 
     //show data form
-    public void showDataForm(int idex) {
-        ChiTietSanPhamViewModel ctspvm = listCTSPTable.get(idex);
+    private void showDataForm(int index) {
+        ChiTietSanPhamViewModel ctspvm = listCTSPTable.get(index);
         txtMa.setText(ctspvm.getMa());
         txtMaVach.setText(ctspvm.getMaVach());
         cbbSanPham.setSelectedItem(ctspvm.getIdSP());
@@ -171,10 +172,20 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         txtSoLuong.setText(String.valueOf(ctspvm.getSoLuong()));
         txtGiaNhap.setText(String.valueOf(ctspvm.getGiaNhap()));
         txtGiaBan.setText(String.valueOf(ctspvm.getGiaBan()));
-        ckbTrangThai.setSelected(ctspvm.isTrangThai());
         txtMoTa.setText(ctspvm.getMoTa());
+        ckbTrangThai.setSelected(ctspvm.isTrangThai());
+        
     }
-
+    
+    private void clearFrom() {
+        txtMa.setText("");
+        txtMaVach.setText("");
+        txtMoTa.setText("");
+        txtSoLuong.setText("");
+        txtGiaNhap.setText("");
+        txtGiaBan.setText("");
+    }
+    
     public void fillData() {
         dtm = (DefaultTableModel) tb.getModel();
         ChiTietSanPhamViewModel ctspvm = new ChiTietSanPhamViewModel();
@@ -190,19 +201,19 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         dcbSP = (DefaultComboBoxModel) tb.getModel();
         String sp = tb.getValueAt(row, 4).toString();
         cbbSanPham.setSelectedItem(sp);
-
+        
         String th = tb.getValueAt(row, 5).toString();
         cbbThuongHieu.setSelectedItem(th);
-
+        
         String la = tb.getValueAt(row, 6).toString();
         cbbLoaiAo.setSelectedItem(la);
-
+        
         String kc = tb.getValueAt(row, 7).toString();
         cbbKichCo.setSelectedItem(kc);
-
+        
         String ms = tb.getValueAt(row, 8).toString();
         cbbMauSac.setSelectedItem(ms);
-
+        
         String cl = tb.getValueAt(row, 8).toString();
         cbbChatLieu.setSelectedItem(cl);
 
@@ -213,11 +224,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         txtGiaNhap.setText(String.valueOf(tb.getValueAt(row, 10).toString()));
         txtGiaBan.setText(String.valueOf(tb.getValueAt(row, 11).toString()));
         ckbTrangThai.setSelected(ctspvm.isTrangThai());
-
+        
     }
-
+    
     private CTSPViewModel add() {
-
+        
         CTSPViewModel ctsp = new CTSPViewModel();
 //        int i = listCTSPTable.size() - 1;
 //        ctsp.setMa("SPCT" + listCTSPTable.get(i).getId());
@@ -225,37 +236,37 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         ctsp.setMaVach(txtMaVach.getText());
         ctsp.setMoTa(txtMoTa.getText());
         ctsp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-
+        
         for (SanPhamViewModel sp : listSP) {
             if (cbbSanPham.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdSP(sp.getId());
             }
         }
-
+        
         for (ThuongHieuViewModel sp : listTH) {
             if (cbbThuongHieu.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdTH(sp.getId());
             }
         }
-
+        
         for (LoaiAoViewModel sp : listLA) {
             if (cbbLoaiAo.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdLA(sp.getId());
             }
         }
-
+        
         for (SizeViewModel sp : listKC) {
             if (cbbKichCo.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdKC(sp.getId());
             }
         }
-
+        
         for (MauSacViewModel sp : listMS) {
             if (cbbMauSac.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdMS(sp.getId());
             }
         }
-
+        
         for (ChatLieuViewMoel sp : listCL) {
             if (cbbChatLieu.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdCL(sp.getId());
@@ -264,49 +275,49 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         ctsp.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
         ctsp.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
         ctsp.setTrangThai(ckbTrangThai.isSelected());
-
+        
         return ctsp;
     }
-
+    
     public CTSPViewModel update() {
         CTSPViewModel ctsp = new CTSPViewModel();
-        int i = listCTSPTable.size() - 1;
-        ctsp.setMa("SPCT" + listCTSPTable.get(i).getId());
-        // ctsp.setMa(txtMa.getText());
+//        int i = listCTSPTable.size() - 1;
+//        ctsp.setMa("SPCT" + listCTSPTable.get(i).getId());
+        ctsp.setMa(txtMa.getText());
         ctsp.setMaVach(txtMaVach.getText());
         ctsp.setMoTa(txtMoTa.getText());
         ctsp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-
+        
         for (SanPhamViewModel sp : listSP) {
             if (cbbSanPham.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdSP(sp.getId());
             }
         }
-
+        
         for (ThuongHieuViewModel sp : listTH) {
             if (cbbThuongHieu.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdTH(sp.getId());
             }
         }
-
+        
         for (LoaiAoViewModel sp : listLA) {
             if (cbbLoaiAo.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdLA(sp.getId());
             }
         }
-
+        
         for (SizeViewModel sp : listKC) {
             if (cbbKichCo.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdKC(sp.getId());
             }
         }
-
+        
         for (MauSacViewModel sp : listMS) {
             if (cbbMauSac.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdMS(sp.getId());
             }
         }
-
+        
         for (ChatLieuViewMoel sp : listCL) {
             if (cbbChatLieu.getSelectedItem().equals(sp.getTen())) {
                 ctsp.setIdCL(sp.getId());
@@ -315,7 +326,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         ctsp.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
         ctsp.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
         ctsp.setTrangThai(ckbTrangThai.isSelected());
-
+        
         return ctsp;
     }
 
@@ -749,6 +760,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         btnLamMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Bar chart.png"))); // NOI18N
         btnLamMoi.setText("Làm Mới");
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoiActionPerformed(evt);
+            }
+        });
 
         btnLuuDS.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnLuuDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Computer.png"))); // NOI18N
@@ -812,6 +828,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jLabel14.setText("Tên Sản Phẩm");
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Số Lượng");
 
@@ -1033,79 +1054,81 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, iCTSPService.add(ctsp));
         listCTSPTable = iCTSPService.getAllTale();
         load(listCTSPTable);
+        clearFrom();
 
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
 
-//        int index = tb.getSelectedRow();
-//        //kiem tra
-//        if (index >= 0 && index < listCTSPTable.size()) {
-//            CTSPViewModel ctsp = update();
-//            ChiTietSanPhamViewModel model = listCTSPTable.get(index);
-//            JOptionPane.showMessageDialog(this, iCTSPService.getupdate(ctsp, model.getId()));
-//            List<CTSPViewModel> ctsp3 = new ArrayList<>();
-//            ctsp3.clear();
-//            listCTSPTable = iCTSPService.getAllTale();
-//            load(listCTSPTable);
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Chon 1 dong ");
-//        }
         int index = tb.getSelectedRow();
-        if (index < 0) {
-            JOptionPane.showMessageDialog(this, "Mời bạn chọn 1 dòng để sửa");
-        } else {
-            CTSPViewModel ctsp = new CTSPViewModel();
-            ctsp.setMa(txtMa.getText());
-            ctsp.setMaVach(txtMaVach.getText());
-            ctsp.setMoTa(txtMoTa.getText());
-            ctsp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-
-            for (SanPhamViewModel sp : listSP) {
-                if (cbbSanPham.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdSP(sp.getId());
-                }
-            }
-
-            for (ThuongHieuViewModel sp : listTH) {
-                if (cbbThuongHieu.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdTH(sp.getId());
-                }
-            }
-
-            for (LoaiAoViewModel sp : listLA) {
-                if (cbbLoaiAo.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdLA(sp.getId());
-                }
-            }
-
-            for (SizeViewModel sp : listKC) {
-                if (cbbKichCo.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdKC(sp.getId());
-                }
-            }
-
-            for (MauSacViewModel sp : listMS) {
-                if (cbbMauSac.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdMS(sp.getId());
-                }
-            }
-
-            for (ChatLieuViewMoel sp : listCL) {
-                if (cbbChatLieu.getSelectedItem().equals(sp.getTen())) {
-                    ctsp.setIdCL(sp.getId());
-                }
-            }
-            ctsp.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
-            ctsp.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
-            ctsp.setTrangThai(ckbTrangThai.isSelected());
-
-            String kq = iCTSPService.getupdate(ctsp, index + 1);
-            JOptionPane.showMessageDialog(this, kq);
+        //kiem tra
+        if (index >= 0 && index < listCTSPTable.size()) {
+            CTSPViewModel ctsp = update();
+            ChiTietSanPhamViewModel model = listCTSPTable.get(index);
+            JOptionPane.showMessageDialog(this, iCTSPService.getupdate(ctsp, model.getId()));
+            List<CTSPViewModel> ctsp3 = new ArrayList<>();
+            ctsp3.clear();
             listCTSPTable = iCTSPService.getAllTale();
             load(listCTSPTable);
+            clearFrom();
+        } else {
+            JOptionPane.showMessageDialog(this, "Chon 1 dong ");
         }
+//        int index = tb.getSelectedRow();
+//        if (index < 0) {
+//            JOptionPane.showMessageDialog(this, "Mời bạn chọn 1 dòng để sửa");
+//        } else {
+//            CTSPViewModel ctsp = new CTSPViewModel();
+//            ctsp.setMa(txtMa.getText());
+//            ctsp.setMaVach(txtMaVach.getText());
+//            ctsp.setMoTa(txtMoTa.getText());
+//            ctsp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+//
+//            for (SanPhamViewModel sp : listSP) {
+//                if (cbbSanPham.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdSP(sp.getId());
+//                }
+//            }
+//
+//            for (ThuongHieuViewModel sp : listTH) {
+//                if (cbbThuongHieu.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdTH(sp.getId());
+//                }
+//            }
+//
+//            for (LoaiAoViewModel sp : listLA) {
+//                if (cbbLoaiAo.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdLA(sp.getId());
+//                }
+//            }
+//
+//            for (SizeViewModel sp : listKC) {
+//                if (cbbKichCo.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdKC(sp.getId());
+//                }
+//            }
+//
+//            for (MauSacViewModel sp : listMS) {
+//                if (cbbMauSac.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdMS(sp.getId());
+//                }
+//            }
+//
+//            for (ChatLieuViewMoel sp : listCL) {
+//                if (cbbChatLieu.getSelectedItem().equals(sp.getTen())) {
+//                    ctsp.setIdCL(sp.getId());
+//                }
+//            }
+//            ctsp.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+//            ctsp.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
+//            ctsp.setTrangThai(ckbTrangThai.isSelected());
+//
+//            String kq = iCTSPService.getupdate(ctsp, ctsp.getId());
+//            JOptionPane.showMessageDialog(this, kq);
+//            listCTSPTable = iCTSPService.getAllTale();
+//            load(listCTSPTable);
+//        }
 
     }//GEN-LAST:event_btnupdateActionPerformed
 
@@ -1123,6 +1146,22 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         new ViewChatLieu().setVisible(true);
     }//GEN-LAST:event_btnSetFormCLActionPerformed
+
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
+        // TODO add your handling code here:
+        clearFrom();
+        cbbKichCo.setSelectedIndex(0);
+        cbbChatLieu.setSelectedIndex(0);
+        cbbMauSac.setSelectedIndex(0);
+        cbbThuongHieu.setSelectedIndex(0);
+        cbbLoaiAo.setSelectedIndex(0);
+        cbbSanPham.setSelectedIndex(0);
+    }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        new ViewSanPham().setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

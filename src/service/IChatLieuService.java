@@ -13,7 +13,10 @@ import viewmodel.ChatLieuViewMoel;
  * @author LAPTOP24H
  */
 public interface IChatLieuService {
-     List<ChatLieuViewMoel> getAll();
-     String add(ChatLieuViewMoel cl);
-     String update(ChatLieuViewMoel cl , int id);
+
+    List<ChatLieuViewMoel> getAll();
+
+    String add(ChatLieuViewMoel cl);
+
+    String update(ChatLieuViewMoel cl, int id);
 }

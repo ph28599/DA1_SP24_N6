@@ -26,6 +26,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
      */
     public ViewLoaiAo() {
          setUndecorated(true);
+         
         initComponents();
         setLocationRelativeTo(null);
        

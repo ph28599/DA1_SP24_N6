@@ -29,6 +29,7 @@ public class ViewThuongHieu extends javax.swing.JFrame {
     public ViewThuongHieu() {
         setUndecorated(true);
         initComponents();
+         setLocationRelativeTo(null);
         load(iThuongHieuService.getAll());
     }
 

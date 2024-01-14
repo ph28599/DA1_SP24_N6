@@ -48,6 +48,11 @@ public class MauSacModel {
     public void setTen(String ten) {
         this.ten = ten;
     }
+
+    @Override
+    public String toString() {
+        return "MauSacModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+    }
     
     public Object[] toDataRow() {
         return new Object[]{id, ma, ten};

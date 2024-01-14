@@ -30,7 +30,6 @@ public class ChatLieuViewMoel {
     public void setId(int id) {
         this.id = id;
     }
-
     public String getMa() {
         return ma;
     }

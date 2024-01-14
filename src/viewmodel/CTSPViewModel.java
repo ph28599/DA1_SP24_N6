@@ -157,8 +157,7 @@ public class CTSPViewModel {
         this.trangThai = trangThai;
     }
 
-   
-     public String trangThai(boolean trangThai) {
+    public String trangThai(boolean trangThai) {
         if (trangThai == true) {
             return "Còn Hàng";
         } else {
@@ -166,7 +165,8 @@ public class CTSPViewModel {
             return "Hết Hàng";
         }
     }
-     public Object[] toDataRow() {
+
+    public Object[] toDataRow() {
         return new Object[]{ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan, trangThai(trangThai)};
     }
 

@@ -9,7 +9,8 @@ package viewmodel;
  * @author LAPTOP24H
  */
 public class MauSacViewModel {
-      private int id;
+
+    private int id;
     private String ma;
     private String ten;
 
@@ -21,8 +22,6 @@ public class MauSacViewModel {
         this.ma = ma;
         this.ten = ten;
     }
-
-    
 
     public int getId() {
         return id;
@@ -47,7 +46,7 @@ public class MauSacViewModel {
     public void setTen(String ten) {
         this.ten = ten;
     }
-    
+
     public Object[] toDataRow() {
         return new Object[]{id, ma, ten};
     }

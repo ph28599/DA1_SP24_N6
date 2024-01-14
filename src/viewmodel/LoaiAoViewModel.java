@@ -22,7 +22,6 @@ public class LoaiAoViewModel {
         this.ma = ma;
         this.ten = ten;
     }
-
     public int getId() {
         return id;
     }

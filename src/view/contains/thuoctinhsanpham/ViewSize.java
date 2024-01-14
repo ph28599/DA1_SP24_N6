@@ -26,6 +26,7 @@ public class ViewSize extends javax.swing.JFrame {
     public ViewSize() {
         setUndecorated(true);
         initComponents();
+         setLocationRelativeTo(null);
         load(iSizeService.getAll());
     }
 

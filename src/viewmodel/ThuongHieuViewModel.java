@@ -22,7 +22,6 @@ public class ThuongHieuViewModel {
         this.ma = ma;
         this.ten = ten;
     }
-
     public int getId() {
         return id;
     }

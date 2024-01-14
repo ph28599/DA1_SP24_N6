@@ -12,11 +12,11 @@ import viewmodel.SanPhamViewModel;
  * @author LAPTOP24H
  */
 public interface ISanPhamSevice {
+
     List<SanPhamViewModel> getAll();
-    
+
     String getAdd(SanPhamViewModel sp);
-    
-    String getUpdate(SanPhamViewModel sp , Integer id);
-    
-   
+
+    String getUpdate(SanPhamViewModel sp, Integer id);
+
 }

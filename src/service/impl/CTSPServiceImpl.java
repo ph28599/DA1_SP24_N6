@@ -38,7 +38,7 @@ public class CTSPServiceImpl implements ICTSPService {
     public String add(CTSPViewModel ctsp) {
         // CTSPModel model = new CTSPModel(ctsp.getId(), ctsp.getMa(), ctsp.getMaVach(), ctsp.getMoTa(), ctsp.getSoLuong(), ctsp.getIdSP(), ctsp.getIdTH(), ctsp.getIdLA(), ctsp.getIdKC(), ctsp.getIdMS(),ctsp.getIdCL(),ctsp.getGiaNhap(), ctsp.getGiaBan(),ctsp.isTrangThai() );
 
-        CTSPModel model = new CTSPModel(ctsp.getId(), ctsp.getMa(), ctsp.getMaVach(), ctsp.getMoTa(), ctsp.getSoLuong(), ctsp.getIdSP(), ctsp.getIdTH(), ctsp.getIdLA(), ctsp.getIdKC(), ctsp.getIdMS(),ctsp.getIdCL(),ctsp.getGiaNhap(), ctsp.getGiaBan(),ctsp.isTrangThai() );
+        CTSPModel model = new CTSPModel(ctsp.getId(), ctsp.getMa(), ctsp.getMaVach(), ctsp.getMoTa(), ctsp.getSoLuong(), ctsp.getIdSP(), ctsp.getIdTH(), ctsp.getIdLA(), ctsp.getIdKC(), ctsp.getIdMS(), ctsp.getIdCL(), ctsp.getGiaNhap(), ctsp.getGiaBan(), ctsp.isTrangThai());
         boolean them = cTSPRepository.getAdd(model);
         if (them) {
             return "Them thanh cong";
@@ -59,13 +59,14 @@ public class CTSPServiceImpl implements ICTSPService {
 
     @Override
     public String getupdate(CTSPViewModel ctsp, int id) {
-       
+
         CTSPModel model = new CTSPModel(ctsp.getId(), ctsp.getMa(), ctsp.getMaVach(), ctsp.getMoTa(), ctsp.getSoLuong(), ctsp.getIdSP(), ctsp.getIdTH(), ctsp.getIdLA(), ctsp.getIdKC(), ctsp.getIdMS(), ctsp.getIdCL(), ctsp.getGiaNhap(), ctsp.getGiaBan(), ctsp.isTrangThai());
         boolean Sua = cTSPRepository.getUpdate(model, id);
         if (Sua) {
             return "Sửa thành công";
         } else {
             return "Sửa thất bại";
-        }  }
+        }
+    }
 
 }

@@ -27,6 +27,7 @@ public class ViewSanPham extends javax.swing.JFrame {
     public ViewSanPham() {
         setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         load(iSanPhamSevice.getAll());
     }
 

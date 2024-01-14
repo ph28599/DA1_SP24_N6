@@ -166,12 +166,8 @@ public class ChiTietSanPhamViewModel {
         }
     }
 
-  
-    
-    
-    
     public Object[] toDataRow() {
-       
-        return new Object[]{ma, maVach, moTa, soLuong, idSP , idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan, trangThai(trangThai)};
+
+        return new Object[]{ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan, trangThai(trangThai)};
     }
 }

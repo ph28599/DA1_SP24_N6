@@ -22,16 +22,16 @@ public class CTSPTableRepo {
 
     public List<ChiTietSanPhamModel> getAllTable() {
         String sql = """
-                     SELECT dbo.SAN_PHAM_CHI_TIET.ID, dbo.SAN_PHAM_CHI_TIET.MA, dbo.SAN_PHAM_CHI_TIET.MAVACH, dbo.SAN_PHAM_CHI_TIET.MOTA, dbo.SAN_PHAM_CHI_TIET.SOLUONG, dbo.SAN_PHAM_CHI_TIET.ID_SP, 
-                                       dbo.SAN_PHAM_CHI_TIET.ID_TH, dbo.SAN_PHAM_CHI_TIET.ID_LA, dbo.SAN_PHAM_CHI_TIET.ID_SIZE, dbo.SAN_PHAM_CHI_TIET.ID_MS, dbo.SAN_PHAM_CHI_TIET.ID_CL, dbo.SAN_PHAM_CHI_TIET.GIANHAP, 
-                                       dbo.SAN_PHAM_CHI_TIET.GIABAN, dbo.SAN_PHAM_CHI_TIET.TRANGTHAI
-                     FROM     dbo.SAN_PHAM_CHI_TIET INNER JOIN
-                                       dbo.SAN_PHAM ON dbo.SAN_PHAM_CHI_TIET.ID_SP = dbo.SAN_PHAM.ID INNER JOIN
-                                       dbo.THUONG_HIEU ON dbo.SAN_PHAM_CHI_TIET.ID_TH = dbo.THUONG_HIEU.ID INNER JOIN
-                                       dbo.LOAI_AO ON dbo.SAN_PHAM_CHI_TIET.ID_LA = dbo.LOAI_AO.ID INNER JOIN
-                                       dbo.SIZE ON dbo.SAN_PHAM_CHI_TIET.ID_SIZE = dbo.SIZE.ID INNER JOIN
-                                       dbo.MAU_SAC ON dbo.SAN_PHAM_CHI_TIET.ID_MS = dbo.MAU_SAC.ID INNER JOIN
-                                       dbo.CHAT_LIEU ON dbo.SAN_PHAM_CHI_TIET.ID_CL = dbo.CHAT_LIEU.ID
+                     SELECT dbo.SAN_PHAM_CHI_TIET.ID, dbo.SAN_PHAM_CHI_TIET.MA, dbo.SAN_PHAM_CHI_TIET.MAVACH, dbo.SAN_PHAM_CHI_TIET.MOTA, dbo.SAN_PHAM_CHI_TIET.SOLUONG, dbo.SAN_PHAM.TEN, 
+                                                                              THUONG_HIEU.TEN,LOAI_AO.TEN, SIZE.SIZE, MAU_SAC.TEN, CHAT_LIEU.TEN, dbo.SAN_PHAM_CHI_TIET.GIANHAP, 
+                                                                              dbo.SAN_PHAM_CHI_TIET.GIABAN, dbo.SAN_PHAM_CHI_TIET.TRANGTHAI
+                                                            FROM     dbo.SAN_PHAM_CHI_TIET INNER JOIN
+                                                                              dbo.SAN_PHAM ON dbo.SAN_PHAM_CHI_TIET.ID_SP = dbo.SAN_PHAM.ID INNER JOIN
+                                                                              dbo.THUONG_HIEU ON dbo.SAN_PHAM_CHI_TIET.ID_TH = dbo.THUONG_HIEU.ID INNER JOIN
+                                                                              dbo.LOAI_AO ON dbo.SAN_PHAM_CHI_TIET.ID_LA = dbo.LOAI_AO.ID INNER JOIN
+                                                                              dbo.SIZE ON dbo.SAN_PHAM_CHI_TIET.ID_SIZE = dbo.SIZE.ID INNER JOIN
+                                                                              dbo.MAU_SAC ON dbo.SAN_PHAM_CHI_TIET.ID_MS = dbo.MAU_SAC.ID INNER JOIN
+                                                                              dbo.CHAT_LIEU ON dbo.SAN_PHAM_CHI_TIET.ID_CL = dbo.CHAT_LIEU.ID
                      """;
         try (Connection con = connection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
@@ -48,5 +48,7 @@ public class CTSPTableRepo {
         return null;
     }
 
-    
+    public static void main(String[] args) {
+        
+    }
 }

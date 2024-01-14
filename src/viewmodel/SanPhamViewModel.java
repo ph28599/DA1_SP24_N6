@@ -18,7 +18,6 @@ public class SanPhamViewModel {
 
     public SanPhamViewModel() {
     }
-
     public SanPhamViewModel(int id, String ma, String ten, String loaiSanPham, int soLuong) {
         this.id = id;
         this.ma = ma;
@@ -68,6 +67,6 @@ public class SanPhamViewModel {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{ ma, ten, loaiSanPham, soLuong};
+        return new Object[]{ma, ten, loaiSanPham, soLuong};
     }
 }

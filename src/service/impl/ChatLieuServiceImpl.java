@@ -31,9 +31,9 @@ public class ChatLieuServiceImpl implements IChatLieuService {
 
     @Override
     public String add(ChatLieuViewMoel cl) {
-        ChatLieuModel model = new ChatLieuModel(cl.getId(),cl.getMa(),cl.getTen());
+        ChatLieuModel model = new ChatLieuModel(cl.getId(), cl.getMa(), cl.getTen());
         boolean them = chatLieuViewMoel.getAdd(model);
-         if (them) {
+        if (them) {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
@@ -42,14 +42,14 @@ public class ChatLieuServiceImpl implements IChatLieuService {
 
     @Override
     public String update(ChatLieuViewMoel cl, int id) {
-        ChatLieuModel model = new ChatLieuModel(cl.getId(),cl.getMa(),cl.getTen());
+        ChatLieuModel model = new ChatLieuModel(cl.getId(), cl.getMa(), cl.getTen());
         boolean sua = chatLieuViewMoel.getUpđate(model, id);
-        
-         if (sua) {
+
+        if (sua) {
             return "Sửa thành công";
         } else {
             return "Sửa thất bại";
         }
-      }
+    }
 
 }

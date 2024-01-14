@@ -13,13 +13,12 @@ import viewmodel.ChiTietSanPhamViewModel;
  * @author LAPTOP24H
  */
 public interface ICTSPService {
-    
+
     List<CTSPViewModel> getAll();
-    
+
     List<ChiTietSanPhamViewModel> getAllTale();
-    
+
     String add(CTSPViewModel ctsp);
-    
-    
-    String getupdate(CTSPViewModel ctsp , int id);
+
+    String getupdate(CTSPViewModel ctsp, int id);
 }

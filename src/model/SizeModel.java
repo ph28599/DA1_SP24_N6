@@ -49,6 +49,7 @@ public class SizeModel {
         this.ten = ten;
     }
 
+    
     public Object[] toDataRow() {
         return new Object[]{id, ma, ten};
     }

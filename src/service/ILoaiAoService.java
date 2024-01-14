@@ -13,8 +13,10 @@ import viewmodel.LoaiAoViewModel;
  * @author LAPTOP24H
  */
 public interface ILoaiAoService {
-     List<LoaiAoViewModel> getAll();
-     
-     String add(LoaiAoViewModel la);
-     String update(LoaiAoViewModel la , int id);
+
+    List<LoaiAoViewModel> getAll();
+
+    String add(LoaiAoViewModel la);
+
+    String update(LoaiAoViewModel la, int id);
 }

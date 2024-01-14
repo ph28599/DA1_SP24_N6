@@ -9,7 +9,7 @@ package viewmodel;
  * @author LAPTOP24H
  */
 public class SizeViewModel {
-    
+
     private int id;
     private String ma;
     private String ten;
@@ -22,8 +22,6 @@ public class SizeViewModel {
         this.ma = ma;
         this.ten = ten;
     }
-
-    
 
     public int getId() {
         return id;

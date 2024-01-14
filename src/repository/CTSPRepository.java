@@ -88,7 +88,7 @@ public class CTSPRepository {
         int check = 0;
         String sql = """
                     UPDATE [dbo].[SAN_PHAM_CHI_TIET]
-                             SET  [MA] = ?
+                           SET [MA] = ?
                                ,[MAVACH] = ?
                                ,[MOTA] = ?
                                ,[SOLUONG] = ?
@@ -101,7 +101,6 @@ public class CTSPRepository {
                                ,[GIANHAP] = ?
                                ,[GIABAN] = ?
                                ,[TRANGTHAI] = ?
-                         
                               WHERE id=?
                     """;
         try (Connection con = DBConnection.getConnection();

@@ -79,10 +79,7 @@ public class SanPhamRepository {
     }
 
     public static void main(String[] args) {
-        ArrayList<SanPhamModel> l = (ArrayList<SanPhamModel>) new SanPhamRepository().getAll();
-        for (SanPhamModel sanPham : l) {
-            System.out.println(sanPham.toString());
-        }
+        
     }
 
 }
