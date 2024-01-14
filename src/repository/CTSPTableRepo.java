@@ -48,7 +48,4 @@ public class CTSPTableRepo {
         return null;
     }
 
-    public static void main(String[] args) {
-        
-    }
 }
