@@ -11,6 +11,7 @@ import view.contains.KhachHangView;
 import view.contains.KhuyenMaiJpanel;
 import view.contains.NhanVienView;
 import view.contains.SanPhamJpanel;
+import view.contains.ViewBanHang;
 import view.contains.ViewHoaDon;
 import view.contains.ViewThongKe;
 
@@ -27,7 +28,7 @@ public class ManHinh extends javax.swing.JFrame {
      */
     public ManHinh() {
         initComponents();
-        panel = new SanPhamJpanel();
+        panel = new ViewBanHang();
         setPanel(panel);
     }
 
@@ -278,7 +279,7 @@ public class ManHinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        panel = new BanHang();
+        panel = new ViewBanHang();
         setPanel(panel);
     }//GEN-LAST:event_btnBanHangActionPerformed
 
