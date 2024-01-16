@@ -8,31 +8,13 @@ import java.util.Date;
 
 /**
  *
-<<<<<<< HEAD
- * @author ngochieu
- */
-public class KhachHang {
-    private int id;
-    private String ma;
-    private String ten;
-    private String email;
-    private String sdt;
-    private int gioiTinh;
-    private Date ngaySinh;
-=======
  * @author pc
  */
 public class KhachHang {
-
     private int id;
     private String ma, ten, email, sdt;
     private int gioiTinh;
-<<<<<<< HEAD
-    private Date ngaySinh;
-=======
     private Date  ngaySinh;
->>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
->>>>>>> fce514accff1888c4939d58f1ddf4a353b6cc771
     private String diaChi;
     private int trangThai;
 
@@ -122,14 +104,5 @@ public class KhachHang {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-<<<<<<< HEAD
-
-=======
     
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
->>>>>>> fce514accff1888c4939d58f1ddf4a353b6cc771
 }

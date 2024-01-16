@@ -4,8 +4,6 @@
  */
 package view.contains;
 
-import viewmodel.NhanVienVM;
-
 /**
  *
  * @author pc
@@ -17,10 +15,6 @@ public class BanHang extends javax.swing.JPanel {
      */
     public BanHang() {
         initComponents();
-    }
-
-    public BanHang(NhanVienVM nv) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
