@@ -4,19 +4,34 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.IChatLieuService;
+import service.impl.ChatLieuServiceImpl;
+import viewmodel.ChatLieuViewMoel;
+import viewmodel.MauSacViewModel;
+
 /**
  *
  * @author LAPTOP24H
  */
 public class ViewChatLieu extends javax.swing.JFrame {
-
+ private DefaultTableModel dtm = new DefaultTableModel();
+ private IChatLieuService ichatLieuService = new ChatLieuServiceImpl();
     /**
      * Creates new form ViewChatLieu
      */
     public ViewChatLieu() {
         initComponents();
+        load(ichatLieuService.getAll());
     }
-
+public void load(List<ChatLieuViewMoel> chatLieuViewMoels){
+        dtm = (DefaultTableModel) tb.getModel();
+        dtm.setRowCount(0);
+        for (ChatLieuViewMoel model : chatLieuViewMoels) {
+            dtm.addRow(model.toDataRow());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +44,7 @@ public class ViewChatLieu extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jTextField19 = new javax.swing.JTextField();
@@ -43,7 +58,6 @@ public class ViewChatLieu extends javax.swing.JFrame {
         jButton53 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.setPreferredSize(new java.awt.Dimension(421, 317));
@@ -51,7 +65,7 @@ public class ViewChatLieu extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel37.setText("Chất Liệu");
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -62,7 +76,7 @@ public class ViewChatLieu extends javax.swing.JFrame {
                 "ID", "Mã Chất Liệu", "Tên Chất Liệu"
             }
         ));
-        jScrollPane6.setViewportView(jTable5);
+        jScrollPane6.setViewportView(tb);
 
         jLabel38.setText("Mã ");
 
@@ -230,9 +244,9 @@ public class ViewChatLieu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
+    private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@
 package service.impl;
 
 import java.util.ArrayList;
-import model.Login_View;
+import model.Login;
 import repository.TaiKhoan_Repository;
 import service.TaiKhoan_Service;
 import viewmodel.QLTaiKhoan;
@@ -23,7 +23,7 @@ public class TaiKhoan_Impl implements TaiKhoan_Service{
     }
 
     @Override
-    public Boolean Them(Login_View login_View) {
+    public Boolean Them(Login login_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -33,7 +33,7 @@ public class TaiKhoan_Impl implements TaiKhoan_Service{
     }
 
     @Override
-    public Boolean Sua(int id, Login_View login_View) {
+    public Boolean Sua(int id, Login login_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

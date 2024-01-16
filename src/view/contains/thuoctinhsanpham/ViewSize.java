@@ -4,19 +4,34 @@
  */
 package view.contains.thuoctinhsanpham;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.ISizeService;
+import service.impl.SizeServiceImpl;
+import viewmodel.SizeViewModel;
+
 /**
  *
  * @author LAPTOP24H
  */
 public class ViewSize extends javax.swing.JFrame {
-
+        private DefaultTableModel dtm = new DefaultTableModel();
+        private ISizeService iSizeService = new SizeServiceImpl();
     /**
      * Creates new form ViewSizze
      */
     public ViewSize() {
         initComponents();
+        load(iSizeService.getAll());
     }
-
+ public void load(List<SizeViewModel> list){
+        dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tb.getModel();
+        for(SizeViewModel s : list){
+            dtm.addRow(s.toDataRow());
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +44,7 @@ public class ViewSize extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -50,7 +65,7 @@ public class ViewSize extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setText("Kích Cỡ");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -61,7 +76,7 @@ public class ViewSize extends javax.swing.JFrame {
                 "ID", "Mã Size", "Tên Size"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tb);
 
         jLabel27.setText("Mã ");
 
@@ -227,9 +242,9 @@ public class ViewSize extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }

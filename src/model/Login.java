@@ -8,16 +8,16 @@ package model;
  *
  * @author pc
  */
-public class Login_View {
+public class Login {
     private int id;
     private int idNV;
     private String taiKhoan;
     private String matKhau;
 
-    public Login_View() {
+    public Login() {
     }
 
-    public Login_View(int id, int idNV, String taiKhoan, String matKhau) {
+    public Login(int id, int idNV, String taiKhoan, String matKhau) {
         this.id = id;
         this.idNV = idNV;
         this.taiKhoan = taiKhoan;

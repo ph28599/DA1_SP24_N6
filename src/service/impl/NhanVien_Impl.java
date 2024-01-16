@@ -5,7 +5,7 @@
 package service.impl;
 
 import java.util.ArrayList;
-import model.NhanVien_View;
+import model.NhanVien;
 import repository.NhanVien_Repository;
 import service.NhanVien_Service;
 import viewmodel.QLNhanVien;
@@ -23,7 +23,7 @@ public class NhanVien_Impl implements NhanVien_Service{
     }
 
     @Override
-    public Boolean Them(NhanVien_View nhanVien_View) {
+    public Boolean Them(NhanVien nhanVien_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -33,7 +33,7 @@ public class NhanVien_Impl implements NhanVien_Service{
     }
 
     @Override
-    public Boolean Sua(int id, NhanVien_View nhanVien_View) {
+    public Boolean Sua(int id, NhanVien nhanVien_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

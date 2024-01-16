@@ -4,17 +4,33 @@
  */
 package view;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import service.NhanVienVMService;
+import service.NhanVien_Service;
+import viewmodel.NhanVienVM;
+
 /**
  *
- * @author pc
+ * @author ngochieu
  */
 public class Login extends javax.swing.JFrame {
+
+    private List<NhanVienVM> listNhanVien;
+    private NhanVienVMService nhanVienVM_Service;
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+//        nhanVienVM_Service = new NhanVienVM_Service();
+//        listNhanVien = new ArrayList<>();
+//        listNhanVien = nhanVienVM_Service.getAllNVByTrangThai();
         setLocationRelativeTo(null);
     }
 
@@ -29,15 +45,16 @@ public class Login extends javax.swing.JFrame {
 
         btnLogin = new javax.swing.JButton();
         txtExit = new javax.swing.JButton();
-        txtPass = new javax.swing.JPasswordField();
+        txtPassWorld = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lbCheck = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,15 +119,19 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Username:");
 
         jLabel4.setText("Password:");
+
+        lbCheck.setFont(new java.awt.Font("SansSerif", 2, 13)); // NOI18N
+        lbCheck.setForeground(new java.awt.Color(102, 102, 102));
+        lbCheck.setText("(!) Vui lòng điền thông tin để đăng nhập");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,8 +154,11 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addComponent(txtPassWorld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
@@ -144,13 +168,15 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassWorld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(40, 40, 40)
+                .addGap(12, 12, 12)
+                .addComponent(lbCheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(txtExit))
@@ -161,10 +187,51 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+       public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedPassword) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        ManHinh mh = new ManHinh();
+      ManHinh mh = new ManHinh();
         mh.setVisible(true);
                     this.dispose();
+       
+//        String taiKhoan = txtName.getText().trim();
+//        String matKhau = txtPassWorld.getText().trim();
+//        String hashedPassword = hashPassword(matKhau);
+//        System.out.println(hashedPassword);
+//        System.out.println(taiKhoan);
+//        if (!taiKhoan.equals("") && !matKhau.equals("")) {
+//            boolean check = false;
+//
+//            for (NhanVienVM nvvm : listNhanVien) {
+//                if (taiKhoan.equalsIgnoreCase(nvvm.getTenDN()) &&hashedPassword.equalsIgnoreCase(nvvm.getMatKhau())) {
+//                    new ManHinh(nvvm).setVisible(true);
+//                    this.dispose();
+//                    check = true;
+//                    break;        
+//                }
+//            }
+//
+//            if (!check) {
+//                JOptionPane.showMessageDialog(this, "Tài khoản hoặc Mật khẩu không chính xác. Vui lòng nhập lại!");
+//                 lbCheck.setText("(!) Đăng nhập thất bại");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập Tài khoản và Mật khẩu");
+//             lbCheck.setText("(!) Đăng nhập thất bại");
+//        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExitActionPerformed
@@ -172,9 +239,9 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_txtExitActionPerformed
 
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,18 +272,7 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+      
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -235,8 +291,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbCheck;
     private javax.swing.JButton txtExit;
-    private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtPassWorld;
     // End of variables declaration//GEN-END:variables
 }

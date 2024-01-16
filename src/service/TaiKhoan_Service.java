@@ -5,7 +5,7 @@
 package service;
 
 import java.util.ArrayList;
-import model.Login_View;
+import model.Login;
 import viewmodel.QLTaiKhoan;
 
 /**
@@ -15,11 +15,11 @@ import viewmodel.QLTaiKhoan;
 public interface TaiKhoan_Service {
     public ArrayList<QLTaiKhoan> getList();
     
-    public Boolean Them(Login_View login_View);
+    public Boolean Them(Login login_View);
     
     public Boolean Xoa(int id);
     
-    public Boolean Sua(int id, Login_View login_View);
+    public Boolean Sua(int id, Login login_View);
     
     public ArrayList<QLTaiKhoan> TimKiem(String name);
     

@@ -2,36 +2,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package viewmodel;
+
+import java.time.LocalDate;
 
 /**
  *
  * @author pc
  */
-public class NhanVien_View {
-    int id;
-    String ma;
-    String ten;
-    int gioiTinh;
-    String sdt;
-    String ngaySinh;
-    String diaChi;
-    String email;
-    int chucVu,trangThai;
+public class NhanVienVM {
+    private int id;
+    private String ma;
+    private String hoTen;
+    private int gioiTinh;
+    private String sdt;
+    private LocalDate ngaySinh;
+    private String diaChi;
+    private String email;
+    private int chucVu;
+    private String tenDN;
+    private String matKhau;
+    private int trangThai;
 
-    public NhanVien_View() {
+    public NhanVienVM() {
     }
 
-    public NhanVien_View(int id, String ma, String ten, int gioiTinh, String sdt, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
+    public NhanVienVM(int id, String ma, String hoTen, int gioiTinh, String sdt, LocalDate ngaySinh, String diaChi, String email, int chucVu, String tenDN, String matKhau, int trangThai) {
         this.id = id;
         this.ma = ma;
-        this.ten = ten;
+        this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.sdt = sdt;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.email = email;
         this.chucVu = chucVu;
+        this.tenDN = tenDN;
+        this.matKhau = matKhau;
         this.trangThai = trangThai;
     }
 
@@ -51,12 +58,12 @@ public class NhanVien_View {
         this.ma = ma;
     }
 
-    public String getTen() {
-        return ten;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public int getGioiTinh() {
@@ -75,11 +82,11 @@ public class NhanVien_View {
         this.sdt = sdt;
     }
 
-    public String getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -107,6 +114,22 @@ public class NhanVien_View {
         this.chucVu = chucVu;
     }
 
+    public String getTenDN() {
+        return tenDN;
+    }
+
+    public void setTenDN(String tenDN) {
+        this.tenDN = tenDN;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
     public int getTrangThai() {
         return trangThai;
     }
@@ -115,5 +138,26 @@ public class NhanVien_View {
         this.trangThai = trangThai;
     }
     
+     public String getgt() {
+        if (gioiTinh == 1) {
+            return "Nam";
+        } else {
+            return "Nữ";
+        }
+    }
+    public String getcv() {
+        if (chucVu == 1) {
+            return "Nhân viên";
+        } else {
+            return "Quản lý";
+        }
+    }
+    public String gettt() {
+        if (trangThai == 1) {
+            return "Làm việc";
+        } else {
+            return "Nghỉ việc";
+        }
+    }
     
 }

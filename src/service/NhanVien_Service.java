@@ -5,7 +5,7 @@
 package service;
 
 import java.util.ArrayList;
-import model.NhanVien_View;
+import model.NhanVien;
 import viewmodel.QLNhanVien;
 
 /**
@@ -15,11 +15,11 @@ import viewmodel.QLNhanVien;
 public interface NhanVien_Service {
     public ArrayList<QLNhanVien> getList();
     
-    public Boolean Them(NhanVien_View nhanVien_View);
+    public Boolean Them(NhanVien nhanVien_View);
     
     public Boolean Xoa(int id);
     
-    public Boolean Sua(int id, NhanVien_View nhanVien_View);
+    public Boolean Sua(int id, NhanVien nhanVien_View);
     
     public ArrayList<QLNhanVien> TimKiem(String name);
     

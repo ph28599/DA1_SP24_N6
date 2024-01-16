@@ -4,35 +4,34 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  *
- * @author ngochieu
+ * @author pc
  */
-public class KhachHang_View {
-    private int id;
-    private String ma;
-    private String ten;
-    private String email;
-    private String sdt;
-    private int gioiTinh;
-    private Date ngaySinh;
-    private String diaChi;
-    private int trangThai;
+public class NhanVien {
+    int id;
+    String ma;
+    String ten;
+    int gioiTinh;
+    String sdt;
+    String ngaySinh;
+    String diaChi;
+    String email;
+    int chucVu,trangThai;
 
-    public KhachHang_View() {
+    public NhanVien() {
     }
 
-    public KhachHang_View(int id, String ma, String ten, String email, String sdt, int gioiTinh, Date ngaySinh, String diaChi, int trangThai) {
+    public NhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
-        this.email = email;
-        this.sdt = sdt;
         this.gioiTinh = gioiTinh;
+        this.sdt = sdt;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
+        this.email = email;
+        this.chucVu = chucVu;
         this.trangThai = trangThai;
     }
 
@@ -60,12 +59,12 @@ public class KhachHang_View {
         this.ten = ten;
     }
 
-    public String getEmail() {
-        return email;
+    public int getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getSdt() {
@@ -76,19 +75,11 @@ public class KhachHang_View {
         this.sdt = sdt;
     }
 
-    public int getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(int gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -100,6 +91,22 @@ public class KhachHang_View {
         this.diaChi = diaChi;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getChucVu() {
+        return chucVu;
+    }
+
+    public void setChucVu(int chucVu) {
+        this.chucVu = chucVu;
+    }
+
     public int getTrangThai() {
         return trangThai;
     }
@@ -107,7 +114,6 @@ public class KhachHang_View {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
     
     
 }

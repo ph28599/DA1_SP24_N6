@@ -5,7 +5,7 @@
 package service;
 
 import java.util.ArrayList;
-import model.KhachHang_View;
+import model.KhachHang;
 import viewmodel.QLKhachHang;
 
 /**
@@ -15,11 +15,11 @@ import viewmodel.QLKhachHang;
 public interface KhachHang_Service {
     public ArrayList<QLKhachHang> getList();
     
-    public Boolean Them(KhachHang_View khachHang_View);
+    public Boolean Them(KhachHang khachHang_View);
     
     public Boolean Xoa(int id);
     
-    public Boolean Sua(int id, KhachHang_View khachHang_View);
+    public Boolean Sua(int id, KhachHang khachHang_View);
     
     public ArrayList<QLKhachHang> TimKiem(String name);
     

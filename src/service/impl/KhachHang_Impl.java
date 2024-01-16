@@ -5,7 +5,7 @@
 package service.impl;
 
 import java.util.ArrayList;
-import model.KhachHang_View;
+import model.KhachHang;
 import repository.KhachHang_Repository;
 import service.KhachHang_Service;
 import viewmodel.QLKhachHang;
@@ -23,7 +23,7 @@ public class KhachHang_Impl implements KhachHang_Service{
     }
 
     @Override
-    public Boolean Them(KhachHang_View khachHang_View) {
+    public Boolean Them(KhachHang khachHang_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -33,7 +33,7 @@ public class KhachHang_Impl implements KhachHang_Service{
     }
 
     @Override
-    public Boolean Sua(int id, KhachHang_View khachHang_View) {
+    public Boolean Sua(int id, KhachHang khachHang_View) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
