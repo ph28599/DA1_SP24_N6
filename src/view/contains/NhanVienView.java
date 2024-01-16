@@ -4,40 +4,17 @@
  */
 package view.contains;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import service.NhanVienVMService;
-import viewmodel.NhanVienVM;
-
 /**
  *
  * @author Admin
  */
 public class NhanVienView extends javax.swing.JPanel {
-    private final NhanVienVMService nhanVienVM_Service;
-    List<NhanVienVM> lstnv;
 
     /**
      * Creates new form NhanVienView
      */
     public NhanVienView() {
         initComponents();
-        
-        rdoNam.setSelected(true);
-        nhanVienVM_Service = new NhanVienVMService();
-        lstnv = new ArrayList<>();
-        lstnv = nhanVienVM_Service.getAllNVVM();
-        loadDataToTableNV(lstnv);
-        if (tblNhanVien.getRowCount() > 0) {
-            tblNhanVien.setRowSelectionInterval(0, 0);
-            showDetailNV();
-        }
-        showDataCboLocChucVu();
-        showDataCboLocTinhTrang();
-        clearFormNV();
     }
 
     /**
@@ -68,7 +45,7 @@ public class NhanVienView extends javax.swing.JPanel {
         lbID = new javax.swing.JLabel();
         btnAddNhanVien = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnClearNV = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         txtMaNhanVien = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
@@ -88,7 +65,7 @@ public class NhanVienView extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         txtEmailNV = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jDateNgaySinh = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Thông Tin Nhân Viên");
@@ -228,11 +205,11 @@ public class NhanVienView extends javax.swing.JPanel {
             }
         });
 
-        btnClearNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Text.png"))); // NOI18N
-        btnClearNV.setText("Mới");
-        btnClearNV.addActionListener(new java.awt.event.ActionListener() {
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Text.png"))); // NOI18N
+        jButton13.setText("Mới");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearNVActionPerformed(evt);
+                jButton13ActionPerformed(evt);
             }
         });
 
@@ -332,7 +309,7 @@ public class NhanVienView extends javax.swing.JPanel {
                                             .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jDateNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(223, 223, 223)))
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -360,7 +337,7 @@ public class NhanVienView extends javax.swing.JPanel {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAddNhanVien)
-                    .addComponent(btnClearNV, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
         );
@@ -409,7 +386,7 @@ public class NhanVienView extends javax.swing.JPanel {
                                     .addComponent(rdoNu)
                                     .addComponent(jLabel6)
                                     .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnClearNV))
+                                    .addComponent(jButton13))
                                 .addGap(27, 27, 27)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -420,7 +397,7 @@ public class NhanVienView extends javax.swing.JPanel {
                                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jCheckBox1))
-                            .addComponent(jDateNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -459,21 +436,6 @@ public class NhanVienView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-     public static String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashedPassword) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
 
     }//GEN-LAST:event_tblNhanVienMouseClicked
@@ -494,9 +456,9 @@ public class NhanVienView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnClearNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearNVActionPerformed
-        clearFormNV();
-    }//GEN-LAST:event_btnClearNVActionPerformed
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     private void cbbChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChucVuActionPerformed
 
@@ -513,13 +475,13 @@ public class NhanVienView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNhanVien;
-    private javax.swing.JButton btnClearNV;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbbChucVu;
     private javax.swing.JComboBox<String> cbbLocCV1;
     private javax.swing.JComboBox<String> cbbLocTT;
+    private javax.swing.JButton jButton13;
     private javax.swing.JCheckBox jCheckBox1;
-    private com.toedter.calendar.JDateChooser jDateNgaySinh;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
