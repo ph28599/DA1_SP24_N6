@@ -9,24 +9,24 @@ package model;
  * @author LAPTOP24H
  */
 public class ThuongHieuModel {
-     private Integer id;
+     private int id;
     private String ma;
     private String ten;
 
     public ThuongHieuModel() {
     }
 
-    public ThuongHieuModel(Integer id, String ma, String ten) {
+    public ThuongHieuModel(int id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,6 +46,12 @@ public class ThuongHieuModel {
         this.ten = ten;
     }
 
+    @Override
+    public String toString() {
+        return this.ten;
+    }
+
+    
       public Object[] toDataRow() {
         return new Object[]{id, ma, ten};
     }

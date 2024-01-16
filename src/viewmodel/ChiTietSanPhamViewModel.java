@@ -10,17 +10,17 @@ package viewmodel;
  */
 public class ChiTietSanPhamViewModel {
 
-    private Integer id;
+    private int id;
     private String ma;
     private String maVach;
     private String moTa;
-    private Integer soLuong;
-    private Integer idSP;
-    private Integer idTH;
-    private Integer idLA;
-    private Integer idKC;
-    private Integer idMS;
-    private Integer idCL;
+    private int soLuong;
+    private String idSP;
+    private String idTH;
+    private String idLA;
+    private String idKC;
+    private String idMS;
+    private String idCL;
     private float giaNhap;
     private float giaBan;
     private boolean trangThai;
@@ -28,7 +28,7 @@ public class ChiTietSanPhamViewModel {
     public ChiTietSanPhamViewModel() {
     }
 
-    public ChiTietSanPhamViewModel(Integer id, String ma, String maVach, String moTa, Integer soLuong, Integer idSP, Integer idTH, Integer idLA, Integer idKC, Integer idMS, Integer idCL, float giaNhap, float giaBan, boolean trangThai) {
+    public ChiTietSanPhamViewModel(int id, String ma, String maVach, String moTa, int soLuong, String idSP, String idTH, String idLA, String idKC, String idMS, String idCL, float giaNhap, float giaBan, boolean trangThai) {
         this.id = id;
         this.ma = ma;
         this.maVach = maVach;
@@ -45,11 +45,11 @@ public class ChiTietSanPhamViewModel {
         this.trangThai = trangThai;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,59 +77,59 @@ public class ChiTietSanPhamViewModel {
         this.moTa = moTa;
     }
 
-    public Integer getSoLuong() {
+    public int getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(Integer soLuong) {
+    public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
 
-    public Integer getIdSP() {
+    public String getIdSP() {
         return idSP;
     }
 
-    public void setIdSP(Integer idSP) {
+    public void setIdSP(String idSP) {
         this.idSP = idSP;
     }
 
-    public Integer getIdTH() {
+    public String getIdTH() {
         return idTH;
     }
 
-    public void setIdTH(Integer idTH) {
+    public void setIdTH(String idTH) {
         this.idTH = idTH;
     }
 
-    public Integer getIdLA() {
+    public String getIdLA() {
         return idLA;
     }
 
-    public void setIdLA(Integer idLA) {
+    public void setIdLA(String idLA) {
         this.idLA = idLA;
     }
 
-    public Integer getIdKC() {
+    public String getIdKC() {
         return idKC;
     }
 
-    public void setIdKC(Integer idKC) {
+    public void setIdKC(String idKC) {
         this.idKC = idKC;
     }
 
-    public Integer getIdMS() {
+    public String getIdMS() {
         return idMS;
     }
 
-    public void setIdMS(Integer idMS) {
+    public void setIdMS(String idMS) {
         this.idMS = idMS;
     }
 
-    public Integer getIdCL() {
+    public String getIdCL() {
         return idCL;
     }
 
-    public void setIdCL(Integer idCL) {
+    public void setIdCL(String idCL) {
         this.idCL = idCL;
     }
 
@@ -156,8 +156,18 @@ public class ChiTietSanPhamViewModel {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-     public Object[] toDataRow() {
-        return new Object[]{id, ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan,trangThai};
+
+    public String trangThai(boolean trangThai) {
+        if (trangThai == true) {
+            return "Còn Hàng";
+        } else {
+
+            return "Hết Hàng";
+        }
+    }
+
+    public Object[] toDataRow() {
+
+        return new Object[]{ma, maVach, moTa, soLuong, idSP, idTH, idLA, idKC, idMS, idCL, giaNhap, giaBan, trangThai(trangThai)};
     }
 }

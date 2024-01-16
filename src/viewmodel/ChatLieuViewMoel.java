@@ -9,27 +9,27 @@ package viewmodel;
  * @author LAPTOP24H
  */
 public class ChatLieuViewMoel {
-     private Integer id;
+
+    private int id;
     private String ma;
     private String ten;
 
     public ChatLieuViewMoel() {
     }
 
-    public ChatLieuViewMoel(Integer id, String ma, String ten) {
+    public ChatLieuViewMoel(int id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
-
     public String getMa() {
         return ma;
     }
@@ -45,8 +45,8 @@ public class ChatLieuViewMoel {
     public void setTen(String ten) {
         this.ten = ten;
     }
-    
-      public Object[] toDataRow() {
+
+    public Object[] toDataRow() {
         return new Object[]{id, ma, ten};
     }
 }

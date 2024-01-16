@@ -15,29 +15,40 @@ import viewmodel.SanPhamViewModel;
  *
  * @author LAPTOP24H
  */
-public class SanPhamServiceImpl implements ISanPhamSevice{
+public class SanPhamServiceImpl implements ISanPhamSevice {
 
-    SanPhamRepository sanPhamRepository = new SanPhamRepository();
-    
-    
+    private SanPhamRepository sanPhamRepository = new SanPhamRepository();
+
     @Override
     public List<SanPhamViewModel> getAll() {
-       List<SanPhamModel> lietSPmodel = sanPhamRepository.getAll();
-       List<SanPhamViewModel> viewModels = new ArrayList<>();
-       for(SanPhamModel sp : lietSPmodel){
-           viewModels.add(new SanPhamViewModel(sp.getId(), sp.getMa(), sp.getTen(), sp.getLoaiSanPham(), sp.getSoLuong()));
-       }
-       return viewModels;
+        List<SanPhamModel> lietSPmodel = sanPhamRepository.getAll();
+        List<SanPhamViewModel> viewModels = new ArrayList<>();
+        for (SanPhamModel sp : lietSPmodel) {
+            viewModels.add(new SanPhamViewModel(sp.getId(), sp.getMa(), sp.getTen(), sp.getLoaiSanPham(), sp.getSoLuong()));
+        }
+        return viewModels;
     }
 
     @Override
     public String getAdd(SanPhamViewModel sp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        SanPhamModel model = new SanPhamModel(sp.getId(), sp.getMa(), sp.getTen(), sp.getLoaiSanPham(), sp.getSoLuong());
+        boolean them = sanPhamRepository.getAdd(model);
+        if (them) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
     }
 
     @Override
     public String getUpdate(SanPhamViewModel sp, Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        SanPhamModel model = new SanPhamModel(sp.getId(), sp.getMa(), sp.getTen(), sp.getLoaiSanPham(), sp.getSoLuong());
+        boolean t = sanPhamRepository.getUpđate(model, id);
+        if (t) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }
     }
-    
+
 }

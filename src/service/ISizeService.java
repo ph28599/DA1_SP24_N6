@@ -13,5 +13,10 @@ import viewmodel.SizeViewModel;
  * @author LAPTOP24H
  */
 public interface ISizeService {
-     List<SizeViewModel> getAll();
+
+    List<SizeViewModel> getAll();
+
+    String getAdd(SizeViewModel s);
+
+    String getUpdate(SizeViewModel s, Integer id);
 }

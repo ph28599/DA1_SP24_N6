@@ -29,4 +29,26 @@ public class MauSacServiceImpl implements IMauSacService {
         return viewModels;
     }
 
+    @Override
+    public String add(MauSacViewModel ms) {
+        MauSacModel model = new MauSacModel(ms.getId(), ms.getMa(), ms.getTen());
+        boolean them = mauSacReoisitory.getAdd(model);
+        if (them) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public String update(MauSacViewModel ms, int id) {
+        MauSacModel model = new MauSacModel(ms.getId(), ms.getMa(), ms.getTen());
+        boolean them = mauSacReoisitory.getUpđate(model, id);
+        if (them) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }
+    }
+
 }

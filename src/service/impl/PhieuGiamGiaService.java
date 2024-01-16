@@ -4,10 +4,36 @@
  */
 package service.impl;
 
+import java.util.List;
+import model.PhieuGiamGia;
+import repository.PhieuGiamGiaRepository;
+
 /**
  *
  * @author pc
  */
 public class PhieuGiamGiaService {
+     private final PhieuGiamGiaRepository phieuGiamGiaRepo;
+
+    public PhieuGiamGiaService() {
+        this.phieuGiamGiaRepo = new PhieuGiamGiaRepository();
+    }
+     public List<PhieuGiamGia> getAllPGG() {
+       return phieuGiamGiaRepo.getAllPGG();
+    }
+
+    public Integer addPGG(PhieuGiamGia pgg) {
+     return phieuGiamGiaRepo.addPGG(pgg);
+    }
+
+    public Integer updatePGG(PhieuGiamGia pgg) {
+        return phieuGiamGiaRepo.updatePGG(pgg);
+    }
+
+    public Integer deletePGG(String PhieuGiamGiaID) {
+        return phieuGiamGiaRepo.deletePGG(PhieuGiamGiaID);
+    }
+
+    
     
 }

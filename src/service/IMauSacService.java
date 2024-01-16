@@ -12,5 +12,10 @@ import viewmodel.MauSacViewModel;
  * @author LAPTOP24H
  */
 public interface IMauSacService {
+
     List<MauSacViewModel> getAll();
+
+    String add(MauSacViewModel ms);
+
+    String update(MauSacViewModel ms, int id);
 }

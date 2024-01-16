@@ -13,5 +13,10 @@ import viewmodel.ThuongHieuViewModel;
  * @author LAPTOP24H
  */
 public interface IThuongHieuService {
-     List<ThuongHieuViewModel> getAll();
+
+    List<ThuongHieuViewModel> getAll();
+
+    String getAdd(ThuongHieuViewModel th);
+
+    String getUpdate(ThuongHieuViewModel th, Integer id);
 }

@@ -10,24 +10,24 @@ package model;
  */
 public class ChatLieuModel {
 
-    private Integer id;
+    private int id;
     private String ma;
     private String ten;
 
     public ChatLieuModel() {
     }
 
-    public ChatLieuModel(Integer id, String ma, String ten) {
+    public ChatLieuModel(int id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

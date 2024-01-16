@@ -9,10 +9,17 @@ package viewmodel;
  * @author pc
  */
 public class QLBangTichDiem {
+<<<<<<< HEAD
     private int id,idKH;
     private String ma;
     private int diemTich,tienDuocGiam;
 
+=======
+    int id, idKH;
+   String  ma ;
+   int diemTich, tienDuocGiam;
+   
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     public QLBangTichDiem() {
     }
 
@@ -63,7 +70,11 @@ public class QLBangTichDiem {
     public void setTienDuocGiam(int tienDuocGiam) {
         this.tienDuocGiam = tienDuocGiam;
     }
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     
 }

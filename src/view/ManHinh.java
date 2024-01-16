@@ -18,6 +18,7 @@ import view.contains.KhachHangView;
 import view.contains.KhuyenMaiJpanel;
 import view.contains.NhanVienView;
 import view.contains.SanPhamJpanel;
+import view.contains.ViewBanHang;
 import view.contains.ViewHoaDon;
 import view.contains.ViewThongKe;
 import viewmodel.NhanVienVM;
@@ -50,7 +51,11 @@ public class ManHinh extends javax.swing.JFrame {
      */
     public ManHinh(NhanVienVM nv) {
         initComponents();
+<<<<<<< HEAD
         panel = new BanHang(nv);
+=======
+        panel = new ViewBanHang();
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
         setPanel(panel);
         nhanVienVM = nv;
 
@@ -336,11 +341,12 @@ public class ManHinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        panel = new BanHang();
+        panel = new ViewBanHang();
         setPanel(panel);
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
+<<<<<<< HEAD
         int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không ?");
         if (hoi == JOptionPane.YES_OPTION) {
             this.dispose();
@@ -350,6 +356,13 @@ public class ManHinh extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         System.exit(0);
+=======
+
+    }//GEN-LAST:event_btnDangxuatActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed

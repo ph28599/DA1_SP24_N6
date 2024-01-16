@@ -203,6 +203,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+<<<<<<< HEAD
       ManHinh mh = new ManHinh();
         mh.setVisible(true);
                     this.dispose();
@@ -232,11 +233,14 @@ public class Login extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "Vui lòng nhập Tài khoản và Mật khẩu");
 //             lbCheck.setText("(!) Đăng nhập thất bại");
 //        }
+=======
+       
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        
     }//GEN-LAST:event_txtExitActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed

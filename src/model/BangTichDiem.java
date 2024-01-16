@@ -9,10 +9,17 @@ package model;
  * @author pc
  */
 public class BangTichDiem {
+<<<<<<< HEAD
     private int id,idKH;
     private String ma;
     private int diemTich, tienDuocGiam;
 
+=======
+    int id, idKH;
+   String  ma ;
+   int diemTich, tienDuocGiam;
+   
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     public BangTichDiem() {
     }
 
@@ -64,6 +71,9 @@ public class BangTichDiem {
         this.tienDuocGiam = tienDuocGiam;
     }
     
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
 }
