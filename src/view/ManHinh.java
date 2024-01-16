@@ -4,8 +4,15 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import service.NhanVienVMService;
+import service.NhanVien_Service;
+import service.TaiKhoan_Service;
+import service.impl.NhanVien_Impl;
+import service.impl.TaiKhoan_Impl;
 import view.contains.BanHang;
 import view.contains.KhachHangView;
 import view.contains.KhuyenMaiJpanel;
@@ -14,6 +21,9 @@ import view.contains.SanPhamJpanel;
 import view.contains.ViewBanHang;
 import view.contains.ViewHoaDon;
 import view.contains.ViewThongKe;
+import viewmodel.NhanVienVM;
+import viewmodel.QLNhanVien;
+import viewmodel.QLTaiKhoan;
 
 /**
  *
@@ -22,14 +32,66 @@ import view.contains.ViewThongKe;
 public class ManHinh extends javax.swing.JFrame {
 
     private JPanel panel;
+    private List<NhanVienVM> lstNhanVienVM;
+    private NhanVienVM nhanVienVM;
+    private NhanVienVMService nhanVienVMService;
+
+    private List<QLTaiKhoan> listTaiKhoan = new ArrayList<>();
+    private TaiKhoan_Service taiKhoanService = new TaiKhoan_Impl();
+    private QLTaiKhoan taiKhoan;
+    private Login taiKhoanSua;
+
+    private NhanVienVM nhanVien;
+    private List<QLNhanVien> listnhanVien = new ArrayList<>();
+    private NhanVien_Service serviceNV = new NhanVien_Impl();
+    private int idNV = 0;
 
     /**
      * Creates new form ManHinh
      */
-    public ManHinh() {
+    public ManHinh(NhanVienVM nv) {
         initComponents();
+<<<<<<< HEAD
+        panel = new BanHang(nv);
+=======
         panel = new ViewBanHang();
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
         setPanel(panel);
+        nhanVienVM = nv;
+
+        jlbTenNhanVien.setText(nv.getHoTen());
+//        jlbMaNV.setText(nv.getMa());
+        jlbTenNhanVien.setText(nv.getHoTen());
+        jlbCV.setText(nv.getcv());
+        jlbCV.setText("(" + nv.getcv() + ")");
+        nhanVienVMService = new NhanVienVMService();
+        lstNhanVienVM = nhanVienVMService.getAllNVVM();
+
+        listnhanVien = serviceNV.getList();
+        for (QLNhanVien nv1 : listnhanVien) {
+            if (nv1.getMa().trim().equals(nhanVienVM.getMa())) {
+                idNV = nv1.getId();
+            }
+        }
+        listTaiKhoan = taiKhoanService.getList();
+        for (QLTaiKhoan tk : listTaiKhoan) {
+            if (tk.getIdNV() == idNV) {
+                taiKhoan = tk;
+            }
+        }
+    }
+
+    ManHinh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private boolean setQuyen(NhanVienVM nv) {
+        if (nv.getChucVu() == 1) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa được cấp quyền");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -284,11 +346,23 @@ public class ManHinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
+<<<<<<< HEAD
+        int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không ?");
+        if (hoi == JOptionPane.YES_OPTION) {
+            this.dispose();
+            new Login().setVisible(true);
+        }
+    }//GEN-LAST:event_btnDangxuatActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        System.exit(0);
+=======
 
     }//GEN-LAST:event_btnDangxuatActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
 
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
@@ -325,11 +399,11 @@ public class ManHinh extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManHinh().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ManHinh().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

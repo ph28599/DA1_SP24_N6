@@ -12,7 +12,11 @@ import java.util.Date;
  */
 public class QLKhachHang {
     private int id;
+<<<<<<< HEAD
+    private String ma,ten,email,sdt;
+=======
     private String ma, ten, email, sdt;
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     private int gioiTinh;
     private String diaChi;
     private Date ngaySinh;
@@ -104,6 +108,11 @@ public class QLKhachHang {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+<<<<<<< HEAD
+    
+    
+=======
 
+>>>>>>> dbd78694334c42f2a5d1053879053c656df919aa
     
 }
