@@ -11,10 +11,11 @@ import java.util.Date;
  * @author pc
  */
 public class KhachHang {
+
     private int id;
     private String ma, ten, email, sdt;
     private int gioiTinh;
-    private Date  ngaySinh;
+    private Date ngaySinh;
     private String diaChi;
     private int trangThai;
 
@@ -104,5 +105,5 @@ public class KhachHang {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
+
 }

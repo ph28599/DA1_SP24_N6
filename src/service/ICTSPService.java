@@ -17,6 +17,8 @@ public interface ICTSPService {
     List<CTSPViewModel> getAll();
 
     List<ChiTietSanPhamViewModel> getAllTale();
+    
+    List<ChiTietSanPhamViewModel> getSerch(String ten);
 
     String add(CTSPViewModel ctsp);
 
