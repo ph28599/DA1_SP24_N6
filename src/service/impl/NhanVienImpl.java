@@ -14,22 +14,23 @@ import service.NhanVienService;
  *
  * @author pc
  */
-public class NhanVienImpl implements NhanVienService{
+public class NhanVienImpl implements NhanVienService {
+
     NhanVienRepository nhanVienRepository;
 
-    public NhanVienImpl(){
+    public NhanVienImpl() {
         this.nhanVienRepository = new NhanVienRepository();
     }
+
     @Override
     public ArrayList<QLNhanVien> getList() {
-       return nhanVienRepository.getListFromDB();
+        return nhanVienRepository.getListFromDB();
     }
 
     @Override
     public Boolean Them(NhanVien nhanVien) {
         return nhanVienRepository.Them(nhanVien);
     }
-   
 
     @Override
     public Boolean Sua(int id, NhanVien nhanVien) {
@@ -40,5 +41,5 @@ public class NhanVienImpl implements NhanVienService{
     public ArrayList<QLNhanVien> TimKiem(String name) {
         return nhanVienRepository.TimKiemTheoMa(name);
     }
-    
+
 }

@@ -9,6 +9,7 @@ package model;
  * @author pc
  */
 public class NhanVien {
+
     int id;
     String ma;
     String ten;
@@ -17,7 +18,7 @@ public class NhanVien {
     String ngaySinh;
     String diaChi;
     String email;
-    int chucVu,trangThai;
+    int chucVu, trangThai;
 
     public NhanVien() {
     }
@@ -114,6 +115,5 @@ public class NhanVien {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
+
 }

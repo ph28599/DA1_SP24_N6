@@ -13,12 +13,13 @@ import viewmodel.QLNhanVien;
  * @author pc
  */
 public interface NhanVienService {
-     public ArrayList<QLNhanVien> getList();
-    
+
+    public ArrayList<QLNhanVien> getList();
+
     public Boolean Them(NhanVien nhanVien);
-     
+
     public Boolean Sua(int id, NhanVien nhanVien);
-    
+
     public ArrayList<QLNhanVien> TimKiem(String name);
-    
+
 }

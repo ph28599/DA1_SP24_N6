@@ -28,8 +28,10 @@ import viewmodel.PhieuGiamGiaVM;
  * @author Admin
  */
 public class NhanVienView extends javax.swing.JPanel {
-private final NhanVienVMService nhanVienVMService;
+
+    private final NhanVienVMService nhanVienVMService;
     List<NhanVienVM> lstnv;
+
     /**
      * Creates new form NhanVienView
      */
@@ -494,11 +496,11 @@ private final NhanVienVMService nhanVienVMService;
         return null;
     }
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
-showDetailNV();
+        showDetailNV();
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
     private void cbbLocTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbLocTTActionPerformed
-String selectedChucVu = "";
+        String selectedChucVu = "";
         String selectedTrangThai = "";
         if (cbbLocCV1.getSelectedItem() != null) {
             selectedChucVu = cbbLocCV1.getSelectedItem().toString();
@@ -549,7 +551,7 @@ String selectedChucVu = "";
     }//GEN-LAST:event_cbbLocCV1ActionPerformed
 
     private void btnAddNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNhanVienActionPerformed
-if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
+        if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
             return;
         }
         if (UHelper.checkRong(txtHoTen, "Không để trống họ tên")) {
@@ -573,8 +575,7 @@ if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
         if (UHelper.checkRongChoNgay(jdcNgaySinh, "Không để trống ngày sinh")) {
             return;
         }
-        
-        
+
         Date selectedDate = jdcNgaySinh.getDate();
         if (!checkTuoi(selectedDate)) {
             JOptionPane.showMessageDialog(this, "Nhân viên phải đủ 18 tuổi trở lên.");
@@ -628,7 +629,7 @@ if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }
         loadDataToTableNV(nhanVienVMService.getAllNVVM());
-        
+
     }//GEN-LAST:event_btnAddNhanVienActionPerformed
     private boolean checkTuoi(Date selectedDate) {
         LocalDate currentDate = LocalDate.now();
@@ -637,12 +638,12 @@ if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
         return period.getYears() >= 18;
     }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-Integer row = tblNhanVien.getSelectedRow();
+        Integer row = tblNhanVien.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn nhân viên muốn sửa!");
             return;
         }
-        
+
         if (UHelper.checkRong(txtMaNhanVien, "Không để trống mã nhân viên")) {
             return;
         }
@@ -667,13 +668,13 @@ Integer row = tblNhanVien.getSelectedRow();
         if (UHelper.checkRongChoNgay(jdcNgaySinh, "Không để trống ngày sinh")) {
             return;
         }
-        
+
         Date selectedDate = jdcNgaySinh.getDate();
         if (!checkTuoi(selectedDate)) {
             JOptionPane.showMessageDialog(this, "Nhân viên phải đủ 18 tuổi trở lên.");
             return;
         }
-        
+
         String ma = txtMaNhanVien.getText();
         String sdt = txtSDT.getText();
         String email = txtEmailNV.getText();
@@ -720,7 +721,6 @@ Integer row = tblNhanVien.getSelectedRow();
             return;
         }
 
-       
         NhanVienVM nvvm = getNhanVienVMFormInput();
         String nhanVien_ID = getNhanVienVMFormSelectedRow();
         nvvm.setMa(nhanVien_ID);
@@ -731,7 +731,7 @@ Integer row = tblNhanVien.getSelectedRow();
             JOptionPane.showMessageDialog(this, "Sửa nhân viên thất bại");
         }
         loadDataToTableNV(nhanVienVMService.getAllNVVM());
-        
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFormActionPerformed
@@ -766,7 +766,7 @@ Integer row = tblNhanVien.getSelectedRow();
             loadDataToTableNV(searchResults);
         }
     }//GEN-LAST:event_txtTimKiemCaretUpdate
-private boolean startsWithIgnoreCase(String str, String prefix) {
+    private boolean startsWithIgnoreCase(String str, String prefix) {
         return str.toLowerCase().startsWith(prefix.toLowerCase());
     }
 
@@ -853,7 +853,7 @@ private void loadDataToTableNV(List<NhanVienVM> lstnv) {
         }
     }
 
-public void showDetailNV() {
+    public void showDetailNV() {
         Integer row = tblNhanVien.getSelectedRow();
         txtMaNhanVien.setText(tblNhanVien.getValueAt(row, 0).toString());
         txtHoTen.setText(tblNhanVien.getValueAt(row, 1).toString());
@@ -894,7 +894,7 @@ public void showDetailNV() {
 
     }
 
-public NhanVienVM getNhanVienVMFormInput() {
+    public NhanVienVM getNhanVienVMFormInput() {
         NhanVienVM nvvm = new NhanVienVM();
         nvvm.setMa(txtMaNhanVien.getText());
         nvvm.setHoTen(txtHoTen.getText());
@@ -932,12 +932,13 @@ public NhanVienVM getNhanVienVMFormInput() {
 
         return nvvm;
     }
+
     public String getNhanVienVMFormSelectedRow() {
         Integer row = tblNhanVien.getSelectedRow();
         String nhanVienID = (String) tblNhanVien.getValueAt(row, 0);
         return nhanVienID;
     }
-    
+
     private void clearFormNV() {
         txtMaNhanVien.setText("");
         txtHoTen.setText("");

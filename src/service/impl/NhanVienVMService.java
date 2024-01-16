@@ -13,15 +13,17 @@ import viewmodel.NhanVienVM;
  * @author pc
  */
 public class NhanVienVMService {
+
     private final NhanVienVMRepository nhanVienVMRepository;
-    
+
     public NhanVienVMService() {
         this.nhanVienVMRepository = new NhanVienVMRepository();
     }
-    
+
     public List<NhanVienVM> getAllNVVM() {
         return nhanVienVMRepository.getAllNVVM();
     }
+
     public List<NhanVienVM> getAllNVByTrangThai() {
         return nhanVienVMRepository.getAllNVByTrangThai();
     }
@@ -29,6 +31,7 @@ public class NhanVienVMService {
     public Integer addNhanVienVM(NhanVienVM nvvm) {
         return nhanVienVMRepository.addNhanVienVM(nvvm);
     }
+
     public Integer updateNhanVienVM(NhanVienVM nvvm) {
         return nhanVienVMRepository.updateNhanVienVM(nvvm);
     }
@@ -40,7 +43,7 @@ public class NhanVienVMService {
     public Integer voHieuHoaNhanVienVM(NhanVienVM nvvm) {
         return nhanVienVMRepository.voHieuHoaNhanVienVM(nvvm);
     }
-    
+
     public List<NhanVienVM> locChucVu(int chucvu) {
         return nhanVienVMRepository.locChucVu(chucvu);
     }
@@ -48,8 +51,9 @@ public class NhanVienVMService {
     public List<NhanVienVM> locTrangThai(int trangThai) {
         return nhanVienVMRepository.locTrangThai(trangThai);
     }
-      public List<NhanVienVM> locNhanVien(int chucVu, int trangThai) {
-          return nhanVienVMRepository.locNhanVien(chucVu, trangThai);
-      }
-    
+
+    public List<NhanVienVM> locNhanVien(int chucVu, int trangThai) {
+        return nhanVienVMRepository.locNhanVien(chucVu, trangThai);
+    }
+
 }

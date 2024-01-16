@@ -9,11 +9,12 @@ package viewmodel;
  * @author ngochieu
  */
 public class QLNhanVien {
+
     private int id;
     private String ma;
     private String ten;
     private int gioiTinh;
-    private String sdt,ngaySinh,diaChi,email;
+    private String sdt, ngaySinh, diaChi, email;
     private int chucVu;
     private int trangThai;
 
@@ -112,7 +113,5 @@ public class QLNhanVien {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
-    
+
 }

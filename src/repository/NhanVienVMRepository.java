@@ -20,6 +20,7 @@ import viewmodel.NhanVienVM;
  * @author pc
  */
 public class NhanVienVMRepository {
+
     private List<NhanVienVM> getNhanVienFromResultSet(ResultSet rs) {
         List<NhanVienVM> lst = new ArrayList<>();
         try {
@@ -53,12 +54,12 @@ public class NhanVienVMRepository {
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         return getNhanVienFromResultSet(rs);
     }
+
     public List<NhanVienVM> getAllNVByTrangThai() {
         String sql = "select nv.MA,nv.HOTEN,nv.GIOTINH,nv.SDT,nv.NGAYSINH,nv.DIACHI,nv.EMAIL,nv.CHUCVU,tk.TENDANGNHAP,tk.MATKHAU,nv.TRANGTHAI from NHAN_VIEN nv  join TAI_KHOAN tk on nv.ID = tk.ID_NV where nv.TRANGTHAI = 1";
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         return getNhanVienFromResultSet(rs);
     }
-
 
     public Integer addNhanVienVM(NhanVienVM nvvm) {
         String sql = "BEGIN TRANSACTION;\n"
@@ -69,7 +70,7 @@ public class NhanVienVMRepository {
                 + "INSERT INTO TAI_KHOAN (ID_NV, TENDANGNHAP, MATKHAU) VALUES (@NhanVienID, ?, ?);\n"
                 + "COMMIT;";
         Integer row = JDBCHelper.excuteUpdate(sql, nvvm.getMa(), nvvm.getHoTen(), nvvm.getGioiTinh(), nvvm.getSdt(),
-                 nvvm.getNgaySinh(), nvvm.getDiaChi(), nvvm.getEmail(), nvvm.getChucVu(), nvvm.getTrangThai(), nvvm.getTenDN(), nvvm.getMatKhau());
+                nvvm.getNgaySinh(), nvvm.getDiaChi(), nvvm.getEmail(), nvvm.getChucVu(), nvvm.getTrangThai(), nvvm.getTenDN(), nvvm.getMatKhau());
         return row;
     }
 
@@ -108,7 +109,7 @@ public class NhanVienVMRepository {
     public List<NhanVienVM> locChucVu(int chucvu) {
         String sql = "SELECT nv.MA, nv.HOTEN, nv.GIOTINH, nv.SDT, nv.NGAYSINH, nv.DIACHI, nv.EMAIL, nv.CHUCVU, tk.TENDANGNHAP, tk.MATKHAU, nv.TRANGTHAI "
                 + "FROM NHAN_VIEN nv JOIN TAI_KHOAN tk ON nv.ID = tk.ID_NV WHERE CHUCVU = ?";
-        try ( Connection connection = DBConnection.getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, chucvu);
             ResultSet rs = statement.executeQuery();
             return getNhanVienFromResultSet(rs);
@@ -121,7 +122,7 @@ public class NhanVienVMRepository {
     public List<NhanVienVM> locTrangThai(int trangThai) {
         String sql = "SELECT nv.MA, nv.HOTEN, nv.GIOTINH, nv.SDT, nv.NGAYSINH, nv.DIACHI, nv.EMAIL, nv.CHUCVU, tk.TENDANGNHAP, tk.MATKHAU, nv.TRANGTHAI \n"
                 + "                 FROM NHAN_VIEN nv JOIN TAI_KHOAN tk ON nv.ID = tk.ID_NV WHERE TRANGTHAI = ?";
-        try ( Connection connection = DBConnection.getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, trangThai);
             ResultSet rs = statement.executeQuery();
             return getNhanVienFromResultSet(rs);
@@ -136,7 +137,7 @@ public class NhanVienVMRepository {
                 + "FROM NHAN_VIEN nv\n"
                 + "JOIN TAI_KHOAN tk ON nv.ID = tk.ID_NV\n"
                 + "WHERE nv.CHUCVU = ? AND nv.TRANGTHAI = ?;";
-        try ( Connection connection = DBConnection.getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, chucVu);
             statement.setInt(2, trangThai);
             ResultSet rs = statement.executeQuery();
@@ -146,5 +147,5 @@ public class NhanVienVMRepository {
         }
         return new ArrayList<>();
     }
-    
+
 }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
  * @author pc
  */
 public class NhanVienVM {
+
     private int id;
     private String ma;
     private String hoTen;
@@ -137,14 +138,15 @@ public class NhanVienVM {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
-     public String getgt() {
+
+    public String getgt() {
         if (gioiTinh == 1) {
             return "Nam";
         } else {
             return "Nữ";
         }
     }
+
     public String getcv() {
         if (chucVu == 1) {
             return "Nhân viên";
@@ -152,6 +154,7 @@ public class NhanVienVM {
             return "Quản lý";
         }
     }
+
     public String gettt() {
         if (trangThai == 1) {
             return "Làm việc";
@@ -159,5 +162,5 @@ public class NhanVienVM {
             return "Nghỉ việc";
         }
     }
-    
+
 }
