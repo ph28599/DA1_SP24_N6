@@ -15,7 +15,7 @@ import viewmodel.ChatLieuViewMoel;
 public interface IChatLieuService {
 
     List<ChatLieuViewMoel> getAll();
-
+ List<ChatLieuViewMoel> getS(String t);
     String add(ChatLieuViewMoel cl);
 
     String update(ChatLieuViewMoel cl, int id);

@@ -18,9 +18,10 @@ import ultility.DBConnection;
  * @author LAPTOP24H
  */
 public class ThuongHieuRepository {
-     private DBConnection connection;
-     
-       public List<ThuongHieuModel> getAll() {
+
+    private DBConnection connection;
+
+    public List<ThuongHieuModel> getAll() {
         String sql = "SELECT ID, MA, TEN\n"
                 + "FROM     dbo.THUONG_HIEU";
         try (Connection con = connection.getConnection();
@@ -37,8 +38,28 @@ public class ThuongHieuRepository {
         }
         return null;
     }
-       
-           
+
+    public List<ThuongHieuModel> getS(String ten) {
+        String sql = """
+                    select * from THUONG_HIEU 
+                    where TEN like '%' + ? + '%'
+                    """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<ThuongHieuModel> list = new ArrayList<>();
+            while (rs.next()) {
+                ThuongHieuModel model = new ThuongHieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(model);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean getAdd(ThuongHieuModel m) {
         int check = 0;
         String sql = "INSERT [dbo].[THUONG_HIEU] ( [MA], [TEN]) VALUES (?,?)";
@@ -73,5 +94,5 @@ public class ThuongHieuRepository {
         }
         return check > 0;
     }
-  
+
 }

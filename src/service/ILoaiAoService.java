@@ -15,7 +15,8 @@ import viewmodel.LoaiAoViewModel;
 public interface ILoaiAoService {
 
     List<LoaiAoViewModel> getAll();
-
+    List<LoaiAoViewModel> getS(String ten);
+    List<LoaiAoViewModel> getALLPage(int offset , int fetchSet);
     String add(LoaiAoViewModel la);
 
     String update(LoaiAoViewModel la, int id);

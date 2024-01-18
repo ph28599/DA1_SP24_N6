@@ -18,9 +18,9 @@ import viewmodel.ThuongHieuViewModel;
  * @author LAPTOP24H
  */
 public class ThuongHieuServiceImpl implements IThuongHieuService {
-
+    
     private ThuongHieuRepository hieuRepository = new ThuongHieuRepository();
-
+    
     @Override
     public List<ThuongHieuViewModel> getAll() {
         List<ThuongHieuModel> models = hieuRepository.getAll();
@@ -30,7 +30,7 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
         }
         return viewModels;
     }
-
+    
     @Override
     public String getAdd(ThuongHieuViewModel th) {
         ThuongHieuModel model = new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
@@ -41,7 +41,7 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
             return "Thêm thất bại";
         }
     }
-
+    
     @Override
     public String getUpdate(ThuongHieuViewModel th, Integer id) {
         ThuongHieuModel model = new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
@@ -51,5 +51,15 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
         } else {
             return "Sửa thất bại";
         }
+    }
+    
+    @Override
+    public List<ThuongHieuViewModel> getS(String t) {
+        List<ThuongHieuModel> models = hieuRepository.getS(t);
+        List<ThuongHieuViewModel> viewModels = new ArrayList<>();
+        for (ThuongHieuModel model : models) {
+            viewModels.add(new ThuongHieuViewModel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels;
     }
 }

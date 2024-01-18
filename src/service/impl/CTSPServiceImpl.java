@@ -71,12 +71,23 @@ public class CTSPServiceImpl implements ICTSPService {
 
     @Override
     public List<ChiTietSanPhamViewModel> getSerch(String ten) {
-          List<ChiTietSanPhamModel> listAll = tableRepo.getSerch(ten);
+        List<ChiTietSanPhamModel> listAll = tableRepo.getSerch(ten);
         List<ChiTietSanPhamViewModel> listTable = new ArrayList<>();
         for (ChiTietSanPhamModel c : listAll) {
             listTable.add(new ChiTietSanPhamViewModel(c.getId(), c.getMa(), c.getMaVach(), c.getMoTa(), c.getSoLuong(), c.getIdSP(), c.getIdTH(), c.getIdLA(), c.getIdKC(), c.getIdMS(), c.getIdCL(), c.getGiaNhap(), c.getGiaBan(), c.isTrangThai()));
         }
         return listTable;
+    }
+
+    @Override
+    public List<ChiTietSanPhamViewModel> getAllTalePhanTrang(int offset, int fetchSize) {
+        List<ChiTietSanPhamModel> listAll = tableRepo.getAllTablePhanTrang(offset, fetchSize);
+        List<ChiTietSanPhamViewModel> listTable = new ArrayList<>();
+        for (ChiTietSanPhamModel c : listAll) {
+            listTable.add(new ChiTietSanPhamViewModel(c.getId(), c.getMa(), c.getMaVach(), c.getMoTa(), c.getSoLuong(), c.getIdSP(), c.getIdTH(), c.getIdLA(), c.getIdKC(), c.getIdMS(), c.getIdCL(), c.getGiaNhap(), c.getGiaBan(), c.isTrangThai()));
+        }
+        return listTable;
+
     }
 
 }

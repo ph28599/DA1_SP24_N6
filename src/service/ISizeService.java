@@ -15,6 +15,7 @@ import viewmodel.SizeViewModel;
 public interface ISizeService {
 
     List<SizeViewModel> getAll();
+    List<SizeViewModel> getS(String ten);
 
     String getAdd(SizeViewModel s);
 

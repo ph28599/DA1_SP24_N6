@@ -15,6 +15,8 @@ public interface ISanPhamSevice {
 
     List<SanPhamViewModel> getAll();
 
+    List<SanPhamViewModel> getSerch(String ten);
+
     String getAdd(SanPhamViewModel sp);
 
     String getUpdate(SanPhamViewModel sp, Integer id);

@@ -7,6 +7,7 @@ package view.contains.thuoctinhsanpham;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import repository.LoaiAoRepository;
 import service.ILoaiAoService;
 import service.impl.LoaiAoServiceImpl;
 import viewmodel.LoaiAoViewModel;
@@ -20,16 +21,21 @@ public class ViewLoaiAo extends javax.swing.JFrame {
 
     private DefaultTableModel dtm = new DefaultTableModel();
     private ILoaiAoService iLoaiAoService = new LoaiAoServiceImpl();
-
+    private LoaiAoRepository loaiAoRepository = new LoaiAoRepository();
+    
+    
+    private int ht = 0;
+    private int size = 5;
     /**
      * Creates new form ViewLoaiAo
      */
     public ViewLoaiAo() {
          setUndecorated(true);
-         
         initComponents();
         setLocationRelativeTo(null);
-       
+        //load(iLoaiAoService.getAll());
+        //loadPage(ht, 5);
+        
         load(iLoaiAoService.getAll());
     }
 
@@ -39,9 +45,26 @@ public class ViewLoaiAo extends javax.swing.JFrame {
         for (LoaiAoViewModel lavm : list) {
             dtm.addRow(lavm.toDataRow());
         }
-
+    }
+    public void loadPage( int ht , int c) {
+       List<LoaiAoViewModel> list = iLoaiAoService.getALLPage(ht, c);
+        dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tb.getModel();
+        for (LoaiAoViewModel lavm : list) {
+            dtm.addRow(lavm.toDataRow());
+        }
     }
 
+     public void updatePage() {
+        int totalItems = loaiAoRepository.getTotalIteams();
+        int maxpage = (int) Math.ceil((double) totalItems / size);
+
+        if (ht > maxpage) {
+            ht = (maxpage == 0) ? 1 : maxpage;
+        }
+        lbl.setText(ht + " / " + maxpage);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,16 +84,15 @@ public class ViewLoaiAo extends javax.swing.JFrame {
         txtSerch = new javax.swing.JTextField();
         txtMa = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jButton54 = new javax.swing.JButton();
-        jButton55 = new javax.swing.JButton();
+        lbl = new javax.swing.JButton();
         jButton56 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(539, 414));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setPreferredSize(new java.awt.Dimension(421, 317));
@@ -97,8 +119,11 @@ public class ViewLoaiAo extends javax.swing.JFrame {
 
         jLabel42.setText("Tên");
 
-        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search.png"))); // NOI18N
-        btnTimKiem.setText("Tìm Kiếm");
+        txtSerch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSerchKeyReleased(evt);
+            }
+        });
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         btnAdd.setText("Thêm");
@@ -118,11 +143,21 @@ public class ViewLoaiAo extends javax.swing.JFrame {
 
         jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Left.png"))); // NOI18N
         jButton54.setText("<|");
+        jButton54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton54ActionPerformed(evt);
+            }
+        });
 
-        jButton55.setText("1");
+        lbl.setText("?");
 
         jButton56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Right.png"))); // NOI18N
         jButton56.setText("|>");
+        jButton56.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton56ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +165,8 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Tìm  Kiếm : Tên");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -139,7 +176,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton54)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton55)
+                .addComponent(lbl)
                 .addGap(12, 12, 12)
                 .addComponent(jButton56)
                 .addContainerGap(267, Short.MAX_VALUE))
@@ -167,12 +204,15 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                                 .addGap(21, 21, 21))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(txtSerch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel40)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel40))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(49, 49, 49))
@@ -181,16 +221,14 @@ public class ViewLoaiAo extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel40)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -198,7 +236,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton54)
-                            .addComponent(jButton55)
+                            .addComponent(lbl)
                             .addComponent(jButton56)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +252,7 @@ public class ViewLoaiAo extends javax.swing.JFrame {
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdate)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,6 +324,35 @@ public class ViewLoaiAo extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtSerchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerchKeyReleased
+        // TODO add your handling code here:
+        List<LoaiAoViewModel> l = iLoaiAoService.getS(txtSerch.getText());
+        load(l);
+    }//GEN-LAST:event_txtSerchKeyReleased
+
+    private void jButton56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton56ActionPerformed
+        // TODO add your handling code here:
+        int totalItem = loaiAoRepository.getTotalIteams();
+        int totalPage = totalItem / size;
+        if (ht < totalPage) {
+            ht++; 
+            int page = (ht - 1 ) * size;
+            loadPage(page, size);
+            updatePage();
+        }
+    }//GEN-LAST:event_jButton56ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+        // TODO add your handling code here:
+        if (ht > 1) {
+            ht--;
+           
+        }
+        int page = (ht - 1) * size;
+        loadPage(page, size);
+        updatePage();
+    }//GEN-LAST:event_jButton54ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,18 +390,18 @@ public class ViewLoaiAo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton54;
-    private javax.swing.JButton jButton55;
     private javax.swing.JButton jButton56;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JButton lbl;
     private javax.swing.JTable tb;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtSerch;

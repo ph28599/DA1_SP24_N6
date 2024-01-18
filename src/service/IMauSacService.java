@@ -14,6 +14,8 @@ import viewmodel.MauSacViewModel;
 public interface IMauSacService {
 
     List<MauSacViewModel> getAll();
+    
+    List<MauSacViewModel> getSerch(String ten);
 
     String add(MauSacViewModel ms);
 

@@ -39,6 +39,27 @@ public class ChatLieuRepository {
         }
         return null;
     }
+     public List<ChatLieuModel> getSearch(String ten) {
+        String sql = """
+                     	select * from CHAT_LIEU 
+                  where TEN like '%' + ? + '%'
+                     						
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+              ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<ChatLieuModel> list = new ArrayList<>();
+            while (rs.next()) {
+                ChatLieuModel chatLieuModel = new ChatLieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(chatLieuModel);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean getAdd(ChatLieuModel cl) {
         int check = 0;

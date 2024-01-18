@@ -16,6 +16,8 @@ public interface IThuongHieuService {
 
     List<ThuongHieuViewModel> getAll();
 
+    List<ThuongHieuViewModel> getS(String t);
+
     String getAdd(ThuongHieuViewModel th);
 
     String getUpdate(ThuongHieuViewModel th, Integer id);

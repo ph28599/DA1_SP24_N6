@@ -51,4 +51,13 @@ public class SanPhamServiceImpl implements ISanPhamSevice {
         }
     }
 
+    @Override
+    public List<SanPhamViewModel> getSerch(String ten) {
+        List<SanPhamModel> lietSPmodel = sanPhamRepository.getSerch(ten);
+        List<SanPhamViewModel> viewModels = new ArrayList<>();
+        for (SanPhamModel sp : lietSPmodel) {
+            viewModels.add(new SanPhamViewModel(sp.getId(), sp.getMa(), sp.getTen(), sp.getLoaiSanPham(), sp.getSoLuong()));
+        }
+        return viewModels;  }
+
 }

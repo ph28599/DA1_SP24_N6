@@ -51,4 +51,13 @@ public class SizeServiceImpl implements ISizeService {
         }
     }
 
+    @Override
+    public List<SizeViewModel> getS(String ten) {
+          List<SizeModel> models = sizeRepository.getSearch(ten);
+        List<SizeViewModel> viewModels = new ArrayList<>();
+        for (SizeModel model : models) {
+            viewModels.add(new SizeViewModel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels;}
+
 }

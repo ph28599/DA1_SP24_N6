@@ -38,6 +38,25 @@ public class SanPhamRepository {
         return null;
     }
 
+    public List<SanPhamModel> getSerch(String ten) {
+        String sql = "select * from SAN_PHAM			\n"
+                + "						where TEN like '%' + ? + '%'";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<SanPhamModel> listSP = new ArrayList<>();
+            while (rs.next()) {
+                SanPhamModel sanPhamModel = new SanPhamModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                listSP.add(sanPhamModel);
+            }
+            return listSP;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean getAdd(SanPhamModel m) {
         int check = 0;
         String sql = "INSERT [dbo].[SAN_PHAM] ( [MA], [TEN] , [LOAISANPHAM], [SOLUONG]) VALUES (?,?,?,?)";
@@ -77,7 +96,5 @@ public class SanPhamRepository {
         }
         return check > 0;
     }
-
-   
 
 }

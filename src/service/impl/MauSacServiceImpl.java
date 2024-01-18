@@ -51,4 +51,15 @@ public class MauSacServiceImpl implements IMauSacService {
         }
     }
 
+    @Override
+    public List<MauSacViewModel> getSerch(String ten) {
+        List<MauSacModel> models = mauSacReoisitory.getSearch(ten);
+        List<MauSacViewModel> viewModels = new ArrayList<>();
+        for (MauSacModel model : models) {
+            viewModels.add(new MauSacViewModel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels;
+    
+    }
+
 }

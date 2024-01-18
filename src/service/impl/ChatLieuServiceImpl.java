@@ -52,4 +52,13 @@ public class ChatLieuServiceImpl implements IChatLieuService {
         }
     }
 
+    @Override
+    public List<ChatLieuViewMoel> getS(String t) {
+         List<ChatLieuModel> models = chatLieuViewMoel.getSearch(t);
+        List<ChatLieuViewMoel> viewModels = new ArrayList<>();
+        for (ChatLieuModel model : models) {
+            viewModels.add(new ChatLieuViewMoel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels; }
+
 }

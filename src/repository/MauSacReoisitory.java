@@ -37,7 +37,28 @@ public class MauSacReoisitory {
         }
         return null;
     }
-    
+
+    public List<MauSacModel> getSearch(String ten) {
+        String sql = """
+                   select * from MAU_SAC 
+                  where TEN like '%' + ? + '%'
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<MauSacModel> list = new ArrayList<>();
+            while (rs.next()) {
+                MauSacModel mauSacModel = new MauSacModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(mauSacModel);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean getAdd(MauSacModel m) {
         int check = 0;
         String sql = "INSERT [dbo].[MAU_SAC] ( [MA], [TEN]) VALUES (?,?)";
@@ -72,5 +93,5 @@ public class MauSacReoisitory {
         }
         return check > 0;
     }
-   
+
 }

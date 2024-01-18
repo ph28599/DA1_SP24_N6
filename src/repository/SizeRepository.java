@@ -39,6 +39,25 @@ public class SizeRepository {
         return null;
     }
 
+    public List<SizeModel> getSearch(String ten) {
+        String sql = "select * from SIZE \n"
+                + "						where SIZE like '%' + ? + '%'";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<SizeModel> list = new ArrayList<>();
+            while (rs.next()) {
+                SizeModel model = new SizeModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(model);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean getAdd(SizeModel m) {
         int check = 0;
         String sql = "INSERT [dbo].[SIZE] ( [MA],  [SIZE]) VALUES (?,?)";
@@ -73,5 +92,5 @@ public class SizeRepository {
         }
         return check > 0;
     }
-   
+
 }

@@ -53,4 +53,22 @@ public class LoaiAoServiceImpl implements ILoaiAoService {
         }
     }
 
+    @Override
+    public List<LoaiAoViewModel> getS(String ten) {
+          List<LoaiAoModel> models = aoRepository.getSearch(ten);
+        List<LoaiAoViewModel> viewModels = new ArrayList<>();
+        for (LoaiAoModel model : models) {
+            viewModels.add(new LoaiAoViewModel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels;  }
+
+    @Override
+    public List<LoaiAoViewModel> getALLPage(int offset, int fetchSet) {
+          List<LoaiAoModel> models = aoRepository.getAllPage(offset, fetchSet);
+        List<LoaiAoViewModel> viewModels = new ArrayList<>();
+        for (LoaiAoModel model : models) {
+            viewModels.add(new LoaiAoViewModel(model.getId(), model.getMa(), model.getTen()));
+        }
+        return viewModels;}
+
 }

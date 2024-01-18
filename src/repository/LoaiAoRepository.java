@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import model.LoaiAoModel;
 import ultility.DBConnection;
+import ultility.JDBCHelper;
 
 /**
  *
  * @author LAPTOP24H
  */
 public class LoaiAoRepository {
-     private DBConnection connection;
+
+    private DBConnection connection;
 
     public List<LoaiAoModel> getAll() {
         String sql = "SELECT ID, MA, TEN\n"
@@ -36,8 +38,65 @@ public class LoaiAoRepository {
         }
         return null;
     }
+
+    public List<LoaiAoModel> getAllPage(int offset , int fetchSet) {
+        String sql = """
+                     SELECT ID, MA, TEN
+                     FROM     dbo.lOAI_AO
+                     order by ID
+                     offset ? row
+                     fetch next ? rows only
+                     """;
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = JDBCHelper.excuteQuery(sql, offset, fetchSet);
+            List<LoaiAoModel> list = new ArrayList<>();
+            while (rs.next()) {
+                LoaiAoModel loaiAoModel = new LoaiAoModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(loaiAoModel);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+     public int getTotalIteams() {
+        int totalIteam = 0;
+        String sql = """
+              SELECT COUNT(*) FROM LOAI_AO WHERE id = ?      		
+                     """;
+        try {
+            ResultSet rs = JDBCHelper.excuteQuery(sql);
+            if (rs.next()) {
+                totalIteam = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return totalIteam;
+    }
     
-    
+    public List<LoaiAoModel> getSearch(String ten) {
+        String sql = "select * from LOAI_AO \n"
+                + "						where TEN like '%' + ? + '%'";
+        try (Connection con = connection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            List<LoaiAoModel> list = new ArrayList<>();
+            while (rs.next()) {
+                LoaiAoModel loaiAoModel = new LoaiAoModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(loaiAoModel);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean getAdd(LoaiAoModel cl) {
         int check = 0;
         String sql = "INSERT [dbo].[LOAI_AO] ( [MA], [TEN]) VALUES (?,?)";
@@ -72,5 +131,5 @@ public class LoaiAoRepository {
         }
         return check > 0;
     }
-   
+
 }
