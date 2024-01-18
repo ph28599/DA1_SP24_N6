@@ -34,9 +34,9 @@ public class ViewLoaiAo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         //load(iLoaiAoService.getAll());
-        //loadPage(ht, 5);
+        loadPage(ht, 5);
         
-        load(iLoaiAoService.getAll());
+        //load(iLoaiAoService.getAll());
     }
 
     public void load(List<LoaiAoViewModel> list) {

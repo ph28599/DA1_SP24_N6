@@ -103,8 +103,6 @@ public class ViewBanHang extends javax.swing.JPanel {
      */
     public ViewBanHang() {
         initComponents();
-        
-        
         dtmTable=(DefaultTableModel) this.tblHoaDon.getModel();
         loadTable(serviceHDTable.getAll());
         listCTSPTable = iCTSPService.getAllTale();

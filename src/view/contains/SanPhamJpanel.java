@@ -1288,7 +1288,17 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     && cbbLocCLieu.getSelectedItem().equals(c.getIdCL())
                     && cbbLocMauSac.getSelectedItem().equals(c.getIdMS())) {
                 listLoc.add(c);
-            } else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
+            } 
+            
+            else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
+                    && cbbLocLoaiAo.getSelectedItem().equals(c.getIdLA())
+                    && cbbLocSize.getSelectedItem().equals(c.getIdKC())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getIdMS())) {
+                listLoc.add(c);
+            }
+            
+            else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
                     && cbbLocLoaiAo.getSelectedItem().equals("")
                     && cbbLocSize.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals("")
@@ -1505,7 +1515,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     private void txtSerchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerchKeyReleased
         // TODO add your handling code here:
-        
+        List<ChiTietSanPhamViewModel> sp = iCTSPService.getSerch(txtSerch.getText());
+        load(sp);
         
     }//GEN-LAST:event_txtSerchKeyReleased
 
