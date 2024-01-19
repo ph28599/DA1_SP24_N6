@@ -49,18 +49,19 @@ import viewmodel.ThuongHieuViewModel;
  * @author pc
  */
 public class ViewBanHang extends javax.swing.JPanel {
+
     private IHoaDonService iHoaDonService = new HoaDonService();
     private IHoaDonCTService iHoaDonCTService = new HoaDonCTService();
     private List<HoaDonView> hoaDonViews = new ArrayList<>();
     private List<HoaDonDomain> hoaDonDomains = new ArrayList<>();
     private List<SanPhamHDViewModel> chiTiet = null;
     private HoaDonDomain hoaDonDomain = null;
-    private List<HDTableViewModel> listHDTable=new ArrayList<>();
-    private List<HDTableViewModel> listChiTietHD=new ArrayList<>();
-    HDTableViewModel hdct=new HDTableViewModel();
-    private HDTableService serviceHDTable= new HDTableServiceImpl();
-    private HDTableViewModel hdTable=new HDTableViewModel();
-    private DefaultTableModel dtmTable=new DefaultTableModel();
+    private List<HDTableViewModel> listHDTable = new ArrayList<>();
+    private List<HDTableViewModel> listChiTietHD = new ArrayList<>();
+    HDTableViewModel hdct = new HDTableViewModel();
+    private HDTableService serviceHDTable = new HDTableServiceImpl();
+    private HDTableViewModel hdTable = new HDTableViewModel();
+    private DefaultTableModel dtmTable = new DefaultTableModel();
     private DefaultTableModel dtm = new DefaultTableModel();
     private ICTSPService iCTSPService = new CTSPServiceImpl();
 
@@ -103,43 +104,46 @@ public class ViewBanHang extends javax.swing.JPanel {
      */
     public ViewBanHang() {
         initComponents();
-        dtmTable=(DefaultTableModel) this.tblHoaDon.getModel();
+        dtmTable = (DefaultTableModel) this.tblHoaDon.getModel();
         loadTable(serviceHDTable.getAll());
         listCTSPTable = iCTSPService.getAllTale();
         load(listCTSPTable);
-        
-        
-       // ClickRow();
+
+        // ClickRow();
     }
-    private void showDataTable(List<HDTableViewModel> listTable){
+
+    private void showDataTable(List<HDTableViewModel> listTable) {
         dtmTable.setRowCount(0);
         for (HDTableViewModel hDTableVIewModel : listTable) {
             dtmTable.addRow(hDTableVIewModel.toRowData());
         }
     }
-     private HDTableViewModel getHDTable(int index){
+
+    private HDTableViewModel getHDTable(int index) {
 //        HDTableVIewModel hdTable=listHDTable.get(index);
 //        return hdTable;
         if (index >= 0 && index < listHDTable.size()) {
-        HDTableViewModel hdTable = listHDTable.get(index);
-        return hdTable;
-    } else {
-        // Trả về giá trị mặc định hoặc thực hiện xử lý khác tùy thuộc vào yêu cầu của bạn.
-        return null;
+            HDTableViewModel hdTable = listHDTable.get(index);
+            return hdTable;
+        } else {
+            // Trả về giá trị mặc định hoặc thực hiện xử lý khác tùy thuộc vào yêu cầu của bạn.
+            return null;
+        }
     }
-    }
-    public void loadTable(List<HDTableViewModel> list){
-        
+
+    public void loadTable(List<HDTableViewModel> list) {
+
         int rowCount = tblHoaDon.getModel().getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             ((DefaultTableModel) tblHoaDon.getModel()).removeRow(i);
         }
         for (HDTableViewModel p : list) {
             ((DefaultTableModel) tblHoaDon.getModel()).addRow(new Object[]{p.getMa(),
-            p.getNgayTao(), p.getTenNhanVien(), p.getTenKhachHang()});
+                p.getNgayTao(), p.getTenNhanVien(), p.getTenKhachHang()});
         }
-    
+
     }
+
     public void load(List<ChiTietSanPhamViewModel> list) {
         int rowCount = tblSanPham.getModel().getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
@@ -147,7 +151,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         }
         dtm = (DefaultTableModel) tblSanPham.getModel();
         for (ChiTietSanPhamViewModel ct : list) {
-            dtm.addRow( new Object[]{ct.getIdSP(),ct.getIdSP(),ct.getIdLA(),ct.getIdMS(),ct.getIdCL(),ct.getIdKC(),ct.getSoLuong(),ct.getGiaBan()});
+            dtm.addRow(new Object[]{ct.getIdSP(), ct.getIdSP(), ct.getIdLA(), ct.getIdMS(), ct.getIdCL(), ct.getIdKC(), ct.getSoLuong(), ct.getGiaBan()});
         }
     }
 //    public void loadTableCTHD(List<SanPhamHDViewModel> list){
@@ -160,8 +164,7 @@ public class ViewBanHang extends javax.swing.JPanel {
 //        }
 //        tblGioHang.setRowHeight(25);
 //    }
-    
-    
+
 //    public void ClickRow() {
 //        tblHoaDon.addMouseListener(new MouseAdapter() {
 //            public void mousePressed(MouseEvent mouseEvent) {
@@ -188,7 +191,6 @@ public class ViewBanHang extends javax.swing.JPanel {
 //            }
 //        });
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -475,7 +477,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -952,7 +954,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         });
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel41.setText("Loại thể thao ");
+        jLabel41.setText("Loại Áo");
 
         cboLocSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1108,33 +1110,31 @@ public class ViewBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-      
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
-        
-         
+
+
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
-     
-        
+
+
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
     private void btnHuyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHoaDonActionPerformed
 
-        
-               
-    
+
     }//GEN-LAST:event_btnHuyHoaDonActionPerformed
 
     private void chkSuaDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSuaDungActionPerformed
-        
+
     }//GEN-LAST:event_chkSuaDungActionPerformed
 
     private void rdoChuyenKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoChuyenKhoanMouseClicked
@@ -1173,7 +1173,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienKhachDuaInputMethodTextChanged
 
     private void txtTienKhachDuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienKhachDuaActionPerformed
-    
+
     }//GEN-LAST:event_txtTienKhachDuaActionPerformed
 
     private void txtTienKhachDuaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyPressed
@@ -1181,7 +1181,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienKhachDuaKeyPressed
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
-   
+
 
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
@@ -1194,24 +1194,8 @@ public class ViewBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaChuyenKhoanActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-    
+
     }//GEN-LAST:event_btnThanhToanActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-      
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void cboLocSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocSanPhamActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboLocSanPhamActionPerformed
-
-    private void cboLocKichCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocKichCoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboLocKichCoActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void btnXoaSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSanPhamActionPerformed
 
@@ -1224,6 +1208,22 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSanPhamMouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cboLocKichCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocKichCoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboLocKichCoActionPerformed
+
+    private void cboLocSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocSanPhamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboLocSanPhamActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

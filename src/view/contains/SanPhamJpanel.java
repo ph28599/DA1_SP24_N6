@@ -247,6 +247,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cbbThuongHieu.setSelectedIndex(0);
         cbbLoaiAo.setSelectedIndex(0);
         cbbSanPham.setSelectedIndex(0);
+        ckbTrangThai.setSelected(false);
     }
 
     private void clearLoc() {
@@ -290,7 +291,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         txtGiaBan.setText(String.valueOf(tb.getValueAt(row, 11).toString()));
 
         showDataForm();
-       
+
     }
 
     private CTSPViewModel add() {
@@ -1148,23 +1149,18 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private void btnSetFormLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetFormLAActionPerformed
 //      new view.contains.thuoctinhsanpham.ViewLoaiAo().setVisible(true);
         ViewLoaiAo ao = new ViewLoaiAo();
-        ao.setVisible(true);
-
-        //setVisible(false);
-
+        ao.setVisible(true);  
     }//GEN-LAST:event_btnSetFormLAActionPerformed
 
     private void btnSetFormTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetFormTHActionPerformed
         // TODO add your handling code here:
         new ViewThuongHieu().setVisible(true);
-
     }//GEN-LAST:event_btnSetFormTHActionPerformed
 
     private void tbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMouseClicked
         // TODO add your handling code here:
         fillData();
-        // showDataForm();
-
+       
     }//GEN-LAST:event_tbMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -1174,7 +1170,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         listCTSPTable = iCTSPService.getAllTale();
         load(listCTSPTable);
         clearFrom();
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
@@ -1194,60 +1189,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Chon 1 dong ");
         }
-//        int index = tb.getSelectedRow();
-//        if (index < 0) {
-//            JOptionPane.showMessageDialog(this, "Mời bạn chọn 1 dòng để sửa");
-//        } else {
-//            CTSPViewModel ctsp = new CTSPViewModel();
-//            ctsp.setMa(txtMa.getText());
-//            ctsp.setMaVach(txtMaVach.getText());
-//            ctsp.setMoTa(txtMoTa.getText());
-//            ctsp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-//
-//            for (SanPhamViewModel sp : listSP) {
-//                if (cbbSanPham.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdSP(sp.getId());
-//                }
-//            }
-//
-//            for (ThuongHieuViewModel sp : listTH) {
-//                if (cbbThuongHieu.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdTH(sp.getId());
-//                }
-//            }
-//
-//            for (LoaiAoViewModel sp : listLA) {
-//                if (cbbLoaiAo.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdLA(sp.getId());
-//                }
-//            }
-//
-//            for (SizeViewModel sp : listKC) {
-//                if (cbbKichCo.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdKC(sp.getId());
-//                }
-//            }
-//
-//            for (MauSacViewModel sp : listMS) {
-//                if (cbbMauSac.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdMS(sp.getId());
-//                }
-//            }
-//
-//            for (ChatLieuViewMoel sp : listCL) {
-//                if (cbbChatLieu.getSelectedItem().equals(sp.getTen())) {
-//                    ctsp.setIdCL(sp.getId());
-//                }
-//            }
-//            ctsp.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
-//            ctsp.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
-//            ctsp.setTrangThai(ckbTrangThai.isSelected());
-//
-//            String kq = iCTSPService.getupdate(ctsp, ctsp.getId());
-//            JOptionPane.showMessageDialog(this, kq);
-//            listCTSPTable = iCTSPService.getAllTale();
-//            load(listCTSPTable);
-//        }
 
     }//GEN-LAST:event_btnupdateActionPerformed
 
@@ -1270,7 +1211,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         clearFrom();
         clearLoc();
-
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1288,17 +1228,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     && cbbLocCLieu.getSelectedItem().equals(c.getIdCL())
                     && cbbLocMauSac.getSelectedItem().equals(c.getIdMS())) {
                 listLoc.add(c);
-            } 
-            
-            else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
+            } else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
                     && cbbLocLoaiAo.getSelectedItem().equals(c.getIdLA())
                     && cbbLocSize.getSelectedItem().equals(c.getIdKC())
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals(c.getIdMS())) {
                 listLoc.add(c);
-            }
-            
-            else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
+            } else if (cbbLocTHieu.getSelectedItem().equals(c.getIdTH())
                     && cbbLocLoaiAo.getSelectedItem().equals("")
                     && cbbLocSize.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals("")
@@ -1466,7 +1402,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     private void txtSerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerchActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_txtSerchActionPerformed
 
     private void btnTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTienActionPerformed
@@ -1517,7 +1453,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         List<ChiTietSanPhamViewModel> sp = iCTSPService.getSerch(txtSerch.getText());
         load(sp);
-        
+
     }//GEN-LAST:event_txtSerchKeyReleased
 
 

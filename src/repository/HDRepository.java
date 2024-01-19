@@ -23,7 +23,7 @@ public class HDRepository {
                          ,[MA]
                          ,[ID_NV]
                          ,[ID_KH]
-                         ,[PGG]
+                         ,[MAPGG]
                          ,[NGAYTAO]
                          ,[NGAYTHANHTOAN]
                          ,[TIENGIAM]

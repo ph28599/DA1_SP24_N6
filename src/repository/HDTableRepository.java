@@ -24,7 +24,7 @@ public class HDTableRepository {
                                                                             ,HOA_DON.[MA]
                                                                             ,NHAN_VIEN.HOTEN
                                                                             ,KHACH_HANG.HOTEN
-                                                                            ,PHIEU_GIAM_GIA_CHI_TIET.MA
+                                                                            ,[MAPGG]
                                                                             ,[NGAYTAO]
                                                                             ,[NGAYTHANHTOAN]
                                                                             ,[TIENGIAM]
@@ -39,7 +39,7 @@ public class HDTableRepository {
                                                                         FROM [dbo].[HOA_DON]
                                                                         join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
                                                                         join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV 
-                                              						  join PHIEU_GIAM_GIA_CHI_TIET on PHIEU_GIAM_GIA_CHI_TIET.ID = HOA_DON.ID_PGG where HOA_DON.[TRANGTHAI]=0
+                                              			       where HOA_DON.[TRANGTHAI]=0
                                                                      ORDER BY NGAYTHANHTOAN   ;
                      """;
         try (Connection con = DBConnection.getConnection(); 

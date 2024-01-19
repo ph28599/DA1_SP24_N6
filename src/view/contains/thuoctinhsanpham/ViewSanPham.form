@@ -71,24 +71,12 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jButton16" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton18" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="jButton17" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLabel1" alignment="0" pref="185" max="32767" attributes="0"/>
-                                      <Component id="txtsearch" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel1" alignment="0" pref="185" max="32767" attributes="0"/>
+                              <Component id="txtsearch" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace pref="79" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -162,16 +150,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtsearch" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="136" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane4" min="-2" pref="194" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="83" max="32767" attributes="0"/>
+                  <EmptySpace pref="76" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -282,27 +264,6 @@
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtsearchKeyReleased"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton16">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/Left.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&lt;|"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton17">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/Right.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="|&gt;"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton18">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMa">
         </Component>
