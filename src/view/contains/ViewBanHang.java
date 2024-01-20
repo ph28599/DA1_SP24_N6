@@ -7,12 +7,17 @@ package view.contains;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.HoaDonDomain;
+import repository.KhachHangRepository;
+import service.HDCTService;
+import service.HDService;
 import service.HDTableService;
 import service.ICTSPService;
 import service.IChatLieuService;
@@ -23,11 +28,15 @@ import service.IMauSacService;
 import service.ISanPhamSevice;
 import service.ISizeService;
 import service.IThuongHieuService;
+import service.KhachHangService;
 import service.impl.CTSPServiceImpl;
 import service.impl.ChatLieuServiceImpl;
+import service.impl.HDCTServiceImpl;
+import service.impl.HDServiceImpl;
 import service.impl.HDTableServiceImpl;
 import service.impl.HoaDonCTService;
 import service.impl.HoaDonService;
+import service.impl.KhachHangServiceImpl;
 import service.impl.LoaiAoServiceImpl;
 import service.impl.MauSacServiceImpl;
 import service.impl.SanPhamServiceImpl;
@@ -35,10 +44,14 @@ import service.impl.SizeServiceImpl;
 import service.impl.ThuongHieuServiceImpl;
 import viewmodel.ChatLieuViewMoel;
 import viewmodel.ChiTietSanPhamViewModel;
+import viewmodel.GioHangViewModel;
+import viewmodel.HDCTViewModel;
 import viewmodel.HDTableViewModel;
+import viewmodel.HDViewModel;
 import viewmodel.HoaDonView;
 import viewmodel.LoaiAoViewModel;
 import viewmodel.MauSacViewModel;
+import viewmodel.QLKhachHang;
 import viewmodel.SanPhamHDViewModel;
 import viewmodel.SanPhamViewModel;
 import viewmodel.SizeViewModel;
@@ -50,6 +63,7 @@ import viewmodel.ThuongHieuViewModel;
  */
 public class ViewBanHang extends javax.swing.JPanel {
 
+    private KhachHangRepository khrepo = new KhachHangRepository();
     private IHoaDonService iHoaDonService = new HoaDonService();
     private IHoaDonCTService iHoaDonCTService = new HoaDonCTService();
     private List<HoaDonView> hoaDonViews = new ArrayList<>();
@@ -64,7 +78,9 @@ public class ViewBanHang extends javax.swing.JPanel {
     private DefaultTableModel dtmTable = new DefaultTableModel();
     private DefaultTableModel dtm = new DefaultTableModel();
     private ICTSPService iCTSPService = new CTSPServiceImpl();
-
+    private HDService serviceHD = new HDServiceImpl();
+    private int idHD = 0;
+    private String maHD = null;
     //list tb SPCT
     private List<ChiTietSanPhamViewModel> listCTSPTable = new ArrayList<>();
 
@@ -99,7 +115,34 @@ public class ViewBanHang extends javax.swing.JPanel {
     private List<String> listCbbTH = new ArrayList<>();
     private DefaultComboBoxModel dcbTH = new DefaultComboBoxModel();
 
+    private List<HDTableViewModel> listHDTableChuaThanhToan = new ArrayList<>();
+
+    //gio hang
+    private List<HDCTViewModel> listGioHang = new ArrayList<>();
+    private HDCTService serviceGioHang = new HDCTServiceImpl();
+    private DefaultTableModel dtmGioHang = new DefaultTableModel();
+    private List<GioHangViewModel> listSPInHD = new ArrayList<>();
+    private List<GioHangViewModel> listSpGiohang = new ArrayList<>();
+
+    private List<HDViewModel> listHD = new ArrayList<>();
+    private List<QLKhachHang> listKhachHang = new ArrayList<>();
+    private KhachHangService serviceKhachHang = new KhachHangServiceImpl();
+    private DefaultTableModel defaultTableModel = new DefaultTableModel();
+    private KhachHangRepository repository = new KhachHangRepository();
+    private DefaultTableModel dtmHD = new DefaultTableModel();
+    private int idNV = 1;
+    private int idKhachHang = 1;
+    private int idPGG = 0;
+    private int tienPGG = 0;
+    private int tienQuyDoi = 0;
+    private int tongTien = 0;
+    private int tienKhachDua = 0;
+    private int tienThua = 0;
+    private int tienKhachPhaiTra = 0;
+    private int tienGiam = 0;
+
     /**
+     *
      * Creates new form ViewBanHang
      */
     public ViewBanHang() {
@@ -154,6 +197,48 @@ public class ViewBanHang extends javax.swing.JPanel {
             dtm.addRow(new Object[]{ct.getIdSP(), ct.getIdSP(), ct.getIdLA(), ct.getIdMS(), ct.getIdCL(), ct.getIdKC(), ct.getSoLuong(), ct.getGiaBan()});
         }
     }
+
+    private HDViewModel taoHoaDon() {
+        HDViewModel hd = new HDViewModel();
+        //int i = listHD.size() - 1;
+        //.setMa("HD" + listHD.get(i).getId());
+       hd.setMa(maHD);
+        hd.setIdNV(1);
+        hd.setIdKH(1);
+        hd.setPGG("");
+        hd.setNgayTao(Date.valueOf(java.time.LocalDate.now()));
+        hd.setNgayThanhToan(Date.valueOf(java.time.LocalDate.now()));
+        hd.setTienGiam(Integer.parseInt("0"));
+        hd.setTongTien(Integer.parseInt("0"));
+        hd.setTienKhachDua(Integer.parseInt("0"));
+        hd.setTienThua(Integer.parseInt("0"));
+        hd.setTienKhachPhaiTra(Integer.parseInt("0"));
+        hd.setHinhThucThanhToan(Integer.parseInt("0"));
+        hd.setMaChuyenKhoan("0");
+        hd.setTrangThai(Integer.parseInt("0"));
+        return hd;
+
+    }
+
+    public void loadDataTable(ArrayList<QLKhachHang> listKH) {
+        defaultTableModel.setRowCount(0);
+        for (QLKhachHang kh : listKH) {
+            defaultTableModel.addRow(new Object[]{kh.getId(),
+                kh.getMa(), kh.getTen(), kh.getEmail(), kh.getSdt(),
+                (kh.getGioiTinh() == 1) ? "Nam" : "Nữ", kh.getNgaySinh(), kh.getDiaChi(),
+                (kh.getTrangThai() == 1) ? "Đã thanh toán" : "Chưa thanh toán"
+            });
+        }
+
+    }
+
+    private void showDataHoaDon(List<HDTableViewModel> listTable) {
+        dtmHD.setRowCount(0);
+        for (HDTableViewModel hd : listTable) {
+            dtmHD.addRow(hd.toRowDataHD());
+        }
+    }
+
 //    public void loadTableCTHD(List<SanPhamHDViewModel> list){
 //        int rowCount = tblGioHang.getModel().getRowCount();
 //        for (int i = rowCount - 1; i >= 0; i--) {
@@ -164,7 +249,6 @@ public class ViewBanHang extends javax.swing.JPanel {
 //        }
 //        tblGioHang.setRowHeight(25);
 //    }
-
 //    public void ClickRow() {
 //        tblHoaDon.addMouseListener(new MouseAdapter() {
 //            public void mousePressed(MouseEvent mouseEvent) {
@@ -191,6 +275,13 @@ public class ViewBanHang extends javax.swing.JPanel {
 //            }
 //        });
 //    }
+    private void gioHangTable(List<GioHangViewModel> listGioHang) {
+        dtmGioHang.setRowCount(0);
+        for (GioHangViewModel hdct : listGioHang) {
+            dtmGioHang.addRow(hdct.toRowData());
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1119,12 +1210,56 @@ public class ViewBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        int index = tblHoaDon.getSelectedRow();
+        listSPInHD = new ArrayList<>();
+        HDTableViewModel hd = listHDTableChuaThanhToan.get(index);
+        tongTien = 0;
+        idHD = hd.getId();
+        maHD = hd.getMa();
+        jlbMaHD.setText(maHD);
 
+        gioHangTable(listSPInHD);
 
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
+        HDViewModel hd = taoHoaDon();
+        JOptionPane.showMessageDialog(this, serviceHD.getAdd(hd));
 
+        //showDataTable(listHDTable);
+//        for (QLKhachHang kh : listKhachHang) {
+//            if (kh.getId() == hd.getIdKH() && kh.getTrangThai() == 0 && kh.getId() != 9) {
+//               // idKhachHang = kh.getId();
+//                JOptionPane.showMessageDialog(this, "Khách hàng đã có hóa đơn chờ");
+//                return;
+//            }
+//            
+//
+//        }
+//        JOptionPane.showMessageDialog(this, serviceHD.getAdd(hd));
+//        jlbMaHD.setText(hd.getMa());
+//        listHDTable = serviceHDTable.getAll();
+//        if (idKhachHang != 9) {
+//            serviceKhachHang.khachHangTaoHD(idKhachHang);
+//       }
+//        listHD = serviceHD.getAll();
+//        for (HDViewModel hdid : listHD) {
+//            if (hdid.getMa().trim().equals(hd.getMa())) {
+//                idHD = hdid.getId();
+//                maHD = hdid.getMa();
+//            }
+//        }
+//        listKhachHang = serviceKhachHang.getList();
+//        loadDataTable(serviceKhachHang.getList());
+//        listHDTableChuaThanhToan = new ArrayList<>();
+//        for (HDTableViewModel hdctt : listHDTable) {
+//            if (hdctt.getTrangThai().trim().equals("0")) {
+//                listHDTableChuaThanhToan.add(hdctt);
+//            }
+//        }
+//        
+//       
+        loadTable(serviceHDTable.getAll());
 
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 

@@ -20,7 +20,7 @@ public class HDTableRepository {
 
     public List<HDTableModel> getAll() {
         String query = """
-                        SELECT HOA_DON.[ID]
+                                                                        SELECT HOA_DON.[ID]
                                                                             ,HOA_DON.[MA]
                                                                             ,NHAN_VIEN.HOTEN
                                                                             ,KHACH_HANG.HOTEN
@@ -31,16 +31,15 @@ public class HDTableRepository {
                                                                             ,[TONGTIEN]
                                                                             ,[TIENKHACHPHAITRA]
                                                                             ,[TIENKHACHDUA]
-                                                                            ,[TIENTHUA]
-                                                                            
+                                                                            ,[TIENTHUA]                                                                           
                                                                             ,[HINHTHUCTHANHTOAN]
                                                                             ,[MACHUYENKHOAN]
                                                                             ,HOA_DON.[TRANGTHAI]
                                                                         FROM [dbo].[HOA_DON]
                                                                         join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
                                                                         join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV 
-                                              			       where HOA_DON.[TRANGTHAI]=0
-                                                                     ORDER BY NGAYTHANHTOAN   ;
+                                              			      where HOA_DON.[TRANGTHAI]=0
+                                                                     ORDER BY NGAYTHANHTOAN  DESC ;
                      """;
         try (Connection con = DBConnection.getConnection(); 
             PreparedStatement pr = con.prepareStatement(query)) {

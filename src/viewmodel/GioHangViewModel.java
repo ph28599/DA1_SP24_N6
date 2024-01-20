@@ -115,5 +115,7 @@ public class GioHangViewModel {
     public void setDonGia(Float donGia) {
         this.donGia = donGia;
     }
-    
+      public Object[] toRowData(){
+        return new Object[]{ma,tenSP,thuongHieu,loaiAo,mauSac,chatLieu,size,soLuong,donGia};
+    }
 }

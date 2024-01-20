@@ -13,6 +13,11 @@ import viewmodel.HDViewModel;
 
 /**
  *
+ * HDViewModel(hd.getId(), hd.getMa(), hd.getIdNV(), hd.getIdKH(), hd.getPgg(),
+ * hd.getNgayTao(), hd.getNgayThanhToan(), hd.getTienGiam(), hd.getTongTien(),
+ * hd.getTienKhachDua(), hd.getTienThua(), hd.getTienKhachPhaiTra(),
+ * hd.getHinhThucThanhToan(), hd.getMaChuyenKhoan(), hd.getTrangThai()));
+ *
  * @author Admin
  */
 public class HDServiceImpl implements HDService {
@@ -25,14 +30,19 @@ public class HDServiceImpl implements HDService {
         List<HDViewModel> listAll = new ArrayList<>();
         for (HoaDonModel hd : list) {
             listAll.add(new HDViewModel(hd.getId(), hd.getMa(), hd.getIdNV(), hd.getIdKH(), hd.getPgg(), hd.getNgayTao(), hd.getNgayThanhToan(), hd.getTienGiam(), hd.getTongTien(), hd.getTienKhachDua(), hd.getTienThua(), hd.getTienKhachPhaiTra(), hd.getHinhThucThanhToan(), hd.getMaChuyenKhoan(), hd.getTrangThai()));
-
         }
         return listAll;
     }
 
     @Override
     public String getAdd(HDViewModel hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        HoaDonModel hdAdd = new HoaDonModel(hd.getId(), hd.getMa(), hd.getIdNV(), hd.getIdKH(), hd.getPGG(), hd.getNgayTao(), hd.getNgayThanhToan(), hd.getTienGiam(), hd.getTongTien(), hd.getTienKhachDua(), hd.getTienThua(), hd.getTienKhachPhaiTra(), hd.getHinhThucThanhToan(), hd.getMaChuyenKhoan(), hd.getTrangThai());
+        boolean add = hdRepo.getAdd(hdAdd);
+        if (add) {
+            return "Thanh cong";
+        } else {
+            return "That bai";
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author Admin
  */
 public class HoaDonModel {
+
     private int id;
     private String ma;
     private int idNV;
@@ -25,12 +26,12 @@ public class HoaDonModel {
     private int tienKhachPhaiTra;
     private int hinhThucThanhToan;
     private String maChuyenKhoan;
-    private String trangThai;
+    private int trangThai;
 
     public HoaDonModel() {
     }
 
-    public HoaDonModel(int id, String ma, int idNV, int idKH, String pgg, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int hinhThucThanhToan, String maChuyenKhoan, String trangThai) {
+    public HoaDonModel(int id, String ma, int idNV, int idKH, String pgg, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int hinhThucThanhToan, String maChuyenKhoan, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.idNV = idNV;
@@ -160,23 +161,12 @@ public class HoaDonModel {
         this.maChuyenKhoan = maChuyenKhoan;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
 
-    
-
-
-
-    
-
-    
-    
-    
 }

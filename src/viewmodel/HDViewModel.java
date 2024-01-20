@@ -4,7 +4,7 @@
  */
 package viewmodel;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -25,12 +25,12 @@ public class HDViewModel {
     private int tienKhachPhaiTra;
     private int HinhThucThanhToan;
     private String maChuyenKhoan;
-    private String trangThai;
+    private int trangThai;
 
     public HDViewModel() {
     }
 
-    public HDViewModel(int id, String ma, int idNV, int idKH, String PGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int HinhThucThanhToan, String maChuyenKhoan, String trangThai) {
+    public HDViewModel(int id, String ma, int idNV, int idKH, String PGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int HinhThucThanhToan, String maChuyenKhoan, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.idNV = idNV;
@@ -47,6 +47,8 @@ public class HDViewModel {
         this.maChuyenKhoan = maChuyenKhoan;
         this.trangThai = trangThai;
     }
+
+   
 
     
 
@@ -168,13 +170,15 @@ public class HDViewModel {
         this.maChuyenKhoan = maChuyenKhoan;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+
+    
 
     
     
