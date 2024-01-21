@@ -1,17 +1,18 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package service;
 
 import java.sql.Date;
 import java.util.List;
-import viewmodel.HDTableViewModel;
+import viewmodel.HDTableVIewModel;
 import viewmodel.HoaDonView;
 
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public interface IHoaDonService {
     List<HoaDonView> getall();
@@ -20,5 +21,5 @@ public interface IHoaDonService {
     boolean delete(int id_hd);
     HoaDonView findById(String ma);
     List<HoaDonView> searchByDate(Date start, Date end, int type);
-    List<HDTableViewModel> getAllTable();
+    List<HDTableVIewModel> getAllTable();
 }

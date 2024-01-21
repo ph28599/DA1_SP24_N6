@@ -1,42 +1,33 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package model;
 
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public class HoaDonCTDomain {
-    private int id;
-    private int idHD;
-    private int idSPCT;
-    private String ten;
-    private int idTH;
-    private int idLA;
-    private int idMS;
-    private int idCL;
-    private int idS;
-    private int soLuong;
-    private int donGia;
+        private int id;
+        private int idHD;
+        private int idSPCT;
+        private int soluong;
+        private int donGia;
 
     public HoaDonCTDomain() {
     }
 
-    public HoaDonCTDomain(int id, int idHD, int idSPCT, String ten, int idTH, int idLA, int idMS, int idCL, int idS, int soLuong, int donGia) {
+    public HoaDonCTDomain(int id, int idHD, int idSPCT, int soluong, int donGia) {
         this.id = id;
         this.idHD = idHD;
         this.idSPCT = idSPCT;
-        this.ten = ten;
-        this.idTH = idTH;
-        this.idLA = idLA;
-        this.idMS = idMS;
-        this.idCL = idCL;
-        this.idS = idS;
-        this.soLuong = soLuong;
+        this.soluong = soluong;
         this.donGia = donGia;
     }
+
+        
 
     public int getId() {
         return id;
@@ -62,60 +53,12 @@ public class HoaDonCTDomain {
         this.idSPCT = idSPCT;
     }
 
-    public String getTen() {
-        return ten;
+    public int getSoluong() {
+        return soluong;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public int getIdTH() {
-        return idTH;
-    }
-
-    public void setIdTH(int idTH) {
-        this.idTH = idTH;
-    }
-
-    public int getIdLA() {
-        return idLA;
-    }
-
-    public void setIdLA(int idLA) {
-        this.idLA = idLA;
-    }
-
-    public int getIdMS() {
-        return idMS;
-    }
-
-    public void setIdMS(int idMS) {
-        this.idMS = idMS;
-    }
-
-    public int getIdCL() {
-        return idCL;
-    }
-
-    public void setIdCL(int idCL) {
-        this.idCL = idCL;
-    }
-
-    public int getIdS() {
-        return idS;
-    }
-
-    public void setIdS(int idS) {
-        this.idS = idS;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 
     public int getDonGia() {
@@ -126,5 +69,8 @@ public class HoaDonCTDomain {
         this.donGia = donGia;
     }
 
-    
+    @Override
+    public String toString() {
+        return "HoaDonCTView{" + "id=" + id + ", idHD=" + idHD + ", idSPCT=" + idSPCT + ", soluong=" + soluong + ", donGia=" + donGia + '}';
+    }
 }

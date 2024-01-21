@@ -1,74 +1,86 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package service.impl;
 
 import java.sql.Date;
+import service.IHoaDonService;
 import java.util.ArrayList;
 import java.util.List;
 import model.HDTableModel;
 import model.HoaDonDomain;
 import repository.HDTableRepository;
 import repository.HoaDonRepository;
-import service.IHoaDonService;
-import viewmodel.HDTableViewModel;
+import service.HDTableService;
+import viewmodel.HDTableVIewModel;
 import viewmodel.HoaDonView;
 
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public class HoaDonService implements IHoaDonService {
-    
+
     private HoaDonRepository rs = new HoaDonRepository();
     HDTableRepository HDRepo=new HDTableRepository();
 
     @Override
     public List<HoaDonView> getall() {
-       List<viewmodel.HoaDonView> hdd = new ArrayList<>();
+        List<viewmodel.HoaDonView> hdd = new ArrayList<>();
         List<HoaDonDomain> list = this.rs.getall();
         for (HoaDonDomain x : list) {
-            HoaDonView hoaDonView = new HoaDonView(x.getId(), x.getMa(), x.getIdNV(), x.getIdKH(), x.getPgg(), x.getNgayTao(), x.getNgayThanhToan(), x.getTienGiam(), x.getTongTien(),x.getTienKhachPhaiTra(), x.getTienKhachDua(), x.getTienThua(), x.getHinhThucThanhToan(), x.getMaChuyenKhoan(),x.getTrangThai());
+            HoaDonView hoaDonView = new HoaDonView(x.getId(), x.getMa(), x.getIdNV(), x.getIdKH(), x.getMaPGG(), x.getNgayTao(), x.getNgayThanhToan(), x.getTienGiam(), x.getTongTien(), x.getTienKhachDua(), x.getTienThua(), x.getTienTraTruoc(), x.getHinhThucThanhToan(), x.getMaChuyenKhoan(), x.getTienChuyenKhoan());
             hdd.add(hoaDonView);
         }
-        return hdd;}
+        return hdd;
+    }
 
     @Override
     public boolean add(HoaDonView hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        HoaDonDomain domain = new HoaDonDomain(hd.getId(), hd.getMa(), hd.getIdNV(), hd.getIdKH(), hd.getMaPGG(), hd.getNgayTao(), hd.getNgayThanhToan(), hd.getTienGiam(), hd.getTongTien(), hd.getTienKhachDua(), hd.getTienThua(), hd.getTienTraTruoc(), hd.getHinhThucThanhToan(), hd.getMaChuyenKhoan(), hd.getTienChuyenKhoan());
+        this.rs.add(domain);
+        return true;
     }
 
     @Override
     public boolean update(int id, HoaDonView hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        HoaDonDomain domain = new HoaDonDomain(hd.getId(), hd.getMa(), hd.getIdNV(), hd.getIdKH(), hd.getMaPGG(), hd.getNgayTao(), hd.getNgayThanhToan(), hd.getTienGiam(), hd.getTongTien(), hd.getTienKhachDua(), hd.getTienThua(), hd.getTienTraTruoc(), hd.getHinhThucThanhToan(), hd.getMaChuyenKhoan(), hd.getTienChuyenKhoan());
+        return this.rs.update(id, domain);
     }
 
     @Override
     public boolean delete(int id_hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.rs.delete(id_hd);
     }
 
     @Override
     public HoaDonView findById(String ma) {
-     HoaDonDomain x = rs.findByMa(ma);
-        HoaDonView hoaDonView = new HoaDonView(x.getId(), x.getMa(), x.getIdNV(), x.getIdKH(), x.getPgg(), x.getNgayTao(), x.getNgayThanhToan(), x.getTienGiam(), x.getTongTien(), x.getTienKhachPhaiTra(), x.getTienKhachDua(), x.getTienThua(), x.getHinhThucThanhToan(), x.getMaChuyenKhoan(), x.getTrangThai());
-        return hoaDonView; }
-
-    
-
-    @Override
-    public List<HDTableViewModel> getAllTable() {
-        List<HDTableModel> getAll=HDRepo.getAll();
-        List<HDTableViewModel> getTable=new ArrayList<>();
-        for (HDTableModel hd : getAll) {
-            getTable.add(new HDTableViewModel(hd.getId(),hd.getMa(),hd.getTenNhanVien(), hd.getTenKhachHang(),hd.getPgg(),hd.getNgayTao(),hd.getNgayThanhToan(),hd.getTienGiam(),hd.getTongTien(),hd.getTienKhachDua(),hd.getTienThua(),hd.getTienKhachPhaiTra(),hd.getHinhThucThanhToan(),hd.getMaChuyenKhoan(),hd.getTrangThai()));
-        }
-        return getTable;}
+        HoaDonDomain x = rs.findByMa(ma);
+        HoaDonView hoaDonView = new HoaDonView(x.getId(), x.getMa(), x.getIdNV(), x.getIdKH(), x.getMaPGG(), x.getNgayTao(), x.getNgayThanhToan(), x.getTienGiam(), x.getTongTien(), x.getTienKhachDua(), x.getTienThua(), x.getTienTraTruoc(), x.getHinhThucThanhToan(), x.getMaChuyenKhoan(), x.getTienChuyenKhoan());
+        hoaDonView.setTrangThai(x.getTrangThai());
+        return hoaDonView;
+    }
 
     @Override
     public List<HoaDonView> searchByDate(Date start, Date end, int type) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<HoaDonDomain> list=rs.searchByDate(start, end, type);
+        List<HoaDonView> listHDV=new ArrayList<>();
+        for (HoaDonDomain x : list) {
+            HoaDonView hoaDonView = new HoaDonView(x.getId(), x.getMa(), x.getIdNV(), x.getIdKH(), x.getMaPGG(), x.getNgayTao(), x.getNgayThanhToan(), x.getTienGiam(), x.getTongTien(), x.getTienKhachDua(), x.getTienThua(), x.getTienTraTruoc(), x.getHinhThucThanhToan(), x.getMaChuyenKhoan(), x.getTienChuyenKhoan());
+            listHDV.add(hoaDonView);
+        }
+        return listHDV;
     }
-    
+
+    @Override
+    public List<HDTableVIewModel> getAllTable() {
+        List<HDTableModel> getAll=HDRepo.getAll();
+        List<HDTableVIewModel> getTable=new ArrayList<>();
+        for (HDTableModel hd : getAll) {
+            getTable.add(new HDTableVIewModel(hd.getId(),hd.getMa(),hd.getTenNhanVien(), hd.getTenKhachHang(),hd.getMaPGG(),hd.getNgayTao(),hd.getNgayThanhToan(),hd.getTienGiam(),hd.getTongTien(),hd.getTienKhachDua(),hd.getTienThua(),hd.getTienKhachPhaiTra(),hd.getHinhThucThanhToan(),hd.getMaChuyenKhoan(),hd.getTrangThai()));
+        }
+        return getTable;
+    }
 }

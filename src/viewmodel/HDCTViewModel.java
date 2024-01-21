@@ -6,34 +6,27 @@ package viewmodel;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public class HDCTViewModel {
+    
     private int id;
     private int idHD;
     private int idSPCT;
-    private int idTH;
-    private int idLA;
-    private int idMS;
-    private int idCL;
-    private int idS;
+    private String kichCo;
     private int soLuong;
     private Float donGia;
 
-    public HDCTViewModel(int id, int idHD, int idSPCT, int idTH, Float donGia) {
+    public HDCTViewModel() {
+    }
+
+    public HDCTViewModel(int id, int idHD, int idSPCT, String kichCo, int soLuong, Float donGia) {
         this.id = id;
         this.idHD = idHD;
         this.idSPCT = idSPCT;
-        this.idTH = idTH;
-        this.idLA = idLA;
-        this.idMS = idMS;
-        this.idCL = idCL;
-        this.idS = idS;
+        this.kichCo = kichCo;
         this.soLuong = soLuong;
         this.donGia = donGia;
-    }
-
-    public HDCTViewModel() {
     }
 
     public int getId() {
@@ -60,44 +53,12 @@ public class HDCTViewModel {
         this.idSPCT = idSPCT;
     }
 
-    public int getIdTH() {
-        return idTH;
+    public String getKichCo() {
+        return kichCo;
     }
 
-    public void setIdTH(int idTH) {
-        this.idTH = idTH;
-    }
-
-    public int getIdLA() {
-        return idLA;
-    }
-
-    public void setIdLA(int idLA) {
-        this.idLA = idLA;
-    }
-
-    public int getIdMS() {
-        return idMS;
-    }
-
-    public void setIdMS(int idMS) {
-        this.idMS = idMS;
-    }
-
-    public int getIdCL() {
-        return idCL;
-    }
-
-    public void setIdCL(int idCL) {
-        this.idCL = idCL;
-    }
-
-    public int getIdS() {
-        return idS;
-    }
-
-    public void setIdS(int idS) {
-        this.idS = idS;
+    public void setKichCo(String kichCo) {
+        this.kichCo = kichCo;
     }
 
     public int getSoLuong() {
@@ -115,8 +76,8 @@ public class HDCTViewModel {
     public void setDonGia(Float donGia) {
         this.donGia = donGia;
     }
-    public Object[] toRowData(){
-        return new Object[]{idHD,idSPCT,idLA,idTH,idMS,idCL,idS ,soLuong,donGia};
-    }
     
+    public Object[] toRowData(){
+        return new Object[]{idHD,idSPCT,kichCo,soLuong,donGia};
+    }
 }

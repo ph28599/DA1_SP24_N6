@@ -9,17 +9,16 @@ package model;
  * @author pc
  */
 public class SanPhamModel {
-
     private int id;
     private String ma;
     private String ten;
     private String loaiSanPham;
-    private int soLuong;
+    private int  soLuong;
 
     public SanPhamModel() {
     }
 
-    public SanPhamModel( int id, String ma, String ten, String loaiSanPham, int soLuong) {
+    public SanPhamModel(int id, String ma, String ten, String loaiSanPham, int soLuong) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -34,8 +33,6 @@ public class SanPhamModel {
     public void setId(int id) {
         this.id = id;
     }
-
-   
 
     public String getMa() {
         return ma;
@@ -69,7 +66,10 @@ public class SanPhamModel {
         this.soLuong = soLuong;
     }
 
-    public Object[] toDataRow() {
-        return new Object[]{ ma, ten, loaiSanPham, soLuong};
+    
+    
+    
+    public Object[] toRowData(){
+        return new Object[]{ma,ten,loaiSanPham,soLuong};
     }
 }

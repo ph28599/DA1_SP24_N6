@@ -6,10 +6,9 @@ package viewmodel;
 
 /**
  *
- * @author LAPTOP24H
+ * @author pc
  */
 public class ThuongHieuViewModel {
-
     private int id;
     private String ma;
     private String ten;
@@ -22,6 +21,7 @@ public class ThuongHieuViewModel {
         this.ma = ma;
         this.ten = ten;
     }
+
     public int getId() {
         return id;
     }
@@ -46,12 +46,7 @@ public class ThuongHieuViewModel {
         this.ten = ten;
     }
 
-    @Override
-    public String toString() {
-        return this.ten;
-    }
-
-    public Object[] toDataRow() {
-        return new Object[]{id, ma, ten};
+    public Object[] toRowData() {
+        return new Object[]{ma, ten};
     }
 }

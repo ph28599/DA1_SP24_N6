@@ -1,51 +1,44 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package repository;
 
+import utility.DBConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 import model.HoaDonCTDomain;
-import ultility.DBConnection;
 import viewmodel.SanPhamHDViewModel;
 
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public class HoaDonCTRepository implements HoaDonCTRepo {
 
     @Override
     public List<HoaDonCTDomain> getall() {
-
         ArrayList<HoaDonCTDomain> hdct = new ArrayList<>();
         try {
-            Connection cnn = DBConnection.getConnection();
-            String sql = "SELECT HDCT.ID,HDCT.ID_HD,HDCT.ID_SPCT, SP.TEN ,TH.TEN,LA.TEN,MS.TEN, CL.TEN , S.SIZE,HDCT.SOLUONG,HDCT.DONGIA \n"
-                    + "FROM HOA_DON_CT HDCT\n"
-                    + "JOIN\n"
-                    + "    SAN_PHAM_CHI_TIET SPCT ON HDCT.ID_SPCT = SPCT.ID\n"
-                    + "JOIN\n"
-                    + "    SAN_PHAM SP ON SPCT.ID_SP = SP.ID\n"
-                    + "JOIN\n"
-                    + "    THUONG_HIEU TH ON SPCT.ID_TH = TH.ID\n"
-                    + "JOIN\n"
-                    + "    LOAI_AO LA ON SPCT.ID_LA = LA.ID\n"
-                    + "JOIN\n"
-                    + "    MAU_SAC MS ON SPCT.ID_MS = MS.ID\n"
-                    + "JOIN\n"
-                    + "    CHAT_LIEU CL ON SPCT.ID_CL = CL.ID\n"
-                    + "JOIN\n"
-                    + "    SIZE S ON SPCT.ID_SIZE = S.ID";
+            Connection cnn = DBConnect.getConnection();
+            String sql = "SELECT\n"
+                    + "HOA_DON_CT.ID_HD,\n"
+                    + "HOA_DON_CT.ID,\n"
+                    + "HOA_DON_CT.ID_SPCT,\n"
+                    + "HOA_DON_CT.SOLUONG,\n"
+                    + "HOA_DON_CT.DONGIA\n"
+                    + "FROM\n"
+                    + "HOA_DON_CT\n";
             PreparedStatement ps = cnn.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                HoaDonCTDomain hdd = new HoaDonCTDomain(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getString(4), rs.getInt(5), rs.getInt(6),rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+                HoaDonCTDomain hdd = new HoaDonCTDomain(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
                 hdct.add(hdd);
             }
         } catch (Exception e) {
@@ -56,22 +49,77 @@ public class HoaDonCTRepository implements HoaDonCTRepo {
 
     @Override
     public boolean add(HoaDonCTDomain ht) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection cnn = DBConnect.getConnection();
+            String sql = "INSERT INTO HOA_DON_CT(ID_HD, ID_SPCT, SOLUONG, DONGIA)"
+                    + "VALUES (?,?,?,?)";
+            PreparedStatement ps = cnn.prepareStatement(sql);
+            ps.setInt(1, ht.getIdHD());
+            ps.setInt(2, ht.getIdSPCT());
+            ps.setInt(3, ht.getSoluong());
+            ps.setInt(4, ht.getDonGia());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean update(int id, HoaDonCTDomain ht) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = DBConnect.getConnection();
+            String sql = "UPDATE HOA_DON_CT set ID_HD = ?,ID_SPCT = ?, SOLUONG = ?, DONGIA = ? WHERE ID = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, ht.getIdHD());
+            ps.setInt(2, ht.getIdSPCT());
+            ps.setInt(3, ht.getSoluong());
+            ps.setInt(4, ht.getDonGia());
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = DBConnect.getConnection();
+            String sql = "DELETE HOA_DON_CT where ID =  ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public List<SanPhamHDViewModel> getByHdId(int idHd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ ArrayList<SanPhamHDViewModel> hdct = new ArrayList<>();
+        try {
+            Connection cnn = DBConnect.getConnection();
+            String sql = "select h.id, sp.LOAISANPHAM, sp.TEN, h.KICHCO, h.SOLUONG, h.DONGIA from HOA_DON_CT h\n" +
+            "inner join SAN_PHAM_CHI_TIET spct on spct.id = h.ID_SPCT\n" +
+            "inner join SAN_PHAM sp on spct.ID_SP = sp.ID where h.ID_HD = ?";
+            PreparedStatement ps = cnn.prepareStatement(sql);
+            ps.setInt(1, idHd);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                SanPhamHDViewModel hdd = new SanPhamHDViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
+                hdct.add(hdd);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hdct;
     }
 
 }

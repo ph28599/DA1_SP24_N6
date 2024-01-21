@@ -6,60 +6,58 @@ package service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.SizeModel;
 import model.ThuongHieuModel;
 import repository.ThuongHieuRepository;
-import service.IThuongHieuService;
-import viewmodel.SizeViewModel;
+import service.ThuongHieuService;
 import viewmodel.ThuongHieuViewModel;
 
 /**
  *
- * @author LAPTOP24H
+ * @author pc
  */
-public class ThuongHieuServiceImpl implements IThuongHieuService {
-    
-    private ThuongHieuRepository hieuRepository = new ThuongHieuRepository();
-    
+public class ThuongHieuServiceImpl implements ThuongHieuService{
+
+    ThuongHieuRepository thRepo=new ThuongHieuRepository();
     @Override
     public List<ThuongHieuViewModel> getAll() {
-        List<ThuongHieuModel> models = hieuRepository.getAll();
-        List<ThuongHieuViewModel> viewModels = new ArrayList<>();
-        for (ThuongHieuModel model : models) {
-            viewModels.add(new ThuongHieuViewModel(model.getId(), model.getMa(), model.getTen()));
+    List<ThuongHieuModel> listAll = thRepo.getAll();
+        List<ThuongHieuViewModel> listTable = new ArrayList<>();
+        for (ThuongHieuModel th : listAll) {
+            listTable.add(new ThuongHieuViewModel(th.getId(), th.getMa(), th.getTen()));
         }
-        return viewModels;
+        return listTable;
     }
-    
+
     @Override
     public String getAdd(ThuongHieuViewModel th) {
-        ThuongHieuModel model = new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
-        boolean them = hieuRepository.getAdd(model);
-        if (them) {
-            return "Thêm thành công";
-        } else {
-            return "Thêm thất bại";
+        ThuongHieuModel thmd=new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
+        boolean them=thRepo.getAdd(thmd);
+        if(them){
+            return"Them thanh cong";
+        }else{
+            return "Them that bai";
+        }
+    }
+
+    @Override
+    public String getUpdate(ThuongHieuViewModel th, int id) {
+        ThuongHieuModel thmd=new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
+        boolean sua=thRepo.getUpdate(thmd,id);
+        if(sua){
+            return"Sua thanh cong";
+        }else{
+            return "Sua that bai";
+        }
+    }
+
+    @Override
+    public String getDelet(int id) {
+        boolean xoa=thRepo.getDelete(id);
+        if(xoa){
+            return"Xoa thanh cong";
+        }else{
+            return "Xoa that bai";
         }
     }
     
-    @Override
-    public String getUpdate(ThuongHieuViewModel th, Integer id) {
-        ThuongHieuModel model = new ThuongHieuModel(th.getId(), th.getMa(), th.getTen());
-        boolean them = hieuRepository.getUpđate(model, id);
-        if (them) {
-            return "Sửa thành công";
-        } else {
-            return "Sửa thất bại";
-        }
-    }
-    
-    @Override
-    public List<ThuongHieuViewModel> getS(String t) {
-        List<ThuongHieuModel> models = hieuRepository.getS(t);
-        List<ThuongHieuViewModel> viewModels = new ArrayList<>();
-        for (ThuongHieuModel model : models) {
-            viewModels.add(new ThuongHieuViewModel(model.getId(), model.getMa(), model.getTen()));
-        }
-        return viewModels;
-    }
 }

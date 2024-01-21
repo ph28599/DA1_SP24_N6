@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package service.impl;
 
@@ -12,9 +13,10 @@ import viewmodel.QLBangTichDiem;
 
 /**
  *
- * @author pc
+ * @author adm
  */
 public class BangTichDiemImpl implements BangTichDiemService{
+
     BangTichDiemRepository repository;
     
     public BangTichDiemImpl(){
@@ -49,5 +51,6 @@ public class BangTichDiemImpl implements BangTichDiemService{
     public Boolean getUpdateBangDiem(int id, QLBangTichDiem bangTichDiem) {
         return repository.updateBangDIem(id, bangTichDiem);
     }
+
     
 }

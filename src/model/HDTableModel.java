@@ -8,46 +8,55 @@ import java.sql.Date;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public class HDTableModel {
     private int id;
     private String ma;
-    private String tenNhanVien;
+    private String  tenNhanVien;
     private String tenKhachHang;
-    private String pgg;
+    private String maPGG;
     private Date ngayTao;
     private Date ngayThanhToan;
     private int tienGiam;
     private int tongTien;
-    private int tienKhachPhaiTra;
     private int tienKhachDua;
     private int tienThua;
-    
-    private int hinhThucThanhToan;
+    private int tienKhachPhaiTra;
+    private int HinhThucThanhToan;
     private String maChuyenKhoan;
     private String trangThai;
 
     public HDTableModel() {
     }
 
-    public HDTableModel(int id, String ma, String tenNhanVien, String tenKhachHang, String pgg, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachPhaiTra, int tienKhachDua, int tienThua, int hinhThucThanhToan, String maChuyenKhoan, String trangThai) {
+    public HDTableModel(int id, String ma, String tenNhanVien, String tenKhachHang, String maPGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int HinhThucThanhToan, String maChuyenKhoan, String trangThai) {
         this.id = id;
         this.ma = ma;
         this.tenNhanVien = tenNhanVien;
         this.tenKhachHang = tenKhachHang;
-        this.pgg = pgg;
+        this.maPGG = maPGG;
         this.ngayTao = ngayTao;
         this.ngayThanhToan = ngayThanhToan;
         this.tienGiam = tienGiam;
         this.tongTien = tongTien;
-        this.tienKhachPhaiTra = tienKhachPhaiTra;
         this.tienKhachDua = tienKhachDua;
         this.tienThua = tienThua;
-        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.tienKhachPhaiTra = tienKhachPhaiTra;
+        this.HinhThucThanhToan = HinhThucThanhToan;
         this.maChuyenKhoan = maChuyenKhoan;
         this.trangThai = trangThai;
     }
+
+    public int getTienKhachPhaiTra() {
+        return tienKhachPhaiTra;
+    }
+
+    public void setTienKhachPhaiTra(int tienKhachPhaiTra) {
+        this.tienKhachPhaiTra = tienKhachPhaiTra;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -81,12 +90,12 @@ public class HDTableModel {
         this.tenKhachHang = tenKhachHang;
     }
 
-    public String getPgg() {
-        return pgg;
+    public String getMaPGG() {
+        return maPGG;
     }
 
-    public void setPgg(String pgg) {
-        this.pgg = pgg;
+    public void setMaPGG(String maPGG) {
+        this.maPGG = maPGG;
     }
 
     public Date getNgayTao() {
@@ -121,14 +130,6 @@ public class HDTableModel {
         this.tongTien = tongTien;
     }
 
-    public int getTienKhachPhaiTra() {
-        return tienKhachPhaiTra;
-    }
-
-    public void setTienKhachPhaiTra(int tienKhachPhaiTra) {
-        this.tienKhachPhaiTra = tienKhachPhaiTra;
-    }
-
     public int getTienKhachDua() {
         return tienKhachDua;
     }
@@ -146,11 +147,11 @@ public class HDTableModel {
     }
 
     public int getHinhThucThanhToan() {
-        return hinhThucThanhToan;
+        return HinhThucThanhToan;
     }
 
-    public void setHinhThucThanhToan(int hinhThucThanhToan) {
-        this.hinhThucThanhToan = hinhThucThanhToan;
+    public void setHinhThucThanhToan(int HinhThucThanhToan) {
+        this.HinhThucThanhToan = HinhThucThanhToan;
     }
 
     public String getMaChuyenKhoan() {
@@ -169,5 +170,6 @@ public class HDTableModel {
         this.trangThai = trangThai;
     }
 
+    
     
 }

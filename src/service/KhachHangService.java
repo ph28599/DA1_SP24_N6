@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package service;
 
@@ -10,10 +11,11 @@ import viewmodel.QLKhachHang;
 
 /**
  *
- * @author pc
+ * @author adm
  */
 public interface KhachHangService {
-     public ArrayList<QLKhachHang> getList();
+
+    public ArrayList<QLKhachHang> getList();
 
     public Boolean Them(KhachHang khachHang);
 
@@ -26,5 +28,5 @@ public interface KhachHangService {
     void khachHangTaoHD(int id);
 
     void khachHangThanhToanHD(int id);
-    
+
 }

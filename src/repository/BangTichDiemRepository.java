@@ -1,26 +1,27 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package repository;
 
+import utility.DBConnect;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import model.BangTichDiem;
-import ultility.DBConnection;
 import viewmodel.QLBangTichDiem;
+import java.sql.*;
+import model.BangTichDiem;
 
 /**
  *
- * @author pc
+ * @author adm
  */
 public class BangTichDiemRepository {
-     public ArrayList<QLBangTichDiem> getListFromDB(){
+    
+    public ArrayList<QLBangTichDiem> getListFromDB(){
         ArrayList<QLBangTichDiem> list = new ArrayList<>();
         String sql = "select ID, ID_KH, MA, DIEMTICH, TIENDUOCGIAN from BANG_TICH_DIEM";
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -39,7 +40,7 @@ public class BangTichDiemRepository {
     
     public Boolean Them(BangTichDiem bangTichDiem){
         String sql = "insert into  BANG_TICH_DIEM(ID_KH, MA, DIEMTICH, TIENDUOCGIAN) VALUES(?,?,?,?)";
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, bangTichDiem.getIdKH());
             ps.setObject(2, bangTichDiem.getMa());
@@ -53,7 +54,7 @@ public class BangTichDiemRepository {
     
     public Boolean Xoa(int id){
         String sql = "Delete BANG_TICH_DIEM where ID = ?";
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, id);
             ps.executeUpdate();
@@ -64,7 +65,7 @@ public class BangTichDiemRepository {
     
     public Boolean Sua(int id, BangTichDiem bangTichDiem){
         String sql = "update BANG_TICH_DIEM set ID_KH = ?, MA = ?, DIEMTICH = ?, TIENDUOCGIAN = ? where ID = ?";
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, bangTichDiem.getIdKH());
             ps.setObject(2, bangTichDiem.getMa());
@@ -80,7 +81,7 @@ public class BangTichDiemRepository {
     public ArrayList<QLBangTichDiem> TimTheoIDKH(int idKH){
         ArrayList<QLBangTichDiem> listBTD = new ArrayList<>();
         String sql = "select ID, ID_KH, MA, DIEMTICH, TIENDUOCGIAN from BANG_TICH_DIEM where ID_KH = "+idKH+" ";
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -106,7 +107,7 @@ public class BangTichDiemRepository {
                            ,[TIENDUOCGIAN] = ?
                       WHERE ID=?
                      """;
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DBConnect.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)){
             
             ps.setObject(1, bangTichDiem.getDiemTich());
@@ -117,5 +118,4 @@ public class BangTichDiemRepository {
         }
         return check>0;
     }
-    
 }

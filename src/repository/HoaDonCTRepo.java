@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package repository;
 
@@ -8,10 +9,9 @@ import java.util.List;
 import model.HoaDonCTDomain;
 import viewmodel.SanPhamHDViewModel;
 
-
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public interface HoaDonCTRepo {
     List<HoaDonCTDomain> getall();
@@ -19,5 +19,4 @@ public interface HoaDonCTRepo {
     boolean update(int id, HoaDonCTDomain ht);
     boolean delete(int id);
     List<SanPhamHDViewModel> getByHdId(int idHd);
-    
 }

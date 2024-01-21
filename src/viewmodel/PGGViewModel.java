@@ -120,5 +120,4 @@ public class PGGViewModel {
         this.trangThai = trangThai;
     }
 
-    
 }

@@ -4,95 +4,95 @@
  */
 package repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import utility.DBConnect;
 import java.util.List;
 import model.ThuongHieuModel;
-
-import ultility.DBConnection;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 /**
  *
- * @author LAPTOP24H
+ * @author pc
  */
 public class ThuongHieuRepository {
-
-    private DBConnection connection;
-
     public List<ThuongHieuModel> getAll() {
-        String sql = "SELECT ID, MA, TEN\n"
-                + "FROM     dbo.THUONG_HIEU";
-        try (Connection con = connection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ResultSet rs = ps.executeQuery();
-            List<ThuongHieuModel> list = new ArrayList<>();
-            while (rs.next()) {
-                ThuongHieuModel model = new ThuongHieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
-                list.add(model);
-            }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<ThuongHieuModel> getS(String ten) {
-        String sql = """
-                    select * from THUONG_HIEU 
-                    where TEN like '%' + ? + '%'
+        String qery = """
+                   SELECT [ID]
+                         ,[MA]
+                         ,[TEN]
+                     FROM [dbo].[THUONG_HIEU]
                     """;
-        try (Connection con = connection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, ten);
-            ResultSet rs = ps.executeQuery();
-            List<ThuongHieuModel> list = new ArrayList<>();
+        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+            ResultSet rs = pr.executeQuery();
+            List<ThuongHieuModel> listTH = new ArrayList<>();
             while (rs.next()) {
-                ThuongHieuModel model = new ThuongHieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
-                list.add(model);
+                ThuongHieuModel th = new ThuongHieuModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+                listTH.add(th);
             }
-            return list;
+            return listTH;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
+
         }
         return null;
     }
-
-    public boolean getAdd(ThuongHieuModel m) {
+    public boolean getAdd(ThuongHieuModel th) {
         int check = 0;
-        String sql = "INSERT [dbo].[THUONG_HIEU] ( [MA], [TEN]) VALUES (?,?)";
-        try (Connection con = connection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, m.getMa());
-            ps.setObject(2, m.getTen());
+        String qery = """
+                   INSERT INTO [dbo].[THUONG_HIEU]
+                              ([MA]
+                              ,[TEN])
+                        VALUES
+                              (?,?)
+                    """;
+        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+            pr.setObject(1, th.getMa());
+            pr.setObject(2, th.getTen());
 
-            check = ps.executeUpdate();
+            check = pr.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
+
         }
         return check > 0;
     }
 
-    public boolean getUpđate(ThuongHieuModel m, int id) {
+    public boolean getUpdate(ThuongHieuModel th, int id) {
         int check = 0;
-        String sql = """
-                      UPDATE [dbo].[THUONG_HIEU]
-                                  SET [MA] = ?
-                                 ,[TEN] =?
-                                  WHERE id=?
-                     """;
-        try (Connection con = connection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, m.getMa());
-            ps.setObject(2, m.getTen());
-            ps.setObject(3, id);
-            check = ps.executeUpdate();
+        String qery = """
+                   UPDATE [dbo].[THUONG_HIEU]
+                      SET [MA] = ?
+                         ,[TEN] = ?
+                    WHERE id=?
+                    """;
+        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+            pr.setObject(1, th.getMa());
+            pr.setObject(2, th.getTen());
+            pr.setObject(3, id);
+
+            check = pr.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
+
         }
         return check > 0;
     }
+    public boolean getDelete(int id) {
+        int check = 0;
+        String qery = """
+                   DELETE FROM [dbo].[THUONG_HIEU]
+                         WHERE id=?
+                    """;
+        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
+            
+            pr.setObject(1, id);
 
+            check = pr.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+
+        }
+        return check > 0;
+    }
 }

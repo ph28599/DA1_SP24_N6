@@ -1,22 +1,24 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package service.impl;
 
+import service.IHoaDonCTService;
 import java.util.ArrayList;
 import java.util.List;
 import model.HoaDonCTDomain;
 import repository.HoaDonCTRepository;
-import service.IHoaDonCTService;
 import viewmodel.HoaDonCTView;
 import viewmodel.SanPhamHDViewModel;
 
 /**
  *
- * @author Admin
+ * @author Tus
  */
 public class HoaDonCTService implements IHoaDonCTService {
+
     private HoaDonCTRepository rs = new HoaDonCTRepository();
 
     @Override
@@ -24,7 +26,7 @@ public class HoaDonCTService implements IHoaDonCTService {
         List<HoaDonCTView> hdc = new ArrayList<>();
         List<HoaDonCTDomain> list = this.rs.getall();
         for (HoaDonCTDomain x : list) {
-            HoaDonCTView hoaDonCTView = new HoaDonCTView(x.getId(), x.getIdHD(), x.getIdSPCT(), x.getTen(), x.getIdTH(), x.getIdLA(), x.getIdMS(), x.getIdCL(), x.getIdS(), x.getSoLuong(), x.getDonGia());
+            HoaDonCTView hoaDonCTView = new HoaDonCTView(x.getId(), x.getIdHD(), x.getIdSPCT(), x.getSoluong(), x.getDonGia());
             hdc.add(hoaDonCTView);
         }
         return hdc;
@@ -32,21 +34,24 @@ public class HoaDonCTService implements IHoaDonCTService {
 
     @Override
     public boolean add(HoaDonCTView hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        HoaDonCTDomain domain = new HoaDonCTDomain(hd.getId(), hd.getIdHD(), hd.getIdSPCT(), hd.getSoluong(), hd.getDonGia());
+        return this.rs.add(domain);
     }
 
     @Override
     public boolean update(int id, HoaDonCTView hd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        HoaDonCTDomain domain = new HoaDonCTDomain(hd.getId(), hd.getIdHD(), hd.getIdSPCT(), hd.getSoluong(), hd.getDonGia());
+        return this.rs.update(id, domain);
     }
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.rs.delete(id);
     }
 
     @Override
     public List<SanPhamHDViewModel> getByHdId(int idHd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return rs.getByHdId(idHd);
     }
+
 }

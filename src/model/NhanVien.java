@@ -1,34 +1,31 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package model;
 
 /**
  *
- * @author pc
+ * @author adm
  */
 public class NhanVien {
-
     int id;
-    String ma;
-    String ten;
+    String ma, ten;
     int gioiTinh;
-    String sdt;
-    String ngaySinh;
-    String diaChi;
-    String email;
+    String sdt, cccd, ngaySinh, diaChi, email;
     int chucVu, trangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
+    public NhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String cccd, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
         this.sdt = sdt;
+        this.cccd = cccd;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.email = email;
@@ -76,6 +73,14 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
     public String getNgaySinh() {
         return ngaySinh;
     }
@@ -115,5 +120,6 @@ public class NhanVien {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-
+    
+    
 }

@@ -6,35 +6,35 @@ package viewmodel;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public class GioHangViewModel {
+    
     private int id;
-    private String ma;
-    private String tenSP;
-    private String thuongHieu;
-    private String loaiAo;
-    private String mauSac;
-    private String chatLieu;
-    private String size;
+    
+    private String maHD;
+    
+    private String tenSp;
+    
+    private String kichCo;
+    
     private int soLuong;
+    
     private Float donGia;
 
     public GioHangViewModel() {
     }
 
-    public GioHangViewModel(int id, String ma, String tenSP, String thuongHieu, String loaiAo, String mauSac, String chatLieu, String size, int soLuong, Float donGia) {
+    public GioHangViewModel(int id, String maHD, String tenSp, String kichCo, int soLuong, Float donGia) {
         this.id = id;
-        this.ma = ma;
-        this.tenSP = tenSP;
-        this.thuongHieu = thuongHieu;
-        this.loaiAo = loaiAo;
-        this.mauSac = mauSac;
-        this.chatLieu = chatLieu;
-        this.size = size;
+        this.maHD = maHD;
+        this.tenSp = tenSp;
+        this.kichCo = kichCo;
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
+
+    
 
     public int getId() {
         return id;
@@ -44,60 +44,28 @@ public class GioHangViewModel {
         this.id = id;
     }
 
-    public String getMa() {
-        return ma;
+    public String getMaHD() {
+        return maHD;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
     }
 
-    public String getTenSP() {
-        return tenSP;
+    public String getTenSp() {
+        return tenSp;
     }
 
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
+    public void setTenSp(String tenSp) {
+        this.tenSp = tenSp;
     }
 
-    public String getThuongHieu() {
-        return thuongHieu;
+    public String getKichCo() {
+        return kichCo;
     }
 
-    public void setThuongHieu(String thuongHieu) {
-        this.thuongHieu = thuongHieu;
-    }
-
-    public String getLoaiAo() {
-        return loaiAo;
-    }
-
-    public void setLoaiAo(String loaiAo) {
-        this.loaiAo = loaiAo;
-    }
-
-    public String getMauSac() {
-        return mauSac;
-    }
-
-    public void setMauSac(String mauSac) {
-        this.mauSac = mauSac;
-    }
-
-    public String getChatLieu() {
-        return chatLieu;
-    }
-
-    public void setChatLieu(String chatLieu) {
-        this.chatLieu = chatLieu;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
+    public void setKichCo(String kichCo) {
+        this.kichCo = kichCo;
     }
 
     public int getSoLuong() {
@@ -115,7 +83,7 @@ public class GioHangViewModel {
     public void setDonGia(Float donGia) {
         this.donGia = donGia;
     }
-      public Object[] toRowData(){
-        return new Object[]{ma,tenSP,thuongHieu,loaiAo,mauSac,chatLieu,size,soLuong,donGia};
+    public Object[] toRowData(){
+        return new Object[]{maHD,tenSp,kichCo,soLuong,donGia};
     }
 }

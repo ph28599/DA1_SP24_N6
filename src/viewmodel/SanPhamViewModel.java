@@ -9,7 +9,6 @@ package viewmodel;
  * @author pc
  */
 public class SanPhamViewModel {
-
     private int id;
     private String ma;
     private String ten;
@@ -18,6 +17,7 @@ public class SanPhamViewModel {
 
     public SanPhamViewModel() {
     }
+
     public SanPhamViewModel(int id, String ma, String ten, String loaiSanPham, int soLuong) {
         this.id = id;
         this.ma = ma;
@@ -66,7 +66,9 @@ public class SanPhamViewModel {
         this.soLuong = soLuong;
     }
 
-    public Object[] toDataRow() {
-        return new Object[]{ma, ten, loaiSanPham, soLuong};
+    
+    
+    public Object[] toRowData(){
+        return new Object[]{ma,ten,loaiSanPham,soLuong};
     }
 }

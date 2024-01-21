@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author pc
+ * @author User
  */
 public class PhieuGiamGia {
     private String id;
@@ -45,6 +45,5 @@ public class PhieuGiamGia {
     public void setTen(String ten) {
         this.ten = ten;
     }
-    
     
 }

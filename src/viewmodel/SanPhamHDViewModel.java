@@ -1,35 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package viewmodel;
 
-/**
- *
- * @author Admin
- */
 public class SanPhamHDViewModel {
+    
     private int id;
-    private String tenSP;
-    private String thuongHieu;
-    private String loaiAo;
-    private String mauSac;
-    private String chatLieu;
-    private String size;
+
+    private String loaiSanPham;
+    
+    private String tenSp;
+    
+    private String kichCo;
+    
     private int soLuong;
+    
     private int donGia;
 
     public SanPhamHDViewModel() {
     }
 
-    public SanPhamHDViewModel(int id, String tenSP, String thuongHieu, String loaiAo, String mauSac, String chatLieu, String size, int soLuong, int donGia) {
+    public SanPhamHDViewModel(int id, String loaiSanPham, String tenSp, String kichCo, int soLuong, int donGia) {
         this.id = id;
-        this.tenSP = tenSP;
-        this.thuongHieu = thuongHieu;
-        this.loaiAo = loaiAo;
-        this.mauSac = mauSac;
-        this.chatLieu = chatLieu;
-        this.size = size;
+        this.loaiSanPham = loaiSanPham;
+        this.tenSp = tenSp;
+        this.kichCo = kichCo;
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
@@ -42,52 +34,28 @@ public class SanPhamHDViewModel {
         this.id = id;
     }
 
-    public String getTenSP() {
-        return tenSP;
+    public String getLoaiSanPham() {
+        return loaiSanPham;
     }
 
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
+    public void setLoaiSanPham(String loaiSanPham) {
+        this.loaiSanPham = loaiSanPham;
     }
 
-    public String getThuongHieu() {
-        return thuongHieu;
+    public String getTenSp() {
+        return tenSp;
     }
 
-    public void setThuongHieu(String thuongHieu) {
-        this.thuongHieu = thuongHieu;
+    public void setTenSp(String tenSp) {
+        this.tenSp = tenSp;
     }
 
-    public String getLoaiAo() {
-        return loaiAo;
+    public String getKichCo() {
+        return kichCo;
     }
 
-    public void setLoaiAo(String loaiAo) {
-        this.loaiAo = loaiAo;
-    }
-
-    public String getMauSac() {
-        return mauSac;
-    }
-
-    public void setMauSac(String mauSac) {
-        this.mauSac = mauSac;
-    }
-
-    public String getChatLieu() {
-        return chatLieu;
-    }
-
-    public void setChatLieu(String chatLieu) {
-        this.chatLieu = chatLieu;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
+    public void setKichCo(String kichCo) {
+        this.kichCo = kichCo;
     }
 
     public int getSoLuong() {
@@ -105,7 +73,11 @@ public class SanPhamHDViewModel {
     public void setDonGia(int donGia) {
         this.donGia = donGia;
     }
-    
+
+    @Override
+    public String toString() {
+        return "SanPhamHDViewModel{" + "id=" + id + ", loaiSanPham=" + loaiSanPham + ", tenSp=" + tenSp + ", kichCo=" + kichCo + ", soLuong=" + soLuong + ", donGia=" + donGia + '}';
+    }
     
     
 }

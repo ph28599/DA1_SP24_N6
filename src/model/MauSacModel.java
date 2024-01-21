@@ -6,10 +6,9 @@ package model;
 
 /**
  *
- * @author LAPTOP24H
+ * @author pc
  */
 public class MauSacModel {
-
     private int id;
     private String ma;
     private String ten;
@@ -31,8 +30,6 @@ public class MauSacModel {
         this.id = id;
     }
 
-    
-
     public String getMa() {
         return ma;
     }
@@ -49,7 +46,7 @@ public class MauSacModel {
         this.ten = ten;
     }
     
-    public Object[] toDataRow() {
-        return new Object[]{id, ma, ten};
+     public Object[] toRowData() {
+        return new Object[]{ma, ten};
     }
 }

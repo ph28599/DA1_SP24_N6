@@ -1,15 +1,16 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package model;
 
 /**
  *
- * @author pc
+ * @author adm
  */
 public class BangTichDiem {
-    int id, idKH;
+   int id, idKH;
    String  ma ;
    int diemTich, tienDuocGiam;
    
@@ -63,5 +64,7 @@ public class BangTichDiem {
     public void setTienDuocGiam(int tienDuocGiam) {
         this.tienDuocGiam = tienDuocGiam;
     }
+
     
+   
 }

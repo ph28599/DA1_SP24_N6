@@ -8,40 +8,42 @@ import java.time.LocalDate;
 
 /**
  *
- * @author pc
+ * @author User
  */
 public class NhanVienVM {
-
     private int id;
     private String ma;
-    private String hoTen;
-    private int gioiTinh;
+    private String hoten;
+    private int gioitinh;
     private String sdt;
-    private LocalDate ngaySinh;
-    private String diaChi;
+    private String cccd;
+    private LocalDate ngaysinh;
+    private String diachi;
     private String email;
-    private int chucVu;
-    private String tenDN;
-    private String matKhau;
-    private int trangThai;
+    private int chucvu;
+    private String tendn;
+    private String matkhau;
+    private int trangthai;
 
     public NhanVienVM() {
     }
 
-    public NhanVienVM(int id, String ma, String hoTen, int gioiTinh, String sdt, LocalDate ngaySinh, String diaChi, String email, int chucVu, String tenDN, String matKhau, int trangThai) {
-        this.id = id;
+    public NhanVienVM(String ma, String hoten, int gioitinh, String sdt, String cccd, LocalDate ngaysinh, String diachi, String email, int chucvu, String tendn, String matkhau, int trangthai) {
         this.ma = ma;
-        this.hoTen = hoTen;
-        this.gioiTinh = gioiTinh;
+        this.hoten = hoten;
+        this.gioitinh = gioitinh;
         this.sdt = sdt;
-        this.ngaySinh = ngaySinh;
-        this.diaChi = diaChi;
+        this.cccd = cccd;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
         this.email = email;
-        this.chucVu = chucVu;
-        this.tenDN = tenDN;
-        this.matKhau = matKhau;
-        this.trangThai = trangThai;
+        this.chucvu = chucvu;
+        this.tendn = tendn;
+        this.matkhau = matkhau;
+        this.trangthai = trangthai;
     }
+
+    
 
     public int getId() {
         return id;
@@ -59,20 +61,20 @@ public class NhanVienVM {
         this.ma = ma;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    public String getHoten() {
+        return hoten;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public void setHoten(String hoten) {
+        this.hoten = hoten;
     }
 
-    public int getGioiTinh() {
-        return gioiTinh;
+    public int getGioitinh() {
+        return gioitinh;
     }
 
-    public void setGioiTinh(int gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setGioitinh(int gioitinh) {
+        this.gioitinh = gioitinh;
     }
 
     public String getSdt() {
@@ -83,20 +85,28 @@ public class NhanVienVM {
         this.sdt = sdt;
     }
 
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
+    public String getCccd() {
+        return cccd;
     }
 
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    public LocalDate getNgaysinh() {
+        return ngaysinh;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setNgaysinh(LocalDate ngaysinh) {
+        this.ngaysinh = ngaysinh;
+    }
+
+    public String getDiachi() {
+        return diachi;
+    }
+
+    public void setDiachi(String diachi) {
+        this.diachi = diachi;
     }
 
     public String getEmail() {
@@ -107,60 +117,57 @@ public class NhanVienVM {
         this.email = email;
     }
 
-    public int getChucVu() {
-        return chucVu;
+    public int getChucvu() {
+        return chucvu;
     }
 
-    public void setChucVu(int chucVu) {
-        this.chucVu = chucVu;
+    public void setChucvu(int chucvu) {
+        this.chucvu = chucvu;
     }
 
-    public String getTenDN() {
-        return tenDN;
+    public String getTendn() {
+        return tendn;
     }
 
-    public void setTenDN(String tenDN) {
-        this.tenDN = tenDN;
+    public void setTendn(String tendn) {
+        this.tendn = tendn;
     }
 
-    public String getMatKhau() {
-        return matKhau;
+    public String getMatkhau() {
+        return matkhau;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public void setMatkhau(String matkhau) {
+        this.matkhau = matkhau;
     }
 
-    public int getTrangThai() {
-        return trangThai;
+    public int getTrangthai() {
+        return trangthai;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
     }
 
     public String getgt() {
-        if (gioiTinh == 1) {
+        if (gioitinh == 1) {
             return "Nam";
         } else {
             return "Nữ";
         }
     }
-
     public String getcv() {
-        if (chucVu == 1) {
+        if (chucvu == 1) {
             return "Nhân viên";
         } else {
             return "Quản lý";
         }
     }
-
     public String gettt() {
-        if (trangThai == 1) {
+        if (trangthai == 1) {
             return "Làm việc";
         } else {
             return "Nghỉ việc";
         }
     }
-
 }

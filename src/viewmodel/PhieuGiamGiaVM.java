@@ -5,10 +5,12 @@
 package viewmodel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
- * @author pc
+ * @author User
  */
 public class PhieuGiamGiaVM {
     private int id;
@@ -117,5 +119,4 @@ return trangthai;
         
     }
 }
-    
 }

@@ -4,49 +4,46 @@
  */
 package repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import utility.DBConnect;
 import java.util.List;
 import model.HDTableModel;
-import ultility.DBConnection;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 /**
  *
- * @author Admin
+ * @author pc
  */
 public class HDTableRepository {
-
+    
     public List<HDTableModel> getAll() {
         String query = """
-                                                                        SELECT HOA_DON.[ID]
-                                                                            ,HOA_DON.[MA]
-                                                                            ,NHAN_VIEN.HOTEN
-                                                                            ,KHACH_HANG.HOTEN
-                                                                            ,[MAPGG]
-                                                                            ,[NGAYTAO]
-                                                                            ,[NGAYTHANHTOAN]
-                                                                            ,[TIENGIAM]
-                                                                            ,[TONGTIEN]
-                                                                            ,[TIENKHACHPHAITRA]
-                                                                            ,[TIENKHACHDUA]
-                                                                            ,[TIENTHUA]                                                                           
-                                                                            ,[HINHTHUCTHANHTOAN]
-                                                                            ,[MACHUYENKHOAN]
-                                                                            ,HOA_DON.[TRANGTHAI]
-                                                                        FROM [dbo].[HOA_DON]
-                                                                        join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
-                                                                        join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV 
-                                              			      where HOA_DON.[TRANGTHAI]=0
-                                                                     ORDER BY NGAYTHANHTOAN  DESC ;
+                        SELECT HOA_DON.[ID]
+                              ,HOA_DON.[MA]
+                              ,NHAN_VIEN.HOTEN
+                              ,KHACH_HANG.HOTEN
+                              ,[MAPGG]
+                              ,[NGAYTAO]
+                              ,[NGAYTHANHTOAN]
+                              ,[TIENGIAM]
+                              ,[TONGTIEN]
+                              ,[TIENKHACHDUA]
+                              ,[TIENTHUA]
+                              ,[TIENKHACHPHAITRA]
+                              ,[HINHTHUCTHANHTOAN]
+                              ,[MACHUYENKHOAN]
+                              ,HOA_DON.[TRANGTHAI]
+                          FROM [dbo].[HOA_DON]
+                          join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
+                          join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV
+                       ORDER BY NGAYTHANHTOAN  DESC;
                      """;
-        try (Connection con = DBConnection.getConnection(); 
-            PreparedStatement pr = con.prepareStatement(query)) {
+        try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(query)) {
             ResultSet rs = pr.executeQuery();
             List<HDTableModel> listKC = new ArrayList<>();
             while (rs.next()) {
-                HDTableModel kc = new HDTableModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getString(14), rs.getString(15));
+                HDTableModel kc = new HDTableModel(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDate(6),rs.getDate(7),rs.getInt(8),rs.getInt(9),rs.getInt(10),rs.getInt(11),rs.getInt(12),rs.getInt(13),rs.getString(14),rs.getString(15));
                 listKC.add(kc);
             }
             return listKC;
@@ -56,4 +53,5 @@ public class HDTableRepository {
         }
         return null;
     }
+    
 }

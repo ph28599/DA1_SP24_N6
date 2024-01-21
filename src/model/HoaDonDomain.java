@@ -1,59 +1,81 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.sql.Date;
 
-/**
- *
- * @author Admin
- */
 public class HoaDonDomain {
     private int id;
     private String ma;
     private int idNV;
     private int idKH;
-    private String pgg;
+    private String maPGG;
     private Date ngayTao;
     private Date ngayThanhToan;
     private int tienGiam;
     private int tongTien;
-    private int tienKhachPhaiTra;
     private int tienKhachDua;
     private int tienThua;
-    private int hinhThucThanhToan;
+    private int tienTraTruoc;
+    private int HinhThucThanhToan;
     private String maChuyenKhoan;
+    private int tienChuyenKhoan;
     private String trangThai;
 
     public HoaDonDomain() {
     }
 
-    public HoaDonDomain(int id, String ma, int idNV, int idKH, String pgg, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachPhaiTra, int tienKhachDua, int tienThua, int hinhThucThanhToan, String maChuyenKhoan, String trangThai) {
+    public HoaDonDomain(int id, String ma, int idNV, int idKH, String maPGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienTraTruoc, int HinhThucThanhToan, String maChuyenKhoan, int tienChuyenKhoan, String trangThai) {
         this.id = id;
         this.ma = ma;
         this.idNV = idNV;
         this.idKH = idKH;
-        this.pgg = pgg;
+        this.maPGG = maPGG;
         this.ngayTao = ngayTao;
         this.ngayThanhToan = ngayThanhToan;
         this.tienGiam = tienGiam;
         this.tongTien = tongTien;
-        this.tienKhachPhaiTra = tienKhachPhaiTra;
         this.tienKhachDua = tienKhachDua;
         this.tienThua = tienThua;
-        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.tienTraTruoc = tienTraTruoc;
+        this.HinhThucThanhToan = HinhThucThanhToan;
         this.maChuyenKhoan = maChuyenKhoan;
+        this.tienChuyenKhoan = tienChuyenKhoan;
         this.trangThai = trangThai;
     }
 
-    public int getId() {
-        return id;
+    
+    public HoaDonDomain(String ma, int idNV, int idKH, String maPGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienTraTruoc, int HinhThucThanhToan, String maChuyenKhoan, int tienChuyenKhoan) {
+        this.idNV = idNV;
+        this.idKH = idKH;
+        this.maPGG = maPGG;
+        this.ngayTao = ngayTao;
+        this.ngayThanhToan = ngayThanhToan;
+        this.tienGiam = tienGiam;
+        this.tongTien = tongTien;
+        this.tienKhachDua = tienKhachDua;
+        this.tienThua = tienThua;
+        this.tienTraTruoc = tienTraTruoc;
+        this.HinhThucThanhToan = HinhThucThanhToan;
+        this.maChuyenKhoan = maChuyenKhoan;
+        this.tienChuyenKhoan = tienChuyenKhoan;
+        this.ma = ma;
     }
 
-    public void setId(int id) {
+    public HoaDonDomain(int id,String ma , int idNV, int idKH, String maPGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienTraTruoc, int HinhThucThanhToan, String maChuyenKhoan, int tienChuyenKhoan) {
         this.id = id;
+        this.ma =ma;
+        this.idNV = idNV;
+        this.idKH = idKH;
+        this.maPGG = maPGG;
+        this.ngayTao = ngayTao;
+        this.ngayThanhToan = ngayThanhToan;
+        this.tienGiam = tienGiam;
+        this.tongTien = tongTien;
+        this.tienKhachDua = tienKhachDua;
+        this.tienThua = tienThua;
+        this.tienTraTruoc = tienTraTruoc;
+        this.HinhThucThanhToan = HinhThucThanhToan;
+        this.maChuyenKhoan = maChuyenKhoan;
+        this.tienChuyenKhoan = tienChuyenKhoan;
     }
 
     public String getMa() {
@@ -62,6 +84,15 @@ public class HoaDonDomain {
 
     public void setMa(String ma) {
         this.ma = ma;
+    }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdNV() {
@@ -80,12 +111,12 @@ public class HoaDonDomain {
         this.idKH = idKH;
     }
 
-    public String getPgg() {
-        return pgg;
+    public String getMaPGG() {
+        return maPGG;
     }
 
-    public void setPgg(String pgg) {
-        this.pgg = pgg;
+    public void setMaPGG(String maPGG) {
+        this.maPGG = maPGG;
     }
 
     public Date getNgayTao() {
@@ -120,14 +151,6 @@ public class HoaDonDomain {
         this.tongTien = tongTien;
     }
 
-    public int getTienKhachPhaiTra() {
-        return tienKhachPhaiTra;
-    }
-
-    public void setTienKhachPhaiTra(int tienKhachPhaiTra) {
-        this.tienKhachPhaiTra = tienKhachPhaiTra;
-    }
-
     public int getTienKhachDua() {
         return tienKhachDua;
     }
@@ -144,12 +167,20 @@ public class HoaDonDomain {
         this.tienThua = tienThua;
     }
 
-    public int getHinhThucThanhToan() {
-        return hinhThucThanhToan;
+    public int getTienTraTruoc() {
+        return tienTraTruoc;
     }
 
-    public void setHinhThucThanhToan(int hinhThucThanhToan) {
-        this.hinhThucThanhToan = hinhThucThanhToan;
+    public void setTienTraTruoc(int tienTraTruoc) {
+        this.tienTraTruoc = tienTraTruoc;
+    }
+
+    public int getHinhThucThanhToan() {
+        return HinhThucThanhToan;
+    }
+
+    public void setHinhThucThanhToan(int HinhThucThanhToan) {
+        this.HinhThucThanhToan = HinhThucThanhToan;
     }
 
     public String getMaChuyenKhoan() {
@@ -160,6 +191,14 @@ public class HoaDonDomain {
         this.maChuyenKhoan = maChuyenKhoan;
     }
 
+    public int getTienChuyenKhoan() {
+        return tienChuyenKhoan;
+    }
+
+    public void setTienChuyenKhoan(int tienChuyenKhoan) {
+        this.tienChuyenKhoan = tienChuyenKhoan;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -168,11 +207,11 @@ public class HoaDonDomain {
         this.trangThai = trangThai;
     }
 
+    
     @Override
     public String toString() {
-        return "HoaDonDomain{" + "id=" + id + ", ma=" + ma + ", idNV=" + idNV + ", idKH=" + idKH + ", pgg=" + pgg + ", ngayTao=" + ngayTao + ", ngayThanhToan=" + ngayThanhToan + ", tienGiam=" + tienGiam + ", tongTien=" + tongTien + ", tienKhachPhaiTra=" + tienKhachPhaiTra + ", tienKhachDua=" + tienKhachDua + ", tienThua=" + tienThua + ", hinhThucThanhToan=" + hinhThucThanhToan + ", maChuyenKhoan=" + maChuyenKhoan + ", trangThai=" + trangThai + '}';
+        return "HoaDonDomain{" + "id=" + id + ", ma=" + ma + ", idNV=" + idNV + ", idKH=" + idKH + ", maPGG=" + maPGG + ", ngayTao=" + ngayTao + ", ngayThanhToan=" + ngayThanhToan + ", tienGiam=" + tienGiam + ", tongTien=" + tongTien + ", tienKhachDua=" + tienKhachDua + ", tienThua=" + tienThua + ", tienTraTruoc=" + tienTraTruoc + ", HinhThucThanhToan=" + HinhThucThanhToan + ", maChuyenKhoan=" + maChuyenKhoan + ", tienChuyenKhoan=" + tienChuyenKhoan + ", trang thai: "+trangThai+'}';
     }
 
-    
-    
+   
 }

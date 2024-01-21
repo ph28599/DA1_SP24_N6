@@ -11,6 +11,7 @@ import java.util.Date;
  * @author pc
  */
 public class PGGModel {
+
     private int id;
 
     private String ma;
@@ -121,5 +122,4 @@ public class PGGModel {
         this.trangThai = trangThai;
     }
 
-    
 }

@@ -5,12 +5,13 @@
 package service;
 
 import java.util.List;
-import viewmodel.HDTableViewModel;
+import viewmodel.HDTableVIewModel;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public interface HDTableService {
-    List<HDTableViewModel> getAll();
+    
+    List<HDTableVIewModel> getAll();
 }

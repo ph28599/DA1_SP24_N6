@@ -1,37 +1,36 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package viewmodel;
 
 /**
  *
- * @author ngochieu
+ * @author adm
  */
 public class QLNhanVien {
+    int id;
+    String ma, ten;
+    int gioiTinh;
+    String sdt, cccd, ngaySinh, diaChi, email;
+    int chucVu, trangThai;
 
-    private int id;
-    private String ma;
-    private String ten;
-    private int gioiTinh;
-    private String sdt, ngaySinh, diaChi, email;
-    private int chucVu;
-    private int trangThai;
-
-    public QLNhanVien() {
-    }
-
-    public QLNhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
+    public QLNhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String cccd, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
         this.sdt = sdt;
+        this.cccd = cccd;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.email = email;
         this.chucVu = chucVu;
         this.trangThai = trangThai;
+    }
+
+    public QLNhanVien() {
     }
 
     public int getId() {
@@ -74,6 +73,14 @@ public class QLNhanVien {
         this.sdt = sdt;
     }
 
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
     public String getNgaySinh() {
         return ngaySinh;
     }
@@ -113,5 +120,4 @@ public class QLNhanVien {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-
 }

@@ -4,13 +4,16 @@
  */
 package model;
 
+import java.security.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  *
- * @author pc
+ * @author User
  */
 public class PhieuGiamGiaCT {
+
     private String ID;
     private String ID_PGG;
     private String MA;
@@ -108,5 +111,4 @@ public class PhieuGiamGiaCT {
         this.TRANGTHAI = TRANGTHAI;
     }
 
-    
 }

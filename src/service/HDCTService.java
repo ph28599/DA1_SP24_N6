@@ -10,9 +10,10 @@ import viewmodel.HDCTViewModel;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public interface HDCTService {
+   
     List<HDCTViewModel> getAll();
     
     String getAdd(HDCTViewModel hdct);

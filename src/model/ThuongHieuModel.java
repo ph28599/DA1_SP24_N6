@@ -6,10 +6,11 @@ package model;
 
 /**
  *
- * @author LAPTOP24H
+ * @author pc
  */
 public class ThuongHieuModel {
-     private int id;
+
+    private int id;
     private String ma;
     private String ten;
 
@@ -46,13 +47,7 @@ public class ThuongHieuModel {
         this.ten = ten;
     }
 
-    @Override
-    public String toString() {
-        return this.ten;
-    }
-
-    
-      public Object[] toDataRow() {
-        return new Object[]{id, ma, ten};
+    public Object[] toRowData() {
+        return new Object[]{ma, ten};
     }
 }

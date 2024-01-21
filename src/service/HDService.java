@@ -9,9 +9,10 @@ import viewmodel.HDViewModel;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public interface HDService {
+    
     List<HDViewModel> getAll();
     
     String getAdd(HDViewModel hd);
@@ -21,4 +22,5 @@ public interface HDService {
     String getDelete(int id);
     
     String getThanhToan(HDViewModel hd,int id);
+    
 }

@@ -8,14 +8,15 @@ import java.sql.Date;
 
 /**
  *
- * @author Admin
+ * @author pc
  */
 public class HDViewModel {
+    
     private int id;
     private String ma;
     private int idNV;
     private int idKH;
-    private String PGG;
+    private String maPGG;
     private Date ngayTao;
     private Date ngayThanhToan;
     private int tienGiam;
@@ -30,12 +31,12 @@ public class HDViewModel {
     public HDViewModel() {
     }
 
-    public HDViewModel(int id, String ma, int idNV, int idKH, String PGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int HinhThucThanhToan, String maChuyenKhoan, int trangThai) {
+    public HDViewModel(int id, String ma, int idNV, int idKH, String maPGG, Date ngayTao, Date ngayThanhToan, int tienGiam, int tongTien, int tienKhachDua, int tienThua, int tienKhachPhaiTra, int HinhThucThanhToan, String maChuyenKhoan, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.idNV = idNV;
         this.idKH = idKH;
-        this.PGG = PGG;
+        this.maPGG = maPGG;
         this.ngayTao = ngayTao;
         this.ngayThanhToan = ngayThanhToan;
         this.tienGiam = tienGiam;
@@ -48,14 +49,7 @@ public class HDViewModel {
         this.trangThai = trangThai;
     }
 
-   
-
     
-
-    
-
-   
-
     public int getId() {
         return id;
     }
@@ -88,15 +82,13 @@ public class HDViewModel {
         this.idKH = idKH;
     }
 
-    public String getPGG() {
-        return PGG;
+    public String getMaPGG() {
+        return maPGG;
     }
 
-    public void setPGG(String PGG) {
-        this.PGG = PGG;
+    public void setMaPGG(String maPGG) {
+        this.maPGG = maPGG;
     }
-
-    
 
     public Date getNgayTao() {
         return ngayTao;
@@ -178,14 +170,10 @@ public class HDViewModel {
         this.trangThai = trangThai;
     }
 
-    
-
-    
-    
     public Object[] toRowData(){
         return new Object[]{ma,ngayTao,idNV,idKH};
     }
-
+    
     
     
 }
