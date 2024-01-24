@@ -194,7 +194,7 @@ public class ViewSP extends javax.swing.JFrame {
         });
 
         cboLoaiSanPham.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboLoaiSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quần", "Áo", "Quần Áo" }));
+        cboLoaiSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Áo cộc tay", "Áo dài tay" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

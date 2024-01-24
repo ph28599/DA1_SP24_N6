@@ -40,20 +40,20 @@ public class ViewKC extends javax.swing.JFrame {
         listKC = service.getAll();
         listSP = serviceSp.getAll();
         dtm = (DefaultTableModel) this.tblKicCo.getModel();
-        
+
         dcbLKC = (DefaultComboBoxModel) this.cboKC.getModel();
         this.setLocationRelativeTo(null);
         for (SanPhamViewModel sp : listSP) {
             listLSP.add(sp.getTen());
-            
+
         }
 
         listLKC.add("S");
         listLKC.add("M");
         listLKC.add("L");
         listLKC.add("XL");
+        listLKC.add("XXL");
 
-      
         showDataCBO(listLKC, dcbLKC);
         showDataTable(listKC);
 
@@ -75,30 +75,31 @@ public class ViewKC extends javax.swing.JFrame {
     private void showDataFrom(int index) {
         KichCoViewModel kc = listKC.get(index);
         txtMa.setText(kc.getMa());
-      
+
         cboKC.setSelectedItem(kc.getKichCo());
-      
+
     }
 
     private KichCoViewModel nhapDuLieu() {
         KichCoViewModel kc = new KichCoViewModel();
-        int i=listKC.size()-1;
-        kc.setMa("KC"+listKC.get(i).getId());
-       
+        int i = listKC.size() - 1;
+        kc.setMa("KC" + listKC.get(i).getId());
+
         kc.setKichCo(cboKC.getSelectedItem().toString());
-       
+
         return kc;
     }
 
     private KichCoViewModel updateData() {
         KichCoViewModel kc = new KichCoViewModel();
-        
+
         kc.setMa(txtMa.getText());
-      
+
         kc.setKichCo(cboKC.getSelectedItem().toString());
-        
+
         return kc;
     }
+
     private boolean validateTable() {
         return true;
     }

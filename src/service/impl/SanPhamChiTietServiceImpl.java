@@ -106,6 +106,18 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
         }
     }
 
+    @Override
+    public List<SPCTViewModel> getAllPhanTrang(int offset, int fetchSize) {
+        List<SPCTModel> listAll = spRepo.getAllPhanTrang(offset, fetchSize);
+        List<SPCTViewModel> listTable = new ArrayList<>();
+        for (SPCTModel spct : listAll) {
+            listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
+        }
+        return listTable;
+    }
+
+    
+
    
 
 }

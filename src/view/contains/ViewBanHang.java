@@ -25,8 +25,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -77,7 +79,6 @@ import viewmodel.SanPhamViewModel;
  */
 public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadFactory {
 
-   
     private List<SPCTViewModel> listSPCT = new ArrayList<>();
     private List<SanPhamChiTietViewModel> listSP = new ArrayList<>();
     private DefaultTableModel dtmSP = new DefaultTableModel();
@@ -232,7 +233,6 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         loadDataTable(serviceKhachHang.getList());
         idKhachHang = khacLe();
         txtMaChuyenKhoan.disable();
-        
 
     }
 
@@ -300,6 +300,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     private SPCTViewModel getSpThemGioHang(int index) {
         SPCTViewModel sp = listSPThemGioHang.get(index);
         return sp;
+
     }
 
     private HDCTViewModel sanPhamGioHang(SPCTViewModel spct) {
@@ -368,50 +369,50 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
     private HDViewModel getThanhToan() {
 
-    HDViewModel hd = new HDViewModel();
-    hd.setIdKH(idKhachHang);
-    hd.setMaPGG(jlbMaGG.getText());
-    hd.setNgayThanhToan(Date.valueOf(java.time.LocalDate.now()));
+        HDViewModel hd = new HDViewModel();
+        hd.setIdKH(idKhachHang);
+        hd.setMaPGG(jlbMaGG.getText());
+        hd.setNgayThanhToan(Date.valueOf(java.time.LocalDate.now()));
 
-    // Kiểm tra và chuyển đổi giá trị từ chuỗi sang số nguyên
-    try {
-        String tienGiamText = jlbTienGiam.getText();
-        hd.setTienGiam(tienGiamText.isEmpty() ? 0 : Integer.parseInt(tienGiamText));
+        // Kiểm tra và chuyển đổi giá trị từ chuỗi sang số nguyên
+        try {
+            String tienGiamText = jlbTienGiam.getText();
+            hd.setTienGiam(tienGiamText.isEmpty() ? 0 : Integer.parseInt(tienGiamText));
 
-        String tongTienText = jlbTongTien.getText();
-        hd.setTongTien(tongTienText.isEmpty() ? 0 : Integer.parseInt(tongTienText));
+            String tongTienText = jlbTongTien.getText();
+            hd.setTongTien(tongTienText.isEmpty() ? 0 : Integer.parseInt(tongTienText));
 
-        String tienKhachDuaText = txtTienKhachDua.getText();
-        hd.setTienKhachDua(tienKhachDuaText.isEmpty() ? 0 : Integer.parseInt(tienKhachDuaText));
+            String tienKhachDuaText = txtTienKhachDua.getText();
+            hd.setTienKhachDua(tienKhachDuaText.isEmpty() ? 0 : Integer.parseInt(tienKhachDuaText));
 
-        String tienThuaText = jlbTienThua.getText();
-        hd.setTienThua(tienThuaText.isEmpty() ? 0 : Integer.parseInt(tienThuaText));
+            String tienThuaText = jlbTienThua.getText();
+            hd.setTienThua(tienThuaText.isEmpty() ? 0 : Integer.parseInt(tienThuaText));
 
-        String tienKhachPhaiTraText = jlbKhachPhaiTra.getText();
-        hd.setTienKhachPhaiTra(tienKhachPhaiTraText.isEmpty() ? 0 : Integer.parseInt(tienKhachPhaiTraText));
-    } catch (NumberFormatException e) {
-        // Xử lý nếu có lỗi chuyển đổi
-        e.printStackTrace();
-    }
+            String tienKhachPhaiTraText = jlbKhachPhaiTra.getText();
+            hd.setTienKhachPhaiTra(tienKhachPhaiTraText.isEmpty() ? 0 : Integer.parseInt(tienKhachPhaiTraText));
+        } catch (NumberFormatException e) {
+            // Xử lý nếu có lỗi chuyển đổi
+            e.printStackTrace();
+        }
 
-    if (rdoChuyenKhoan.isSelected()) {
-        hd.setHinhThucThanhToan(0);
-    } else {
-        hd.setHinhThucThanhToan(1);
-    }
+        if (rdoChuyenKhoan.isSelected()) {
+            hd.setHinhThucThanhToan(0);
+        } else {
+            hd.setHinhThucThanhToan(1);
+        }
 
-    hd.setMaChuyenKhoan(txtMaChuyenKhoan.getText());
+        hd.setMaChuyenKhoan(txtMaChuyenKhoan.getText());
 
-    // Kiểm tra và chuyển đổi giá trị từ chuỗi sang số nguyên
-    try {
-        String trangThaiText = "1";
-        hd.setTrangThai(trangThaiText.isEmpty() ? 0 : Integer.parseInt(trangThaiText));
-    } catch (NumberFormatException e) {
-        // Xử lý nếu có lỗi chuyển đổi
-        e.printStackTrace();
-    }
+        // Kiểm tra và chuyển đổi giá trị từ chuỗi sang số nguyên
+        try {
+            String trangThaiText = "1";
+            hd.setTrangThai(trangThaiText.isEmpty() ? 0 : Integer.parseInt(trangThaiText));
+        } catch (NumberFormatException e) {
+            // Xử lý nếu có lỗi chuyển đổi
+            e.printStackTrace();
+        }
 
-    return hd;
+        return hd;
     }
 
     private void thanhToanXong() {
@@ -429,56 +430,52 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
     private boolean validateThanhToan() {
         if (rdoChuyenKhoan.isSelected()) {
-        if (txtMaChuyenKhoan.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa có mã chuyển khoản");
-            return false;
-        }
+            if (txtMaChuyenKhoan.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Chưa có mã chuyển khoản");
+                return false;
+            }
 
-        // Kiểm tra ký tự đặc biệt trong mã chuyển khoản
-        String maChuyenKhoan = txtMaChuyenKhoan.getText().trim();
-         // Kiểm tra độ dài của chuỗi (10 đến 20 ký tự)
-        if (maChuyenKhoan.isEmpty() || maChuyenKhoan.length() < 10 || maChuyenKhoan.length() > 20) {
-            JOptionPane.showMessageDialog(this, "Mã chuyển khoản không hợp lệ, kiểm tra và nhập lại");
+            // Kiểm tra ký tự đặc biệt trong mã chuyển khoản
+            String maChuyenKhoan = txtMaChuyenKhoan.getText().trim();
+            // Kiểm tra độ dài của chuỗi (10 đến 20 ký tự)
+            if (maChuyenKhoan.isEmpty() || maChuyenKhoan.length() < 10 || maChuyenKhoan.length() > 20) {
+                JOptionPane.showMessageDialog(this, "Mã chuyển khoản không hợp lệ, kiểm tra và nhập lại");
+                return false;
+            }
+            if (!maChuyenKhoan.matches("[a-zA-Z0-9]+")) {
+                JOptionPane.showMessageDialog(this, "Mã chuyển khoản chứa ký tự không hợp lệ, hãy nhập lại!");
+                return false;
+            }
+        } else if (tongTien == 0) {
+            JOptionPane.showMessageDialog(this, "Thanh toán không thành công, chưa chọn hóa đơn hoặc hóa đơn trống\n Vui lòng kiểm tra lại");
             return false;
-        }
-        if (!maChuyenKhoan.matches("[a-zA-Z0-9]+")) {
-            JOptionPane.showMessageDialog(this, "Mã chuyển khoản chứa ký tự không hợp lệ, hãy nhập lại!");
-            return false;
-        }
-        } 
-
-        else if (tongTien == 0) {
-        JOptionPane.showMessageDialog(this, "Thanh toán không thành công, chưa chọn hóa đơn hoặc hóa đơn trống\n Vui lòng kiểm tra lại");
-        return false;
         } else {
-        // Kiểm tra tiền khách đưa
-        String tienKhachDuaStr = txtTienKhachDua.getText().trim();
-        if (tienKhachDuaStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền khách đưa\n Mời nhập lại!");
-            return false;
+            // Kiểm tra tiền khách đưa
+            String tienKhachDuaStr = txtTienKhachDua.getText().trim();
+            if (tienKhachDuaStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền khách đưa\n Mời nhập lại!");
+                return false;
+            }
+
+            if (!tienKhachDuaStr.matches("^\\d*\\.?\\d+$")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền khách đưa hợp lệ\n Mời nhập lại!");
+                return false;
+            }
+
+            tienKhachDua = Integer.parseInt(txtTienKhachDua.getText());
+
+            if (tienKhachDua <= 0) {
+                JOptionPane.showMessageDialog(this, "Số tiền khách đưa phải lớn hơn 0\n Mời nhập lại!");
+                return false;
+            }
+
+            if (tienKhachDua < tienKhachPhaiTra) {
+                JOptionPane.showMessageDialog(this, "Số tiền khách đưa phải ít nhất bằng tổng tiền cần thanh toán\n Mời nhập lại!");
+                return false;
+            }
         }
 
-        if (!tienKhachDuaStr.matches("^\\d*\\.?\\d+$")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền khách đưa hợp lệ\n Mời nhập lại!");
-            return false;
-        }
-        
-        
-        
-        tienKhachDua = Integer.parseInt(txtTienKhachDua.getText());
-
-        if (tienKhachDua <= 0) {
-            JOptionPane.showMessageDialog(this, "Số tiền khách đưa phải lớn hơn 0\n Mời nhập lại!");
-            return false;
-        }
-
-        if (tienKhachDua < tienKhachPhaiTra) {
-            JOptionPane.showMessageDialog(this, "Số tiền khách đưa phải ít nhất bằng tổng tiền cần thanh toán\n Mời nhập lại!");
-            return false;
-        }
-    }
-
-    return true;
+        return true;
     }
 
     public void Clear() {
@@ -512,7 +509,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jdlLocSanPham = new javax.swing.JDialog();
-        jPanel9 = new javax.swing.JPanel();
+        dongAddSL = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblLocSanPham = new javax.swing.JTable();
@@ -743,7 +740,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        dongAddSL.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 0, 51));
@@ -791,11 +788,11 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             }
         });
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout dongAddSLLayout = new javax.swing.GroupLayout(dongAddSL);
+        dongAddSL.setLayout(dongAddSLLayout);
+        dongAddSLLayout.setHorizontalGroup(
+            dongAddSLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dongAddSLLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel43)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -807,11 +804,11 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 .addGap(16, 16, 16))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+        dongAddSLLayout.setVerticalGroup(
+            dongAddSLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dongAddSLLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dongAddSLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThemGioHang, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jLabel43)
                     .addComponent(jLabel44)
@@ -825,11 +822,11 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         jdlLocSanPham.getContentPane().setLayout(jdlLocSanPhamLayout);
         jdlLocSanPhamLayout.setHorizontalGroup(
             jdlLocSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dongAddSL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jdlLocSanPhamLayout.setVerticalGroup(
             jdlLocSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dongAddSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -2005,7 +2002,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                                 .addComponent(jLabel41)
                                 .addComponent(cboLocLTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -2217,6 +2214,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         int index = tblLocSanPham.getSelectedRow();
         if (index >= 0 && index <= listSPThemGioHang.size()) {
             SPCTViewModel spct = getSpThemGioHang(index);
+
             if (Integer.parseInt(txtSoLuongMua.getText()) > spct.getSoLuong()) {
                 JOptionPane.showMessageDialog(this, "Số lượng sản phẩm mua không dủ");
             } else if (Integer.parseInt(txtSoLuongMua.getText()) <= 0) {
@@ -2263,6 +2261,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 gioHangTable(listSPInHD);
                 spct.setSoLuong(Integer.parseInt(txtSoLuongMua.getText()));
             }
+
+            jdlLocSanPham.dispose();
 
         } else {
             JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
@@ -2412,21 +2412,21 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             tienQuyDoi = 0;
         }
         jlbTongTien.setText(String.valueOf(tongTien));
-        
+
         if (tienGiam > tongTien) {
-        tienGiam = 0;
-        jlbTienGiam.setText(String.valueOf(tienGiam));
-        }else{
-         tienGiam = tienPGG + tienQuyDoi;
-        jlbTienGiam.setText(String.valueOf(tienGiam));
-        
+            tienGiam = 0;
+            jlbTienGiam.setText(String.valueOf(tienGiam));
+        } else {
+            tienGiam = tienPGG + tienQuyDoi;
+            jlbTienGiam.setText(String.valueOf(tienGiam));
+
         }
         tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
         jlbKhachPhaiTra.setText(String.valueOf(tienKhachPhaiTra));
         txtTienKhachDua.setText("");
         jlbTienThua.setText("");
         txtMaChuyenKhoan.setText("");
-      
+
         for (QLKhachHang kh : listKhachHang) {
             if (hd.getTenKhachHang().trim().equals(kh.getTen())) {
                 idKhachHang = kh.getId();
@@ -2437,17 +2437,15 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                     if (btd.getIdKH() == kh.getId()) {
                         jlbDiemTichDuoc.setText(String.valueOf(btd.getDiemTich()));
                         jlbTienQuyDoi.setText(String.valueOf(btd.getTienDuocGiam()));
-                        if(btd.getIdKH()==9)
-                        {
-                        chkSuaDung.setEnabled(false);
-                        }
-                    else{
-                        chkSuaDung.setEnabled(true);  
-                        
-                        }
+                        if (btd.getIdKH() == 9) {
+                            chkSuaDung.setEnabled(false);
+                        } else {
+                            chkSuaDung.setEnabled(true);
+
                         }
                     }
                 }
+            }
         }
         for (QLNhanVien nv : listnhanVien) {
             if (hd.getTenNhanVien().trim().equals(nv.getTen())) {
@@ -2599,16 +2597,16 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             jlbTienThua.setText(String.valueOf(tienThua));
             tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
             tienGiam = tienPGG + tienQuyDoi;
-            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)) );
-             jlbTienGiam.setText(String.valueOf(tienGiam) );
-       
+            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)));
+            jlbTienGiam.setText(String.valueOf(tienGiam));
+
         } else if (chkSuaDung.isSelected() == false) {
             tienQuyDoi = 0;
             jlbTienThua.setText(String.valueOf(tienThua));
             tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
             tienGiam = tienPGG + tienQuyDoi;
-            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)) );
-             jlbTienGiam.setText(String.valueOf(tienGiam) );
+            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)));
+            jlbTienGiam.setText(String.valueOf(tienGiam));
         }
 
 //        String pattern = "[1-9][0-9]*";
@@ -2624,13 +2622,13 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 //        tienGiam = tienPGG + tienQuyDoi;
 //        jlbTienGiam.setText(String.valueOf(tienGiam));
 //        jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)));
-String pattern = "[1-9][0-9]*";
+        String pattern = "[1-9][0-9]*";
         if (!txtTienKhachDua.getText().matches(pattern) || txtTienKhachDua.getText().equals("")) {
             jlbTienThua.setText("");
         } else if (!txtTienKhachDua.getText().equals("")) {
-            tienKhachDua = Integer.parseInt(txtTienKhachDua.getText());            
+            tienKhachDua = Integer.parseInt(txtTienKhachDua.getText());
             tienThua = tienKhachDua - tienKhachPhaiTra;
-            jlbTienThua.setText(String.valueOf(tienThua) );
+            jlbTienThua.setText(String.valueOf(tienThua));
 
         }
     }//GEN-LAST:event_chkSuaDungActionPerformed
@@ -2737,33 +2735,33 @@ String pattern = "[1-9][0-9]*";
 //        }
 //        return true;
 
-            if (txtMa.getText().trim().isEmpty() || txtTen.getText().trim().isEmpty() || txtEmail.getText().trim().isEmpty()
-                   || txtSDT.getText().trim().isEmpty() || dateNgaySinh.getDate().equals("") || txtDiaChi.getText().trim().isEmpty()) {
-               JOptionPane.showMessageDialog(this, "Thông tin không để trống");
-               return false;
-           }
+        if (txtMa.getText().trim().isEmpty() || txtTen.getText().trim().isEmpty() || txtEmail.getText().trim().isEmpty()
+                || txtSDT.getText().trim().isEmpty() || dateNgaySinh.getDate().equals("") || txtDiaChi.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Thông tin không để trống");
+            return false;
+        }
 
-           // Kiểm tra số điện thoại
-           String sdt = txtSDT.getText().trim();
-           if (sdt.length() != 10 || !sdt.startsWith("0") || !sdt.matches("\\d+")) {
-               JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
-               return false;
-           }
+        // Kiểm tra số điện thoại
+        String sdt = txtSDT.getText().trim();
+        if (sdt.length() != 10 || !sdt.startsWith("0") || !sdt.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+            return false;
+        }
 
-           // Kiểm tra email
-           String email = txtEmail.getText().trim();
-           if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,6}$")) {
-               JOptionPane.showMessageDialog(this, "Email không hợp lệ");
-               return false;
-           }
+        // Kiểm tra email
+        String email = txtEmail.getText().trim();
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,6}$")) {
+            JOptionPane.showMessageDialog(this, "Email không hợp lệ");
+            return false;
+        }
 
-           for (QLKhachHang kh : listKhachHang) {
-               if (txtMa.getText().trim().equals(kh.getMa())) {
-                   JOptionPane.showMessageDialog(this, "Khách hàng đã tồn tại");
-                   return false;
-               }
-           }
-           return true;
+        for (QLKhachHang kh : listKhachHang) {
+            if (txtMa.getText().trim().equals(kh.getMa())) {
+                JOptionPane.showMessageDialog(this, "Khách hàng đã tồn tại");
+                return false;
+            }
+        }
+        return true;
     }
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -2807,7 +2805,7 @@ String pattern = "[1-9][0-9]*";
             lbTiemDuocGiam.setText(String.valueOf(bd.getTienDuocGiam()));
             Clear();
         }
-        
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2915,7 +2913,7 @@ String pattern = "[1-9][0-9]*";
     }//GEN-LAST:event_txtTienKhachDuaInputMethodTextChanged
 
     private void txtTienKhachDuaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyPressed
-       
+
     }//GEN-LAST:event_txtTienKhachDuaKeyPressed
 
     private void rdoChuyenKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoChuyenKhoanMouseClicked
@@ -2925,7 +2923,7 @@ String pattern = "[1-9][0-9]*";
         txtTienKhachDua.disable();
         txtTienKhachDua.repaint();
         jlbTienThua.setText("");
-        
+
     }//GEN-LAST:event_rdoChuyenKhoanMouseClicked
 
     private void rdoTienMatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoTienMatMouseClicked
@@ -2944,7 +2942,7 @@ String pattern = "[1-9][0-9]*";
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
         // TODO add your handling code here:
         // TODO add your handling code here:
-        
+
         String pattern = "[1-9][0-9]*";
         if (!txtTienKhachDua.getText().matches(pattern) || txtTienKhachDua.getText().equals("")) {
             jlbTienThua.setText("");
@@ -2952,14 +2950,14 @@ String pattern = "[1-9][0-9]*";
             tienKhachDua = Integer.parseInt(txtTienKhachDua.getText());
             tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
             tienGiam = tienPGG + tienQuyDoi;
-            jlbTienGiam.setText(String.valueOf(tienGiam) );
-            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)) );
+            jlbTienGiam.setText(String.valueOf(tienGiam));
+            jlbKhachPhaiTra.setText(String.valueOf(tongTien - (tienPGG + tienQuyDoi)));
 
             tienThua = tienKhachDua - tienKhachPhaiTra;
-            jlbTienThua.setText(String.valueOf(tienThua) );
+            jlbTienThua.setText(String.valueOf(tienThua));
 
         }
-        
+
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
     private void txtSoLuongMuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongMuaActionPerformed
@@ -3047,6 +3045,7 @@ String pattern = "[1-9][0-9]*";
     private javax.swing.JComboBox<String> cboLocSanPham;
     private javax.swing.JCheckBox chkSuaDung;
     private com.toedter.calendar.JDateChooser dateNgaySinh;
+    private javax.swing.JPanel dongAddSL;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -3120,7 +3119,6 @@ String pattern = "[1-9][0-9]*";
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

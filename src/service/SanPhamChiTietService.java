@@ -15,6 +15,8 @@ import viewmodel.SanPhamChiTietViewModel;
 public interface SanPhamChiTietService {
     List<SanPhamChiTietViewModel> getAll();
     
+    List<SPCTViewModel> getAllPhanTrang(int offset, int fetchSize);
+    
     String getAdd(SanPhamChiTietViewModel spct);
     
     String getUpdate(SanPhamChiTietViewModel spct,int id);

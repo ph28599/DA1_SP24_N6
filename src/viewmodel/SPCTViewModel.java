@@ -43,6 +43,8 @@ public class SPCTViewModel {
         this.giaBan = giaBan;
         this.trangThai = trangThai;
     }
+
+    
  
     public int getId() {
         return id;
@@ -142,11 +144,11 @@ public class SPCTViewModel {
     }
 
     public float getGiaBan() {
-        return giaBan=giaNhap*150/100;
+        return giaBan;
     }
 
-    public void setGiaBan(float giaNhap) {
-        this.giaBan = giaNhap*(150/100);
+    public void setGiaBan(float giaBan) {
+        this.giaBan = giaBan;
     }
 
     public boolean isTrangThai() {
@@ -158,10 +160,10 @@ public class SPCTViewModel {
     }
     
     public Object[] toRowData(){
-        return new Object[]{ma,maVach,moTa,soLuong,loaiSanPham,thuongHieu,loaiTheThao,kichCo,mauSac,chatLieu,giaNhap,getGiaBan(),soLuong!=0?"Còn Hàng":"Hết Hàng"};
+        return new Object[]{ma,maVach,moTa,soLuong,loaiSanPham,thuongHieu,loaiTheThao,kichCo,mauSac,chatLieu,giaNhap,giaBan,soLuong!=0?"Còn Hàng":"Hết Hàng"};
     }
     
     public Object[] toRowDataBanHang(){
-        return new Object[]{ma,loaiSanPham,thuongHieu,loaiTheThao,mauSac,kichCo,soLuong,getGiaBan()};
+        return new Object[]{ma,loaiSanPham,thuongHieu,loaiTheThao,mauSac,kichCo,soLuong,giaBan};
     }
 }
