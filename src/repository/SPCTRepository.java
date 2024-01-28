@@ -102,7 +102,7 @@ public class SPCTRepository {
         return null;
     }
 
-    public List<SPCTModel> getSearch(String ten) {
+    public List<SPCTModel> getSearch(String ten , String ma) {
         String qery = """
                    SELECT SAN_PHAM_CHI_TIET.[ID]
                             ,SAN_PHAM_CHI_TIET.[MA]
@@ -125,10 +125,11 @@ public class SPCTRepository {
                       	JOIN KICH_CO ON KICH_CO.ID=SAN_PHAM_CHI_TIET.ID_KC
                       	JOIN MAU_SAC ON MAU_SAC.ID=SAN_PHAM_CHI_TIET.ID_MS
                       	JOIN CHAT_LIEU ON CHAT_LIEU.ID=SAN_PHAM_CHI_TIET.ID_CL
-                      WHERE SAN_PHAM.[TEN] like '%'+ ? +'%' 
+                      WHERE SAN_PHAM.[TEN] like '%'+ ? +'%' OR SAN_PHAM_CHI_TIET.MA like '%'+ ? +'%'
                     """;
         try (Connection con = DBConnect.getConnection(); PreparedStatement pr = con.prepareStatement(qery)) {
             pr.setObject(1, ten);
+            pr.setObject(2, ma);
             ResultSet rs = pr.executeQuery();
             List<SPCTModel> listSearch = new ArrayList<>();
             while (rs.next()) {

@@ -153,7 +153,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         listCboKC.add("M");
         listCboKC.add("L");
         listCboKC.add("XL");
-        listCboKC.add("XXL");
+
         showDataCBO(listCboKC, dcbKC);
 
         dcbLocKichCo = (DefaultComboBoxModel) this.cbbLocKichCo.getModel();
@@ -510,6 +510,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         lblPageSP = new javax.swing.JLabel();
         btnTien = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -784,7 +785,8 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("One");
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("First page");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -799,6 +801,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
 
+        lblPageSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPageSP.setText("?");
 
         btnTien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Right.png"))); // NOI18N
@@ -809,12 +812,16 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("End");
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setText("Last page");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setText("Tìm Kiếm : Mã hoặc Tên");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -856,7 +863,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -867,23 +874,25 @@ public class ViewSanPham extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(txtSearchTen, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSearchTen, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btlHienThi)
-                        .addContainerGap(34, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(138, 138, 138)
                 .addComponent(jButton3)
-                .addGap(52, 52, 52)
+                .addGap(70, 70, 70)
                 .addComponent(btnLui)
-                .addGap(107, 107, 107)
+                .addGap(82, 82, 82)
                 .addComponent(lblPageSP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addGap(61, 61, 61)
                 .addComponent(btnTien)
-                .addGap(47, 47, 47)
+                .addGap(65, 65, 65)
                 .addComponent(jButton4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -901,7 +910,8 @@ public class ViewSanPham extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel28)
-                        .addComponent(jLabel31))
+                        .addComponent(jLabel31)
+                        .addComponent(jLabel22))
                     .addComponent(jLabel41))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,10 +944,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(btnLui)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnTien)
-                        .addComponent(jButton4)
-                        .addComponent(lblPageSP)))
+                    .addComponent(lblPageSP)
+                    .addComponent(btnTien)
+                    .addComponent(jButton4))
                 .addGap(35, 35, 35))
         );
 
@@ -1115,7 +1124,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                             .addComponent(btnThuongHieu, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                             .addComponent(cboKichCo)
                             .addComponent(btnKichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(58, 58, 58)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1366,26 +1375,26 @@ public class ViewSanPham extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLuuDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSuaThongTinSp, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addGap(28, 28, 28))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(btnThemSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSuaThongTinSp, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSuaThongTinSp, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLuuDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1428,10 +1437,10 @@ public class ViewSanPham extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1492,6 +1501,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 //        cboLocSanPham.setSelectedIndex(0);
 //        cboLocKichCo.setSelectedIndex(0);
         //cboLocLTT.setSelectedIndex(0);
+        cleaLoc();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatLieuActionPerformed
@@ -1529,7 +1539,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchTenActionPerformed
 
     private void txtSearchTenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTenKeyReleased
-        listSPCTtable = service.getSearch(txtSearchTen.getText());
+        listSPCTtable = service.getSearch(txtSearchTen.getText(), txtSearchTen.getText());
         showDataTable(listSPCTtable);
     }//GEN-LAST:event_txtSearchTenKeyReleased
 
@@ -1547,37 +1557,13 @@ public class ViewSanPham extends javax.swing.JPanel {
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocLoaiTT.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals("")
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals("")
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocLoaiTT.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals("")
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())) {
-                listLoc.add(c);
-            } //
+            }   
             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
             } else if (cbbLocSanPham.getSelectedItem().equals("")
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
@@ -1614,87 +1600,108 @@ public class ViewSanPham extends javax.swing.JPanel {
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
-                listLoc.add(c);
-            }//Loc 3
-            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals("")
-                    && cbbLocCLieu.getSelectedItem().equals("")
-                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
-                listLoc.add(c);
-            } //Loc4
-            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
-                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
-                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
-                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
-                    && cbbLocMauSac.getSelectedItem().equals("")) {
-                listLoc.add(c);
-            }// TH - Size..
+            } 
+                //loc 2 tu sp
             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+            }
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
                     && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
+            }
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }
+            //loc 3 tu sp
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
             } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }
+             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } //loc size - .. 
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals("")
                     && cbbLocLoaiTT.getSelectedItem().equals("")
@@ -1702,50 +1709,137 @@ public class ViewSanPham extends javax.swing.JPanel {
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals("")
+            }
+            
+            
+            //Loc 4 tu  sp
+            else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
+             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } //Loc 3 Th - s - sl
+            }
             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            }
+             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);
+            }
+             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }
+             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
             } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } //loc 4
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }
+            
+            //Loc5 tu sp 
             else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
+                    && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
+                listLoc.add(c);
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals("")
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+            }else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
                     && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
                     && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
-            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
-                    && cbbLocTHieu.getSelectedItem().equals("")
-                    && cbbLocLoaiTT.getSelectedItem().equals("")
-                    && cbbLocKichCo.getSelectedItem().equals("")
+            }else if (cbbLocSanPham.getSelectedItem().equals("")
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals(c.getChatLieu())
                     && cbbLocMauSac.getSelectedItem().equals(c.getMauSac())) {
                 listLoc.add(c);
+            }
+            
+
+
+                
+            else {
+                System.out.println("K tim thay");
             }
 
         }
@@ -1775,7 +1869,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         listSPCTtable = service.getAllTable();
         txtSearchTen.setText("");
 //        showDataTable(listSPCTtable);
-showDataTablePhanTrang(ht, size);
+        showDataTablePhanTrang(ht, size);
         clearFrom();
         cleaLoc();
     }//GEN-LAST:event_btlHienThiActionPerformed
@@ -2015,6 +2109,7 @@ showDataTablePhanTrang(ht, size);
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;

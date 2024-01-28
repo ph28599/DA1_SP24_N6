@@ -52,7 +52,7 @@ public class ViewKC extends javax.swing.JFrame {
         listLKC.add("M");
         listLKC.add("L");
         listLKC.add("XL");
-        listLKC.add("XXL");
+        
 
         showDataCBO(listLKC, dcbLKC);
         showDataTable(listKC);
@@ -83,7 +83,7 @@ public class ViewKC extends javax.swing.JFrame {
     private KichCoViewModel nhapDuLieu() {
         KichCoViewModel kc = new KichCoViewModel();
         int i = listKC.size() - 1;
-        kc.setMa("KC" + listKC.get(i).getId());
+        kc.setMa("KC0" + listKC.get(i).getId());
 
         kc.setKichCo(cboKC.getSelectedItem().toString());
 

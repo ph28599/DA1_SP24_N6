@@ -2214,7 +2214,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         int index = tblLocSanPham.getSelectedRow();
         if (index >= 0 && index <= listSPThemGioHang.size()) {
             SPCTViewModel spct = getSpThemGioHang(index);
-
+            jdlLocSanPham.dispose();
             if (Integer.parseInt(txtSoLuongMua.getText()) > spct.getSoLuong()) {
                 JOptionPane.showMessageDialog(this, "Số lượng sản phẩm mua không dủ");
             } else if (Integer.parseInt(txtSoLuongMua.getText()) <= 0) {
@@ -2261,8 +2261,6 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 gioHangTable(listSPInHD);
                 spct.setSoLuong(Integer.parseInt(txtSoLuongMua.getText()));
             }
-
-            jdlLocSanPham.dispose();
 
         } else {
             JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
@@ -2456,11 +2454,19 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         gioHangTable(listSPInHD);
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
+//    private void valiSLAMUPDATE(){
+//        GioHangViewModel ghvm = new GioHangViewModel();
+//        for (GioHangViewModel ghvm1 : listSPCT) {
+//            
+//        }
+//    }
+
     private void btnUpdateSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSoLuongActionPerformed
         int index = tblGioHang.getSelectedRow();
         if (index >= 0 && index < listSPInHD.size()) {
             GioHangViewModel gh = listSPInHD.get(index);
-            txtSoLuongCapNhat.setText(String.valueOf(gh.getSoLuong()));
+//
+//            txtSoLuongCapNhat.setText(String.valueOf(gh.getSoLuong()));
             jdlUpdateSoLuong.setSize(400, 150);
             jdlUpdateSoLuong.setResizable(false);
             jdlUpdateSoLuong.setLocationRelativeTo(null);
@@ -2468,8 +2474,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         } else {
             JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
-        }
 
+        }
 
     }//GEN-LAST:event_btnUpdateSoLuongActionPerformed
 
@@ -2534,55 +2540,73 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     }//GEN-LAST:event_btnXoaSanPhamActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int soLuongSanPhamXoa = 0;
-        int soLuongSanPham = 0;
-        int idSpCapNhap = 0;
+
         int index = tblGioHang.getSelectedRow();
 
-        GioHangViewModel gh = listSPInHD.get(index);
+        if (index >= 0 && index < listSPInHD.size()) {
+            GioHangViewModel gh = listSPInHD.get(index);
 
-        soLuongSanPhamXoa = gh.getSoLuong();
-        for (HDCTViewModel sp : listGioHang) {
-            if (sp.getId() == gh.getId()) {
-                for (SPCTViewModel spct : listSPCT) {
-                    if (spct.getId() == sp.getIdSPCT()) {
-                        soLuongSanPham = spct.getSoLuong();
-                        idSpCapNhap = spct.getId();
+            try {
+                // Lấy giá trị từ JTextField
+                int soLuongNhap = Integer.parseInt(txtSoLuongCapNhat.getText());
+
+                // Kiểm tra xem số lượng có âm không
+                if (soLuongNhap < 0 || soLuongNhap == 0) {
+                    JOptionPane.showMessageDialog(this, "Số âm không được phép = 0 không được đâu bé  ");
+                } else {
+                    int soLuongSanPhamXoa = 0;
+                    int soLuongSanPham = 0;
+                    int idSpCapNhap = 0;
+                    soLuongSanPhamXoa = gh.getSoLuong();
+                    for (HDCTViewModel sp : listGioHang) {
+                        if (sp.getId() == gh.getId()) {
+                            for (SPCTViewModel spct : listSPCT) {
+                                if (spct.getId() == sp.getIdSPCT()) {
+                                    soLuongSanPham = spct.getSoLuong();
+                                    idSpCapNhap = spct.getId();
+                                }
+                            }
+                        }
                     }
+
+                    int soLuongbd = gh.getSoLuong();
+                    int soLuong = Integer.parseInt(txtSoLuongCapNhat.getText());
+                    float donGia = soLuong * (gh.getDonGia() / soLuongbd);
+
+                    serviceSPCT.getUpdateSLMua(soLuongSanPham + soLuongSanPhamXoa - soLuong, idSpCapNhap);
+                    listSPCT = serviceSPCT.getAllTable();
+                    listSP = serviceSPCT.getAll();
+                    listSPVM = serviceSp.getAll();
+                    showDataSanPham(listSPVM);
+                    showDataSearch(listSPCT);
+
+                    JOptionPane.showMessageDialog(this, serviceGioHang.getUpdateSoLuong(gh.getId(), soLuong, donGia));
+
+                    listGioHang = serviceGioHang.getAll();
+                    listSpGiohang = serviceGioHang.getGioHang();
+
+                    tongTien = 0;
+                    listSPInHD = new ArrayList<>();
+                    for (GioHangViewModel gh1 : listSpGiohang) {
+                        if (gh1.getMaHD().equals(maHD)) {
+                            listSPInHD.add(gh1);
+                            tongTien += gh1.getDonGia();
+                        }
+                    }
+                    gioHangTable(listSPInHD);
+                    jlbTongTien.setText(String.valueOf(tongTien));
+                    tienGiam = tienPGG + tienQuyDoi;
+                    jlbTienGiam.setText(String.valueOf(tienGiam));
+                    tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
+                    jlbKhachPhaiTra.setText(String.valueOf(tienKhachPhaiTra));
                 }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập một số nguyên hợp lệ");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
         }
 
-        int soLuongbd = gh.getSoLuong();
-        int soLuong = Integer.parseInt(txtSoLuongCapNhat.getText());
-        float donGia = soLuong * (gh.getDonGia() / soLuongbd);
-
-        serviceSPCT.getUpdateSLMua(soLuongSanPham + soLuongSanPhamXoa - soLuong, idSpCapNhap);
-        listSPCT = serviceSPCT.getAllTable();
-        listSP = serviceSPCT.getAll();
-        listSPVM = serviceSp.getAll();
-        showDataSanPham(listSPVM);
-        showDataSearch(listSPCT);
-
-        JOptionPane.showMessageDialog(this, serviceGioHang.getUpdateSoLuong(gh.getId(), soLuong, donGia));
-
-        listGioHang = serviceGioHang.getAll();
-        listSpGiohang = serviceGioHang.getGioHang();
-
-        tongTien = 0;
-        listSPInHD = new ArrayList<>();
-        for (GioHangViewModel gh1 : listSpGiohang) {
-            if (gh1.getMaHD().equals(maHD)) {
-                listSPInHD.add(gh1);
-                tongTien += gh1.getDonGia();
-            }
-        }
-        gioHangTable(listSPInHD);
-        jlbTongTien.setText(String.valueOf(tongTien));
-        tienGiam = tienPGG + tienQuyDoi;
-        jlbTienGiam.setText(String.valueOf(tienGiam));
-        tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
-        jlbKhachPhaiTra.setText(String.valueOf(tienKhachPhaiTra));
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -2664,6 +2688,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         if (validateThanhToan()) {
             HDViewModel hdTT = getThanhToan();
+            JOptionPane.showConfirmDialog(this, "ban co muon thanh toan");
             JOptionPane.showMessageDialog(this, serviceHD.getThanhToan(hdTT, idHD));
             for (HDViewModel hd : listHD) {
                 if (hd.getId() == idHD) {

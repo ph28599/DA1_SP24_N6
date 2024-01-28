@@ -76,8 +76,8 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     }
 
     @Override
-    public List<SPCTViewModel> getSearch(String ma) {
-        List<SPCTModel> listSearch = spRepo.getSearch(ma);
+    public List<SPCTViewModel> getSearch(String ten, String ma) {
+        List<SPCTModel> listSearch = spRepo.getSearch(ten, ma);
         List<SPCTViewModel> listTable = new ArrayList<>();
         for (SPCTModel spct : listSearch) {
             listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
@@ -87,8 +87,8 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     }
 
     @Override
-    public String getUpdateSoLuong(int soLuong, int id,int giaNhap) {
-        boolean sua = spctRepo.getUpdateSoLuong(soLuong, id,giaNhap);
+    public String getUpdateSoLuong(int soLuong, int id, int giaNhap) {
+        boolean sua = spctRepo.getUpdateSoLuong(soLuong, id, giaNhap);
         if (sua) {
             return "Sua Thành Công";
         } else {
@@ -115,9 +115,5 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
         }
         return listTable;
     }
-
-    
-
-   
 
 }

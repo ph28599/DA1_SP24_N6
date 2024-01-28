@@ -25,7 +25,7 @@ public interface SanPhamChiTietService {
     
     List<SPCTViewModel> getAllTable();
     
-    List<SPCTViewModel> getSearch(String ma);
+    List<SPCTViewModel> getSearch(String ten , String ma);
     
     String getUpdateSoLuong(int soLuong,int id,int giaNhap);
     
