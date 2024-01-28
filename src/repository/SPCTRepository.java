@@ -58,7 +58,7 @@ public class SPCTRepository {
         }
         return null;
     }
-    
+
     public List<SPCTModel> getAllPhanTrang(int offset, int fetchSize) {
         String qery = """
                   				   SELECT SAN_PHAM_CHI_TIET.[ID]
@@ -88,7 +88,7 @@ public class SPCTRepository {
                                              	fetch next ? rows only;
                     """;
         try (Connection con = DBConnect.getConnection(); PreparedStatement pr = con.prepareStatement(qery)) {
-            ResultSet rs = JDBCHelper.excuteQuery(qery, offset , fetchSize);
+            ResultSet rs = JDBCHelper.excuteQuery(qery, offset, fetchSize);
             List<SPCTModel> listSPCT = new ArrayList<>();
             while (rs.next()) {
                 SPCTModel spct = new SPCTModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getFloat(12), rs.getFloat(13), rs.getBoolean(14));
@@ -102,7 +102,7 @@ public class SPCTRepository {
         return null;
     }
 
-    public List<SPCTModel> getSearch(String ten , String ma) {
+    public List<SPCTModel> getSearch(String ten, String ma) {
         String qery = """
                    SELECT SAN_PHAM_CHI_TIET.[ID]
                             ,SAN_PHAM_CHI_TIET.[MA]

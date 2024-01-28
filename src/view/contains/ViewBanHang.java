@@ -2529,6 +2529,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 tongTien += gh.getDonGia();
             }
         }
+        
         jlbTongTien.setText(String.valueOf(tongTien));
         tienGiam = tienPGG + tienQuyDoi;
         jlbTienGiam.setText(String.valueOf(tienGiam));
@@ -2545,7 +2546,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         if (index >= 0 && index < listSPInHD.size()) {
             GioHangViewModel gh = listSPInHD.get(index);
-
+            jdlUpdateSoLuong.dispose();
             try {
                 // Lấy giá trị từ JTextField
                 int soLuongNhap = Integer.parseInt(txtSoLuongCapNhat.getText());
