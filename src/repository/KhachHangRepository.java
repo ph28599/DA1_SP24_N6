@@ -11,21 +11,23 @@ import java.util.ArrayList;
 import viewmodel.QLKhachHang;
 import java.sql.*;
 import model.KhachHang;
+import utility.JDBCHelper;
 
 /**
  *
  * @author adm
  */
 public class KhachHangRepository {
+
     DBConnect con;
-    
-    public ArrayList<QLKhachHang> getListFromDB(){
+
+    public ArrayList<QLKhachHang> getListFromDB() {
         ArrayList<QLKhachHang> list = new ArrayList<>();
         String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG";
-        try(Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 QLKhachHang kh = new QLKhachHang();
                 kh.setId(rs.getInt(1));
                 kh.setMa(rs.getString(2));
@@ -38,17 +40,18 @@ public class KhachHangRepository {
                 kh.setTrangThai(rs.getInt(9));
                 list.add(kh);
             }
-        }catch(Exception ex){
-            
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
         return list;
     }
-    
-    public Boolean Them(KhachHang khachHang){
+
+    public Boolean Them(KhachHang khachHang) {
         String sql = "insert into KHACH_HANG(MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI)"
                 + "values(?,?,?,?,?,?,?,?)";
         try (Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setObject(1, khachHang.getMa());
             ps.setObject(2, khachHang.getTen());
             ps.setObject(3, khachHang.getEmail());
@@ -62,24 +65,24 @@ public class KhachHangRepository {
         }
         return null;
     }
-    
-    public Boolean Xoa(int id){
+
+    public Boolean Xoa(int id) {
         String sql = "exec xoaKhachHang ?";
-        try(Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setObject(1, id);
             ps.executeUpdate();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
-    return null;    
+        return null;
     }
-    
-    public Boolean Sua(int id, KhachHang khachHang){
+
+    public Boolean Sua(int id, KhachHang khachHang) {
         String sql = "update KHACH_HANG set MA = ?, HOTEN = ?, EMAIL = ?, SDT = ?, GIOTINH = ?"
                 + ", NGAYSINH = ?, DIACHI = ?, TRANGTHAI = ? where ID = ?";
-        try(Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setObject(1, khachHang.getMa());
             ps.setObject(2, khachHang.getTen());
             ps.setObject(3, khachHang.getEmail());
@@ -90,46 +93,48 @@ public class KhachHangRepository {
             ps.setObject(8, khachHang.getTrangThai());
             ps.setObject(9, id);
             ps.executeUpdate();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
         return null;
     }
-    
-    public Boolean khachHangTaoHoaDon(int id){
-        String sql = 
-                " update KHACH_HANG set TRANGTHAI = 0 where ID = ?";
-        try(Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
-            
+
+    public Boolean khachHangTaoHoaDon(int id) {
+        String sql
+                = " update KHACH_HANG set TRANGTHAI = 0 where ID = ?";
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+
             ps.setObject(1, id);
             ps.executeUpdate();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
         return null;
     }
-    public Boolean khachHangThanhToanHoaDon(int id){
-        String sql = 
-                " update KHACH_HANG set TRANGTHAI = 1 where ID = ?";
-        try(Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
-            
+
+    public Boolean khachHangThanhToanHoaDon(int id) {
+        String sql
+                = " update KHACH_HANG set TRANGTHAI = 1 where ID = ?";
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+
             ps.setObject(1, id);
             ps.executeUpdate();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
         return null;
     }
-    public ArrayList<QLKhachHang> TimKiemTheoMa(String ma){
+
+    public ArrayList<QLKhachHang> TimKiemTheoMa(String ma) {
         ArrayList<QLKhachHang> listKH = new ArrayList<>();
         String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG "
-                + "where MA like '%"+ma+"%'";
+                + "where MA like '%" + ma + "%'";
         try (Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 QLKhachHang kh = new QLKhachHang();
                 kh.setId(rs.getInt(1));
                 kh.setMa(rs.getString(2));
@@ -146,15 +151,15 @@ public class KhachHangRepository {
         }
         return listKH;
     }
-    
-    public ArrayList<QLKhachHang> TimKiemTheoTen(String ten){
+
+    public ArrayList<QLKhachHang> TimKiemTheoTen(String ten) {
         ArrayList<QLKhachHang> listTimTheoTen = new ArrayList<>();
         String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG "
-                + "where HOTEN like N'%"+ten+"%'";
+                + "where HOTEN like N'%" + ten + "%'";
         try (Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 QLKhachHang kh = new QLKhachHang();
                 kh.setId(rs.getInt(1));
                 kh.setMa(rs.getString(2));
@@ -171,15 +176,15 @@ public class KhachHangRepository {
         }
         return listTimTheoTen;
     }
-    
-    public ArrayList<QLKhachHang> TimKiemTheoEmail(String email){
+
+    public ArrayList<QLKhachHang> TimKiemTheoEmail(String email) {
         ArrayList<QLKhachHang> listTimTheoEmail = new ArrayList<>();
         String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG "
-                + "where EMAIL like '%"+email+"%'";
+                + "where EMAIL like '%" + email + "%'";
         try (Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 QLKhachHang kh = new QLKhachHang();
                 kh.setId(rs.getInt(1));
                 kh.setMa(rs.getString(2));
@@ -196,15 +201,15 @@ public class KhachHangRepository {
         }
         return listTimTheoEmail;
     }
-    
-    public ArrayList<QLKhachHang> TimKiemTheoSDT(String sdt){
+
+    public ArrayList<QLKhachHang> TimKiemTheoSDT(String sdt) {
         ArrayList<QLKhachHang> listTimTheoSDT = new ArrayList<>();
         String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG "
-                + "where SDT like '%"+sdt+"%'";
+                + "where SDT like '%" + sdt + "%'";
         try (Connection connection = con.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)){
+                PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 QLKhachHang kh = new QLKhachHang();
                 kh.setId(rs.getInt(1));
                 kh.setMa(rs.getString(2));
@@ -218,7 +223,50 @@ public class KhachHangRepository {
                 listTimTheoSDT.add(kh);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return listTimTheoSDT;
+    }
+
+    public ArrayList<QLKhachHang> getPhanTrang(int offset, int fetchSize) {
+        ArrayList<QLKhachHang> list = new ArrayList<>();
+        String sql = "select ID, MA, HOTEN, EMAIL, SDT, GIOTINH, NGAYSINH, DIACHI, TRANGTHAI from KHACH_HANG\n"
+                + "order by id offset ? row fetch next ? rows only;";
+        try (Connection connection = con.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = JDBCHelper.excuteQuery(sql, offset, fetchSize);
+            while (rs.next()) {
+                QLKhachHang kh = new QLKhachHang();
+                kh.setId(rs.getInt(1));
+                kh.setMa(rs.getString(2));
+                kh.setTen(rs.getString(3));
+                kh.setEmail(rs.getString(4));
+                kh.setSdt(rs.getString(5));
+                kh.setGioiTinh(rs.getInt(6));
+                kh.setNgaySinh(rs.getDate(7));
+                kh.setDiaChi(rs.getString(8));
+                kh.setTrangThai(rs.getInt(9));
+                list.add(kh);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int getTotalItems() {
+        int totalItems = 0;
+        String sql = "select COUNT(*) From KHACH_HANG Where KHACH_HANG.TRANGTHAI =1";
+
+        try {
+            ResultSet rs = JDBCHelper.excuteQuery(sql);
+            if (rs.next()) {
+                totalItems = rs.getInt(1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return totalItems;
     }
 }

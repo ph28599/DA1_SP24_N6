@@ -6,7 +6,9 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 import model.NhanVien;
+import viewmodel.QLKhachHang;
 import viewmodel.QLNhanVien;
 
 /**
@@ -23,4 +25,6 @@ public interface NhanVienService {
     public Boolean Sua(int id, NhanVien nhanVien);
     
     public ArrayList<QLNhanVien> TimKiem(String name);
+    
+    public List<QLNhanVien> getPhanTrang(int offset, int fetchSize);
 }

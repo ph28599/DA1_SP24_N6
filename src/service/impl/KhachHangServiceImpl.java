@@ -6,6 +6,7 @@
 package service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import model.KhachHang;
 import repository.KhachHangRepository;
 import service.KhachHangService;
@@ -31,11 +32,7 @@ public class KhachHangServiceImpl implements KhachHangService{
     public Boolean Them(KhachHang khachHang) {
         return repository.Them(khachHang);
     }
-
-    @Override
-    public Boolean Xoa(int id) {
-        return repository.Xoa(id);
-    }
+ 
 
     @Override
     public Boolean Sua(int id, KhachHang khachHang) {
@@ -55,6 +52,11 @@ public class KhachHangServiceImpl implements KhachHangService{
     @Override
     public void khachHangThanhToanHD(int id) {
         repository.khachHangThanhToanHoaDon(id);
+    }
+
+    @Override
+    public List<QLKhachHang> getPhanTrang(int offset, int fetchSize) {
+        return repository.getPhanTrang(offset, fetchSize);
     }
 
 

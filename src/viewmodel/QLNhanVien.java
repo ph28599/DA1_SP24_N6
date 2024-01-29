@@ -10,13 +10,19 @@ package viewmodel;
  * @author adm
  */
 public class QLNhanVien {
+
     int id;
     String ma, ten;
     int gioiTinh;
     String sdt, cccd, ngaySinh, diaChi, email;
     int chucVu, trangThai;
+    private String tenDN;
+    private String matKhau;
 
-    public QLNhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String cccd, String ngaySinh, String diaChi, String email, int chucVu, int trangThai) {
+    public QLNhanVien() {
+    }
+
+    public QLNhanVien(int id, String ma, String ten, int gioiTinh, String sdt, String cccd, String ngaySinh, String diaChi, String email, int chucVu, int trangThai, String tenDN, String matKhau) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -28,9 +34,8 @@ public class QLNhanVien {
         this.email = email;
         this.chucVu = chucVu;
         this.trangThai = trangThai;
-    }
-
-    public QLNhanVien() {
+        this.tenDN = tenDN;
+        this.matKhau = matKhau;
     }
 
     public int getId() {
@@ -120,4 +125,22 @@ public class QLNhanVien {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+
+    public String getTenDN() {
+        return tenDN;
+    }
+
+    public void setTenDN(String tenDN) {
+        this.tenDN = tenDN;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    
 }
