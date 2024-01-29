@@ -45,14 +45,7 @@ public class KichCoRepository {
     public boolean getAdd(KichCoModel kc) {
         int check = 0;
         String qery = """
-                  INSERT INTO [dbo].[KICH_CO]
-                             ([MA]
-                            
-                             ,[KICHCO]
-                             
-                      
-                       VALUES
-                             (?,?)
+                  INSERT INTO KICH_CO (MA , KICHCO) values (?, ?)
                     """;
         try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(qery)) {
             pr.setObject(1, kc.getMa());

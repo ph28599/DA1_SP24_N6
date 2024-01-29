@@ -6,6 +6,7 @@ package service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.HDModel;
 import repository.HDRepository;
 import service.HDService;
@@ -67,6 +68,7 @@ public class HDServiceImpl implements HDService{
         HDModel hdAdd=new HDModel(hd.getId(),hd.getMa(),hd.getIdNV(),hd.getIdKH(),hd.getMaPGG(),hd.getNgayTao(),hd.getNgayThanhToan(),hd.getTienGiam(),hd.getTongTien(),hd.getTienKhachDua(),hd.getTienThua(),hd.getTienKhachPhaiTra(),hd.getHinhThucThanhToan(),hd.getMaChuyenKhoan(),hd.getTrangThai());
         boolean thanhToan=hdRepo.getThanhToan(hdAdd,id);
         if(thanhToan){
+          //  JOptionPane.showConfirmDialog(thanhToan, "Ban co");
             return "Thanh toán thành công";
         }else {
             return"That bai";

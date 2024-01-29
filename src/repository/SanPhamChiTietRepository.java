@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import utility.JDBCHelper;
 
 /**
  *
@@ -231,5 +232,21 @@ public class SanPhamChiTietRepository {
 
         }
         return check > 0;
+    }
+    
+     public int getTotalIteams() {
+        int totalIteam = 0;
+        String sql = """
+                     		SELECT COUNT(*) FROM SAN_PHAM_CHI_TIET WHERE SAN_PHAM_CHI_TIET.TRANGTHAI = 1
+                     """;
+        try {
+            ResultSet rs = JDBCHelper.excuteQuery(sql);
+            if (rs.next()) {
+                totalIteam = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return totalIteam;
     }
 }

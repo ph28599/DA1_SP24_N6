@@ -13,21 +13,23 @@ import viewmodel.SanPhamChiTietViewModel;
  * @author pc
  */
 public interface SanPhamChiTietService {
-    List<SanPhamChiTietViewModel> getAll();
-    
-    String getAdd(SanPhamChiTietViewModel spct);
-    
-    String getUpdate(SanPhamChiTietViewModel spct,int id);
-    
-    String getDelete(int id);
-    
-    List<SPCTViewModel> getAllTable();
-    
-    List<SPCTViewModel> getSearch(String ma);
-    
-    String getUpdateSoLuong(int soLuong,int id,int giaNhap);
-    
-    String getUpdateSLMua(int soLuong,int id);
 
-    
+    List<SanPhamChiTietViewModel> getAll();
+
+    List<SPCTViewModel> getAllPhanTrang(int offset, int fetchSize);
+
+    String getAdd(SanPhamChiTietViewModel spct);
+
+    String getUpdate(SanPhamChiTietViewModel spct, int id);
+
+    String getDelete(int id);
+
+    List<SPCTViewModel> getAllTable();
+
+    List<SPCTViewModel> getSearch(String ten, String ma);
+
+    String getUpdateSoLuong(int soLuong, int id, int giaNhap);
+
+    String getUpdateSLMua(int soLuong, int id);
+
 }
