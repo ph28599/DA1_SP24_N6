@@ -6,6 +6,7 @@
 package service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import model.NhanVien;
 import repository.NhanVienRepository;
 import service.NhanVienService;
@@ -45,6 +46,11 @@ public class NhanVienServiceImpl implements NhanVienService{
     @Override
     public ArrayList<QLNhanVien> TimKiem(String name) {
         return repository.TimKiemTheoMa(name);
+    }
+
+    @Override
+    public List<QLNhanVien> getPhanTrang(int offset, int fetchSize) {
+        return repository.getPhanTrang(offset, fetchSize);
     }
     
 }
