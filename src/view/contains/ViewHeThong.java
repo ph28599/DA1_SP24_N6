@@ -782,7 +782,6 @@ public class ViewHeThong extends javax.swing.JPanel {
         txtLuotSuDung.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtLuotSuDung.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
-        txtDieuKhoan.setEditable(false);
         txtDieuKhoan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDieuKhoan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtDieuKhoan.addActionListener(new java.awt.event.ActionListener() {

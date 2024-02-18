@@ -19,25 +19,25 @@ public class HDTableRepository {
     
     public List<HDTableModel> getAll() {
         String query = """
-                        SELECT HOA_DON.[ID]
-                              ,HOA_DON.[MA]
-                              ,NHAN_VIEN.HOTEN
-                              ,KHACH_HANG.HOTEN
-                              ,[MAPGG]
-                              ,[NGAYTAO]
-                              ,[NGAYTHANHTOAN]
-                              ,[TIENGIAM]
-                              ,[TONGTIEN]
-                              ,[TIENKHACHDUA]
-                              ,[TIENTHUA]
-                              ,[TIENKHACHPHAITRA]
-                              ,[HINHTHUCTHANHTOAN]
-                              ,[MACHUYENKHOAN]
-                              ,HOA_DON.[TRANGTHAI]
-                          FROM [dbo].[HOA_DON]
-                          join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
-                          join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV
-                       ORDER BY NGAYTHANHTOAN  DESC;
+                       					 SELECT HOA_DON.[ID]
+                                                     ,HOA_DON.[MA]
+                                                     ,NHAN_VIEN.HOTEN
+                                                     ,KHACH_HANG.HOTEN
+                                                     ,[MAPGG]
+                                                     ,[NGAYTAO]
+                                                     ,[NGAYTHANHTOAN]
+                                                     ,[TIENGIAM]
+                                                     ,[TONGTIEN]
+                                                     ,[TIENKHACHDUA]
+                                                     ,[TIENTHUA]
+                                                     ,[TIENKHACHPHAITRA]
+                                                     ,[HINHTHUCTHANHTOAN]
+                                                     ,[MACHUYENKHOAN]
+                                                     ,HOA_DON.[TRANGTHAI]
+                                                 FROM [dbo].[HOA_DON]
+                                                 join KHACH_HANG on KHACH_HANG.ID=HOA_DON.ID_KH
+                                                 join NHAN_VIEN on NHAN_VIEN.ID=HOA_DON.ID_NV
+                                              order by MA DESC , NGAYTHANHTOAN DESC  
                      """;
         try ( Connection con = DBConnect.getConnection();  PreparedStatement pr = con.prepareStatement(query)) {
             ResultSet rs = pr.executeQuery();
