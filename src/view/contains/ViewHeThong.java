@@ -547,7 +547,7 @@ public class ViewHeThong extends javax.swing.JPanel {
                             .addComponent(btnPre)
                             .addComponent(lblSo)))
                     .addComponent(btnHoanTac1))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));

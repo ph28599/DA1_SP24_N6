@@ -103,7 +103,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     private List<SPCTViewModel> listSPCTtable = new ArrayList<>();
 
     private DefaultTableModel dtm = new DefaultTableModel();
-
+    private DefaultTableModel dtm1 = new DefaultTableModel();
     private List<DanhSachSP> listDSSP = new ArrayList<>();
     private DefaultTableModel dtmBangDanhSach = new DefaultTableModel();
 
@@ -124,8 +124,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     public ViewSanPham() {
         initComponents();
-
-        showDataTablePhanTrang(ht, size);
+//        showDataTable(service.getAllTable());
 
         listSPCTtable = service.getAllTable();
         listSP = serviceSp.getAll();
@@ -199,20 +198,22 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         dtmBangDanhSach = (DefaultTableModel) this.tblDanhSach.getModel();
 
+        showDataTablePhanTrang(ht, size);
     }
 
     private void showDataTable(List<SPCTViewModel> listTable) {
         dtm.setRowCount(0);
+        dtm = (DefaultTableModel) tblSPCT.getModel();
         for (SPCTViewModel spct : listTable) {
             dtm.addRow(spct.toRowData());
         }
     }
 
     private void showDataTablePhanTrang(int ht, int c) {
-        list = service.getAllPhanTrang(ht, c);
+        listSPCTtable = service.getAllPhanTrang(ht, c);
         dtm.setRowCount(0);
         dtm = (DefaultTableModel) tblSPCT.getModel();
-        for (SPCTViewModel spct : list) {
+        for (SPCTViewModel spct : listSPCTtable) {
             dtm.addRow(spct.toRowData());
         }
     }
@@ -245,6 +246,43 @@ public class ViewSanPham extends javax.swing.JPanel {
         txtGiaBan.setText(String.valueOf(spct.getGiaBan()));
         txtMoT.setText(spct.getMoTa());
         ckbTrangThai.setSelected(spct.isTrangThai());
+    }
+
+    public void fillData() {
+        int row = tblSPCT.getSelectedRow();
+        // dtm = (DefaultTableModel) tb.getModel();
+        SPCTViewModel ctspvm = new SPCTViewModel();
+
+        txtMa.setText(tblSPCT.getValueAt(row, 0).toString());
+        txtMaVach.setText(tblSPCT.getValueAt(row, 1).toString());
+        txtMoT.setText(tblSPCT.getValueAt(row, 2).toString());
+        txtSoLuong.setText(String.valueOf(tblSPCT.getValueAt(row, 3).toString()));
+
+        String sp = tblSPCT.getValueAt(row, 4).toString();
+        cboLoaiSanPham.setSelectedItem(sp);
+
+        String th = tblSPCT.getValueAt(row, 5).toString();
+        cboThuongHIeu.setSelectedItem(th);
+
+        String la = tblSPCT.getValueAt(row, 6).toString();
+        cboLTT.setSelectedItem(la);
+
+        String kc = tblSPCT.getValueAt(row, 7).toString();
+        cboKichCo.setSelectedItem(kc);
+
+        String ms = tblSPCT.getValueAt(row, 8).toString();
+        cboMauSac.setSelectedItem(ms);
+
+        String cl = tblSPCT.getValueAt(row, 9).toString();
+        cboChatLieu.setSelectedItem(cl);
+
+        txtGiaNhap.setText(String.valueOf(tblSPCT.getValueAt(row, 10).toString()));
+        txtGiaBan.setText(String.valueOf(tblSPCT.getValueAt(row, 11).toString()));
+        Object trangThaiValue = tblSPCT.getValueAt(row, 12);
+        if (trangThaiValue != null) {
+            String trangThai = trangThaiValue.toString();
+            ckbTrangThai.setSelected(trangThai.equalsIgnoreCase("Còn hàng"));
+        }
     }
 
     private SanPhamChiTietViewModel nhapDuLieu() {
@@ -446,12 +484,13 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     public void cleaLoc() {
-        cbbLocCLieu.setSelectedItem(0);
-        cbbLocKichCo.setSelectedItem(0);
-        cbbLocLoaiTT.setSelectedItem(0);
-        cbbLocMauSac.setSelectedItem(0);
-        cbbLocSanPham.setSelectedItem(0);
-        cbbLocTHieu.setSelectedItem(0);
+        cbbLocCLieu.setSelectedIndex(0);
+        cbbLocKichCo.setSelectedIndex(0);
+        cbbLocLoaiTT.setSelectedIndex(0);
+        cbbLocMauSac.setSelectedIndex(0);
+        cbbLocSanPham.setSelectedIndex(0);
+        cbbLocTHieu.setSelectedIndex(0);
+
     }
 
     public void updatePage() {
@@ -714,6 +753,9 @@ public class ViewSanPham extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSPCTMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblSPCTMouseEntered(evt);
+            }
         });
         jScrollPane2.setViewportView(tblSPCT);
 
@@ -888,9 +930,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 .addComponent(jButton3)
                 .addGap(70, 70, 70)
                 .addComponent(btnLui)
-                .addGap(82, 82, 82)
-                .addComponent(lblPageSP, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(71, 71, 71)
+                .addComponent(lblPageSP, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(btnTien)
                 .addGap(65, 65, 65)
                 .addComponent(jButton4)
@@ -1199,7 +1241,6 @@ public class ViewSanPham extends javax.swing.JPanel {
         txtGiaNhap.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
         ckbTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ckbTrangThai.setSelected(true);
         ckbTrangThai.setText("Còn hàng");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1445,33 +1486,48 @@ public class ViewSanPham extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblSPCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPCTMouseClicked
-        int index = tblSPCT.getSelectedRow();
-        if (index >= 0 && index <= list.size()) {
-            showDataFrom(index);
-        }
+//        int index = tblSPCT.getSelectedRow();
+//        if (index >= 0 && index <= list.size()) {
+//            showDataFrom(index);
+//        }
 
+        fillData();
 
     }//GEN-LAST:event_tblSPCTMouseClicked
 
     private void btnSuaThongTinSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinSpActionPerformed
+//        if (validateTable()) {
+//            int index = tblSPCT.getSelectedRow();
+//
+//            // Kiểm tra xem index có hợp lệ không
+//            if (index >= 0 && index < listSPCTtable.size()) {
+//                SanPhamChiTietViewModel spct = updateData();
+//                SPCTViewModel spct1 = listSPCTtable.get(index);
+//                JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
+//                listSPCTtable = service.getAllTable();
+//                showDataTable(listSPCTtable);
+//                clearFrom();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trên bảng để cập nhật.");
+//            }
+//        }
 
-        if (validateTable()) {
-            int index = tblSPCT.getSelectedRow();
-
-            // Kiểm tra xem index có hợp lệ không
-            if (index >= 0 && index < listSPCTtable.size()) {
+        int index = tblSPCT.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Chọn dòng cần sửa thông tin", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        } else {
+            //int id = (int) tblSPCT.getValueAt(index, 0);
+            if (validateTable()) {
                 SanPhamChiTietViewModel spct = updateData();
                 SPCTViewModel spct1 = listSPCTtable.get(index);
                 JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
+//                listSPCTtable = service.getAllTable();
+//                showDataTable(listSPCTtable);
+                showDataTablePhanTrang(ht, size);
+                clearFrom();
 
-                listSPCTtable = service.getAllTable();
-                showDataTable(listSPCTtable);
-     
-            } else {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trên bảng để cập nhật.");
             }
         }
-
     }//GEN-LAST:event_btnSuaThongTinSpActionPerformed
 
     private void txtMaVachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVachActionPerformed
@@ -1482,9 +1538,9 @@ public class ViewSanPham extends javax.swing.JPanel {
         if (validateThem()) {
             SanPhamChiTietViewModel spct = nhapDuLieu();
             JOptionPane.showMessageDialog(this, service.getAdd(spct));
-            listSPCTtable = service.getAllTable();
-            showDataTable(listSPCTtable);
-         
+//            listSPCTtable = service.getAllTable();
+//            showDataTable(listSPCTtable);
+            showDataTablePhanTrang(ht, size);
             clearFrom();
         }
 
@@ -1499,16 +1555,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         cboLTT.setSelectedIndex(0);
         cboLoaiSanPham.setSelectedIndex(0);
 
-        cbbLocCLieu.setSelectedItem(0);
-        cbbLocKichCo.setSelectedItem(0);
-        cbbLocLoaiTT.setSelectedItem(0);
-        cbbLocMauSac.setSelectedItem(0);
-        cbbLocSanPham.setSelectedItem(0);
-        cbbLocTHieu.setSelectedItem(0);
-//        cboLocSanPham.setSelectedIndex(0);
-//        cboLocKichCo.setSelectedIndex(0);
-        //cboLocLTT.setSelectedIndex(0);
-
+        cleaLoc();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatLieuActionPerformed
@@ -2049,9 +2096,9 @@ public class ViewSanPham extends javax.swing.JPanel {
         listSPCTtable = service.getAllTable();
         txtSearchTen.setText("");
         showDataTable(listSPCTtable);
-        
+
         clearFrom();
-        cleaLoc();
+
     }//GEN-LAST:event_btlHienThiActionPerformed
 
     private void btnLuuDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuDanhSachActionPerformed
@@ -2240,6 +2287,10 @@ public class ViewSanPham extends javax.swing.JPanel {
         updatePage();
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tblSPCTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPCTMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSPCTMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

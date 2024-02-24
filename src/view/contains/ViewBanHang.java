@@ -2429,7 +2429,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 showDataHoaDon(listHDTableChuaThanhToan);
 
             } else {
-                JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn");
+//                JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn");
+             return;
             }
         }
         serviceKhachHang.khachHangThanhToanHD(idKhachHang);
@@ -2634,7 +2635,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
                 // Kiểm tra xem số lượng có âm không
                 if (soLuongNhap < 0 || soLuongNhap == 0) {
-                    JOptionPane.showMessageDialog(this, "Số âm không được phép = 0 không được đâu bé  ");
+                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0 ");
                 } else {
                     int soLuongSanPhamXoa = 0;
                     int soLuongSanPham = 0;
@@ -2763,64 +2764,84 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     }//GEN-LAST:event_txtTienKhachDuaCaretUpdate
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        if (validateThanhToan()) {
-            HDViewModel hdTT = getThanhToan();
-            JOptionPane.showConfirmDialog(this, "ban co muon thanh toan");
-            JOptionPane.showMessageDialog(this, serviceHD.getThanhToan(hdTT, idHD));
-            for (HDViewModel hd : listHD) {
-                if (hd.getId() == idHD) {
-                    for (QLKhachHang kh : listKhachHang) {
-                        if (kh.getId() == hd.getIdKH()) {
-                            if (kh.getId() != khacLe()) {
-                                for (QLBangTichDiem bangTichDiem : listBangTichDiem) {
-                                    if (bangTichDiem.getIdKH() == kh.getId()) {
-                                        int diemBD = bangTichDiem.getDiemTich();
-                                        int tiennBD = bangTichDiem.getTienDuocGiam();
-                                        if (chkSuaDung.isSelected() == true) {
-                                            tienQuyDoi = Integer.parseInt(jlbTienQuyDoi.getText());
-                                            diemBD = 0;
-                                            tiennBD = 0;
-                                        } else if (chkSuaDung.isSelected() == false) {
-                                            tienQuyDoi = 0;
-                                            diemBD = bangTichDiem.getDiemTich();
-                                            tiennBD = bangTichDiem.getTienDuocGiam();
+
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn thanh toán?");
+        if (choice == JOptionPane.NO_OPTION) {
+            // Người dùng đã chọn "No", thực hiện các hành động tương ứng ở đây
+            // Ví dụ: không thanh toán
+//            JOptionPane.showMessageDialog(this, "Thanh toán thất bại người dùng Chọn No !");
+             return;
+        } else if (choice == JOptionPane.YES_OPTION) {
+            // Người dùng đã chọn "Yes", thực hiện các hành động tương ứng ở đây
+            // Ví dụ: thanh toán
+            if (validateThanhToan()) {
+                HDViewModel hdTT = getThanhToan();
+                JOptionPane.showMessageDialog(this, serviceHD.getThanhToan(hdTT, idHD));
+                for (HDViewModel hd : listHD) {
+                    if (hd.getId() == idHD) {
+                        for (QLKhachHang kh : listKhachHang) {
+                            if (kh.getId() == hd.getIdKH()) {
+                                if (kh.getId() != khacLe()) {
+                                    for (QLBangTichDiem bangTichDiem : listBangTichDiem) {
+                                        if (bangTichDiem.getIdKH() == kh.getId()) {
+                                            int diemBD = bangTichDiem.getDiemTich();
+                                            int tiennBD = bangTichDiem.getTienDuocGiam();
+                                            if (chkSuaDung.isSelected() == true) {
+                                                tienQuyDoi = Integer.parseInt(jlbTienQuyDoi.getText());
+                                                diemBD = 0;
+                                                tiennBD = 0;
+                                            } else if (chkSuaDung.isSelected() == false) {
+                                                tienQuyDoi = 0;
+                                                diemBD = bangTichDiem.getDiemTich();
+                                                tiennBD = bangTichDiem.getTienDuocGiam();
+                                            }
+                                            int diemThem = Integer.parseInt(jlbTongTien.getText()) / 10000;
+                                            QLBangTichDiem btd = bangTichDiem;
+                                            btd.setDiemTich(diemBD + diemThem * 1000);
+                                            btd.setTienDuocGiam(tiennBD + (diemThem * 100));
+                                            serviceBangTichDiem.getUpdateBangDiem(btd.getId(), btd);
+                                            servicePGG.getUpdateSoLuongPGGKhiTT(idPGG);
                                         }
-                                        int diemThem = Integer.parseInt(jlbTongTien.getText()) / 10000;
-                                        QLBangTichDiem btd = bangTichDiem;
-                                        btd.setDiemTich(diemBD + diemThem * 1000);
-                                        btd.setTienDuocGiam(tiennBD + (diemThem * 100));
-                                        serviceBangTichDiem.getUpdateBangDiem(btd.getId(), btd);
-                                        servicePGG.getUpdateSoLuongPGGKhiTT(idPGG);
                                     }
                                 }
+                                thanhToanXong();
                             }
-                            thanhToanXong();
                         }
                     }
+
                 }
+                if (idKhachHang != 9) {
+                    serviceKhachHang.khachHangThanhToanHD(idKhachHang);
+                }
+                listKhachHang = serviceKhachHang.getList();
+                loadDataTable(serviceKhachHang.getList());
+                listHD = serviceHD.getAll();
+                listHDTable = serviceHDTable.getAll();
+                listHDTableChuaThanhToan = new ArrayList<>();
+                for (HDTableVIewModel hdctt : listHDTable) {
+                    if (hdctt.getTrangThai().trim().equals("0")) {
+                        listHDTableChuaThanhToan.add(hdctt);
+                    }
+                }
+                showDataHoaDon(listHDTableChuaThanhToan);
+                listBangTichDiem = serviceBangTichDiem.getList();
+                listKhachHang = serviceKhachHang.getList();
+                listSPInHD = new ArrayList<>();
+                gioHangTable(listSPInHD);
+                //print
 
             }
-            if (idKhachHang != 9) {
-                serviceKhachHang.khachHangThanhToanHD(idKhachHang);
-            }
-            listKhachHang = serviceKhachHang.getList();
-            loadDataTable(serviceKhachHang.getList());
-            listHD = serviceHD.getAll();
-            listHDTable = serviceHDTable.getAll();
-            listHDTableChuaThanhToan = new ArrayList<>();
-            for (HDTableVIewModel hdctt : listHDTable) {
-                if (hdctt.getTrangThai().trim().equals("0")) {
-                    listHDTableChuaThanhToan.add(hdctt);
-                }
-            }
-            showDataHoaDon(listHDTableChuaThanhToan);
-            listBangTichDiem = serviceBangTichDiem.getList();
-            listKhachHang = serviceKhachHang.getList();
-            listSPInHD = new ArrayList<>();
-            gioHangTable(listSPInHD);
-            //print
-
+        } else if (choice == JOptionPane.CANCEL_OPTION) {
+            // Người dùng đã chọn "Cancel", thực hiện các hành động tương ứng ở đây
+            // Ví dụ: hủy bỏ hành động
+//            JOptionPane.showMessageDialog(this, "Thanh toán thất bại người dùng Chọn Cencel !");
+             return;
+        } else {
+            // Người dùng đã đóng hộp thoại hoặc nhấn nút đóng, xử lý tương ứng ở đây
+            JOptionPane.showMessageDialog(this, "Thanh toán thất bại người dùng Chọn X ");
         }
+
+
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private boolean validateThem() {
@@ -3035,62 +3056,80 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
     private void btnThemGioHang3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHang3ActionPerformed
         // TODO add your handling code here:
+
+//        if (true) {
+//            
+//        }
         int index = tblLocSanPham3.getSelectedRow();
 
-        if (index >= 0 && index <= listSPThemGioHang.size()) {
-            SPCTViewModel spct = getSpThemGioHang(index);
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm");
+        } else {
+             
+            String slnhap = txtSoLuongMua2.getText();
+            if (slnhap.equals("")) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa nhập số lượng ");
+            }
+            
+            
+            if (index >= 0 && index <= listSPThemGioHang.size()) {
+                SPCTViewModel spct = getSpThemGioHang(index);
 
-            if (Integer.parseInt(txtSoLuongMua2.getText()) > spct.getSoLuong()) {
-                JOptionPane.showMessageDialog(this, "Số lượng sản phẩm mua không dủ");
-            } else if (Integer.parseInt(txtSoLuongMua2.getText()) <= 0) {
-                JOptionPane.showMessageDialog(this, "Chưa nhập só lượng sản phẩm");
-            } else {
-
-                HDCTViewModel gioHang = sanPhamGioHang(spct);
-                if (gioHang.getIdHD() == 0) {
-                    JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn");
+                if (Integer.parseInt(txtSoLuongMua2.getText()) > spct.getSoLuong()) {
+                    JOptionPane.showMessageDialog(this, "Số lượng sản phẩm mua vượt quá số lượng tồn tại");
+                    
+                    
+                } else if (Integer.parseInt(txtSoLuongMua2.getText()) <= 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng nhập vào không hợp lệ");
                 } else {
-                    for (HDCTViewModel hdct : listGioHang) {
-                        if (hdct.getIdHD() == gioHang.getIdHD() && hdct.getIdSPCT() == gioHang.getIdSPCT()) {
-                            JOptionPane.showMessageDialog(this, "Giỏ hàng đã tồn tại sản phẩm");
-                            return;
+
+                    HDCTViewModel gioHang = sanPhamGioHang(spct);
+                    if (gioHang.getIdHD() == 0) {
+                        JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn");
+                    } else {
+                        for (HDCTViewModel hdct : listGioHang) {
+                            if (hdct.getIdHD() == gioHang.getIdHD() && hdct.getIdSPCT() == gioHang.getIdSPCT()) {
+                                JOptionPane.showMessageDialog(this, "Giỏ hàng đã tồn tại sản phẩm");
+                                return;
+                            }
+                        }
+                        JOptionPane.showMessageDialog(this, serviceGioHang.getAdd(gioHang));
+                    }
+
+                    int soLuongThayDoi = spct.getSoLuong() - Integer.parseInt(txtSoLuongMua2.getText());
+                    int idSoLuongThayDoi = spct.getId();
+                    serviceSPCT.getUpdateSLMua(soLuongThayDoi, idSoLuongThayDoi);
+                    listSPCT = serviceSPCT.getAllTable();
+                    listSP = serviceSPCT.getAll();
+                    listSPVM = serviceSp.getAll();
+                    showDataSanPham(listSPVM);
+                    showDataSearch(listSPCT);
+
+                    listGioHang = serviceGioHang.getAll();
+                    listSpGiohang = serviceGioHang.getGioHang();
+
+                    int tongTien = 0;
+                    listSPInHD = new ArrayList<>();
+                    for (GioHangViewModel gh : listSpGiohang) {
+                        if (gh.getMaHD().equals(maHD)) {
+                            listSPInHD.add(gh);
+                            tongTien += gh.getDonGia();
                         }
                     }
-                    JOptionPane.showMessageDialog(this, serviceGioHang.getAdd(gioHang));
+                    jlbTongTien.setText(String.valueOf(tongTien));
+                    jlbTienGiam.setText(String.valueOf(tienPGG + tienQuyDoi));
+                    tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
+                    jlbKhachPhaiTra.setText(String.valueOf(tienKhachPhaiTra));
+                    gioHangTable(listSPInHD);
+                    spct.setSoLuong(Integer.parseInt(txtSoLuongMua2.getText()));
+
                 }
 
-                int soLuongThayDoi = spct.getSoLuong() - Integer.parseInt(txtSoLuongMua2.getText());
-                int idSoLuongThayDoi = spct.getId();
-                serviceSPCT.getUpdateSLMua(soLuongThayDoi, idSoLuongThayDoi);
-                listSPCT = serviceSPCT.getAllTable();
-                listSP = serviceSPCT.getAll();
-                listSPVM = serviceSp.getAll();
-                showDataSanPham(listSPVM);
-                showDataSearch(listSPCT);
-
-                listGioHang = serviceGioHang.getAll();
-                listSpGiohang = serviceGioHang.getGioHang();
-
-                int tongTien = 0;
-                listSPInHD = new ArrayList<>();
-                for (GioHangViewModel gh : listSpGiohang) {
-                    if (gh.getMaHD().equals(maHD)) {
-                        listSPInHD.add(gh);
-                        tongTien += gh.getDonGia();
-                    }
-                }
-                jlbTongTien.setText(String.valueOf(tongTien));
-                jlbTienGiam.setText(String.valueOf(tienPGG + tienQuyDoi));
-                tienKhachPhaiTra = tongTien - (tienPGG + tienQuyDoi);
-                jlbKhachPhaiTra.setText(String.valueOf(tienKhachPhaiTra));
-                gioHangTable(listSPInHD);
-                spct.setSoLuong(Integer.parseInt(txtSoLuongMua2.getText()));
-
+            } else {
+                JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
             }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm");
         }
+
     }//GEN-LAST:event_btnThemGioHang3ActionPerformed
 
     private void txtSoLuongMua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongMua2ActionPerformed
@@ -3237,7 +3276,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Chọn SP");
-      
+
         btnThemGioHang.setBackground(new java.awt.Color(0, 0, 0));
         btnThemGioHang.setForeground(new java.awt.Color(255, 255, 255));
         btnThemGioHang.setText("Thêm vào Giỏ");
@@ -3245,8 +3284,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         jDialog1.setResizable(false);
         jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
-       
-    
+
 //        listSPThemGioHang = listSPCT;
 //        showDataTable(listSPCT);
         initWebcam();
@@ -3339,7 +3377,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         cbbLocSanPhamm.setSelectedItem(0);
         listSPThemGioHang = listSPCT;
         showDataTable(listSPCT);
-        
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     //Quét ma QR
