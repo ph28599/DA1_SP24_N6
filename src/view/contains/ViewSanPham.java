@@ -148,13 +148,15 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         dcbKC = (DefaultComboBoxModel) this.cboKichCo.getModel();
         listCboKC.add("");
-        listCboKC.add("S");
-        listCboKC.add("M");
-        listCboKC.add("L");
-        listCboKC.add("XL");
+//        listCboKC.add("S");
+//        listCboKC.add("M");
+//        listCboKC.add("L");
+//        listCboKC.add("XL");
+        for (KichCoViewModel kc : listKC) {
+            listCboKC.add(kc.getKichCo());
+        }
 
         showDataCBO(listCboKC, dcbKC);
-
         dcbLocKichCo = (DefaultComboBoxModel) this.cbbLocKichCo.getModel();
         showDataCBO(listCboKC, dcbLocKichCo);
 
@@ -287,7 +289,8 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private SanPhamChiTietViewModel nhapDuLieu() {
         SanPhamChiTietViewModel spct = new SanPhamChiTietViewModel();
-        int i = listSPCTtable.size() - 1;
+       
+        int i = listSPCTtable.size() -1 ;
         spct.setMa("SPCT" + listSPCTtable.get(i).getId());
         spct.setMaVach(txtMaVach.getText());
         spct.setMoTa(txtMoT.getText());
@@ -863,7 +866,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         });
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel22.setText("Tìm Kiếm : Mã hoặc Tên");
+        jLabel22.setText("Tìm Kiếm : Tất cả thuộc tính");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -918,7 +921,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSearchTen, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                            .addComponent(txtSearchTen))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btlHienThi)
                         .addContainerGap(13, Short.MAX_VALUE))))
@@ -1138,7 +1141,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnKichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(133, Short.MAX_VALUE))))
+                        .addContainerGap(144, Short.MAX_VALUE))))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cboChatLieu, cboLTT, cboMauSac, cboThuongHIeu});
@@ -1521,9 +1524,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 SanPhamChiTietViewModel spct = updateData();
                 SPCTViewModel spct1 = listSPCTtable.get(index);
                 JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
-//                listSPCTtable = service.getAllTable();
-//                showDataTable(listSPCTtable);
-                showDataTablePhanTrang(ht, size);
+                listSPCTtable = service.getAllTable();
+                showDataTable(listSPCTtable);
+                // showDataTablePhanTrang(ht, size);
                 clearFrom();
 
             }
@@ -1538,9 +1541,9 @@ public class ViewSanPham extends javax.swing.JPanel {
         if (validateThem()) {
             SanPhamChiTietViewModel spct = nhapDuLieu();
             JOptionPane.showMessageDialog(this, service.getAdd(spct));
-//            listSPCTtable = service.getAllTable();
-//            showDataTable(listSPCTtable);
-            showDataTablePhanTrang(ht, size);
+            listSPCTtable = service.getAllTable();
+            showDataTable(listSPCTtable);
+            //  showDataTablePhanTrang(ht, size);
             clearFrom();
         }
 
@@ -1593,7 +1596,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchTenActionPerformed
 
     private void txtSearchTenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTenKeyReleased
-        listSPCTtable = service.getSearch(txtSearchTen.getText(), txtSearchTen.getText());
+        listSPCTtable = service.getSearch(txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText(), txtSearchTen.getText());
 
         showDataTable(listSPCTtable);
     }//GEN-LAST:event_txtSearchTenKeyReleased
@@ -1695,6 +1698,13 @@ public class ViewSanPham extends javax.swing.JPanel {
                     && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
                     && cbbLocLoaiTT.getSelectedItem().equals(c.getLoaiTheThao())
                     && cbbLocKichCo.getSelectedItem().equals("")
+                    && cbbLocCLieu.getSelectedItem().equals("")
+                    && cbbLocMauSac.getSelectedItem().equals("")) {
+                listLoc.add(c);
+            } else if (cbbLocSanPham.getSelectedItem().equals(c.getLoaiSanPham())
+                    && cbbLocTHieu.getSelectedItem().equals(c.getThuongHieu())
+                    && cbbLocLoaiTT.getSelectedItem().equals("")
+                    && cbbLocKichCo.getSelectedItem().equals(c.getKichCo())
                     && cbbLocCLieu.getSelectedItem().equals("")
                     && cbbLocMauSac.getSelectedItem().equals("")) {
                 listLoc.add(c);

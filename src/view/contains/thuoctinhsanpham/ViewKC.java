@@ -52,7 +52,8 @@ public class ViewKC extends javax.swing.JFrame {
         listLKC.add("M");
         listLKC.add("L");
         listLKC.add("XL");
-        
+        listLKC.add("XXL");
+        listLKC.add("XXXL");
 
         showDataCBO(listLKC, dcbLKC);
         showDataTable(listKC);

@@ -75,17 +75,16 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
         return listTable;
     }
 
-    @Override
-    public List<SPCTViewModel> getSearch(String ten, String ma) {
-        List<SPCTModel> listSearch = spRepo.getSearch(ten, ma);
-        List<SPCTViewModel> listTable = new ArrayList<>();
-        for (SPCTModel spct : listSearch) {
-            listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
-        }
-        return listTable;
-
-    }
-
+//    @Override
+//    public List<SPCTViewModel> getSearch(String ten, String ma) {
+//        List<SPCTModel> listSearch = spRepo.getSearch(ten, ma);
+//        List<SPCTViewModel> listTable = new ArrayList<>();
+//        for (SPCTModel spct : listSearch) {
+//            listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
+//        }
+//        return listTable;
+//
+//    }
     @Override
     public String getUpdateSoLuong(int soLuong, int id, int giaNhap) {
         boolean sua = spctRepo.getUpdateSoLuong(soLuong, id, giaNhap);
@@ -111,6 +110,16 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
         List<SPCTModel> listAll = spRepo.getAllPhanTrang(offset, fetchSize);
         List<SPCTViewModel> listTable = new ArrayList<>();
         for (SPCTModel spct : listAll) {
+            listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
+        }
+        return listTable;
+    }
+
+    @Override
+    public List<SPCTViewModel> getSearch(String ma, String mavach, String moTa, String soLuong, String tenSp, String tenTH, String tenLTT, String tenKichCo, String mauSac, String chatLieu, String giaNhap, String giaBan, String trangThai) {
+        List<SPCTModel> listSearch = spRepo.getSearch( ma, mavach, moTa, soLuong, tenSp, tenTH, tenLTT, tenKichCo, mauSac, chatLieu, giaNhap, giaBan, trangThai);
+        List<SPCTViewModel> listTable = new ArrayList<>();
+        for (SPCTModel spct : listSearch) {
             listTable.add(new SPCTViewModel(spct.getId(), spct.getMa(), spct.getMaVach(), spct.getMoTa(), spct.getSoLuong(), spct.getLoaiSanPham(), spct.getThuongHieu(), spct.getLoaiTheThao(), spct.getKichCo(), spct.getMauSac(), spct.getChatLieu(), spct.getGiaNhap(), spct.getGiaBan(), spct.isTrangThai()));
         }
         return listTable;
