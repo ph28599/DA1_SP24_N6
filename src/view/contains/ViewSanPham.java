@@ -289,8 +289,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private SanPhamChiTietViewModel nhapDuLieu() {
         SanPhamChiTietViewModel spct = new SanPhamChiTietViewModel();
-       
-        int i = listSPCTtable.size() -1 ;
+        int i = listSPCTtable.size() - 1;
         spct.setMa("SPCT" + listSPCTtable.get(i).getId());
         spct.setMaVach(txtMaVach.getText());
         spct.setMoTa(txtMoT.getText());
@@ -379,55 +378,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         return spct;
     }
 
-    private boolean validateThem() {
-        if (txtMaVach.getText().trim().isEmpty() || txtSoLuong.getText().trim().isEmpty() || txtGiaNhap.getText().trim().isEmpty()
-                || cboLoaiSanPham.getSelectedItem().equals("") || cboLTT.getSelectedItem().equals("") || cboKichCo.getSelectedItem().equals("")) {
-            JOptionPane.showMessageDialog(this, "Thông tin sản phẩm bị trống");
-            return false;
-        }
-
-        String maVach = txtMaVach.getText().trim();
-        int doDaiMaVach = maVach.length();
-        if (doDaiMaVach < 8 || doDaiMaVach > 13 || !maVach.matches("[0-9]+")) {
-            JOptionPane.showMessageDialog(this, "Mã vạch phải từ 8 đến 13 số");
-            return false;
-        }
-        try {
-            int soLuong = Integer.parseInt(txtSoLuong.getText());
-
-            // Kiểm tra trước khi chuyển đổi giá nhập thành số
-            String giaNhapText = txtGiaNhap.getText().trim();
-            if (giaNhapText.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Thông tin sản phẩm bị trống");
-                return false;
-            }
-
-            float giaNhap = Float.parseFloat(giaNhapText);
-
-            if (giaNhap <= 0) {
-                JOptionPane.showMessageDialog(this, "Giá nhập phải lớn hơn 0");
-                return false;
-            } else if (soLuong < 0) {
-                JOptionPane.showMessageDialog(this, "Số lượng phải >=0");
-                return false;
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Thêm sản phẩm không thành công, kiểm tra lại");
-            return false;
-        }
-        listSPCTtable = service.getAllTable();
-        for (SPCTViewModel spct : listSPCTtable) {
-            if (cboLoaiSanPham.getSelectedItem().equals(spct.getLoaiSanPham()) && cbbLocLoaiTT.getSelectedItem().equals(spct.getLoaiTheThao())
-                    && cboKichCo.getSelectedItem().equals(spct.getKichCo()) && cboThuongHIeu.getSelectedItem().equals(spct.getThuongHieu())
-                    && cboMauSac.getSelectedItem().equals(spct.getMauSac()) && cboChatLieu.getSelectedItem().equals(spct.getChatLieu())) {
-                JOptionPane.showMessageDialog(this, "Sản phẩm đã tồn tại");
-                return false;
-            }
-        }
-
-        return true;
-    }
+    
 
     private boolean validateTable() {
         if (txtMaVach.getText().trim().isEmpty() || txtSoLuong.getText().trim().isEmpty() || txtGiaNhap.getText().trim().isEmpty()
@@ -464,6 +415,61 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Sửa sản phẩm không thành công, kiểm tra lại");
+            return false;
+        }
+
+        return true;
+    }
+    private boolean validateThem() {
+        // Các thông tin bắt buộc không được để trống
+        if (txtMaVach.getText().trim().isEmpty() || txtSoLuong.getText().trim().isEmpty() || txtGiaNhap.getText().trim().isEmpty()
+                || cboLoaiSanPham.getSelectedItem().equals("") || cboLTT.getSelectedItem().equals("") || cboKichCo.getSelectedItem().equals("")) {
+            JOptionPane.showMessageDialog(this, "Thông tin sản phẩm bị trống");
+            return false;
+        }
+
+        // Kiểm tra mã vạch
+        String maVach = txtMaVach.getText().trim();
+        int doDaiMaVach = maVach.length();
+        if (doDaiMaVach < 8 || doDaiMaVach > 13 || !maVach.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Mã vạch phải từ 8 đến 13 số");
+            return false;
+        }
+
+        try {
+            // Kiểm tra số lượng
+            int soLuong = Integer.parseInt(txtSoLuong.getText());
+            if (soLuong < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải >= 0");
+                return false;
+            }
+
+            // Kiểm tra giá nhập
+            String giaNhapText = txtGiaNhap.getText().trim();
+            if (giaNhapText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Thông tin giá nhập sản phẩm bị trống");
+                return false;
+            }
+            float giaNhap = Float.parseFloat(giaNhapText);
+            if (giaNhap <= 0) {
+                JOptionPane.showMessageDialog(this, "Giá nhập phải lớn hơn 0");
+                return false;
+            }
+
+            // Kiểm tra trùng lặp thuộc tính sản phẩm
+            listSPCTtable = service.getAllTable();
+            for (SPCTViewModel spct : listSPCTtable) {
+                if (cboLTT.getSelectedItem().equals(spct.getLoaiTheThao())
+                        && cboThuongHIeu.getSelectedItem().equals(spct.getThuongHieu())
+                        && cboKichCo.getSelectedItem().equals(spct.getKichCo())
+                        && cboMauSac.getSelectedItem().equals(spct.getMauSac())
+                        && cboChatLieu.getSelectedItem().equals(spct.getChatLieu())) {
+                    JOptionPane.showMessageDialog(this, "Sản phẩm đã tồn tại");
+                    return false;
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Số lượng hoặc giá nhập không hợp lệ");
             return false;
         }
 
@@ -1499,38 +1505,25 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_tblSPCTMouseClicked
 
     private void btnSuaThongTinSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinSpActionPerformed
-//        if (validateTable()) {
-//            int index = tblSPCT.getSelectedRow();
-//
-//            // Kiểm tra xem index có hợp lệ không
-//            if (index >= 0 && index < listSPCTtable.size()) {
-//                SanPhamChiTietViewModel spct = updateData();
-//                SPCTViewModel spct1 = listSPCTtable.get(index);
-//                JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
-//                listSPCTtable = service.getAllTable();
-//                showDataTable(listSPCTtable);
-//                clearFrom();
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trên bảng để cập nhật.");
-//            }
-//        }
 
         int index = tblSPCT.getSelectedRow();
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "Chọn dòng cần sửa thông tin", "Thông báo", JOptionPane.WARNING_MESSAGE);
         } else {
-            //int id = (int) tblSPCT.getValueAt(index, 0);
-            if (validateTable()) {
-                SanPhamChiTietViewModel spct = updateData();
-                SPCTViewModel spct1 = listSPCTtable.get(index);
-                JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
-                listSPCTtable = service.getAllTable();
-                showDataTable(listSPCTtable);
-                // showDataTablePhanTrang(ht, size);
-                clearFrom();
+            int confirmResult = JOptionPane.showConfirmDialog(this, "Bạn có muốn cập nhật dữ liệu không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
+            if (confirmResult == JOptionPane.YES_OPTION) {
+                if (validateTable()) {
+                    SanPhamChiTietViewModel spct = updateData();
+                    SPCTViewModel spct1 = listSPCTtable.get(index);
+                    JOptionPane.showMessageDialog(this, service.getUpdate(spct, spct1.getId()));
+                    listSPCTtable = service.getAllTable();
+                    showDataTable(listSPCTtable);
+                    clearFrom();
+                }
             }
         }
+
     }//GEN-LAST:event_btnSuaThongTinSpActionPerformed
 
     private void txtMaVachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVachActionPerformed
@@ -1540,12 +1533,17 @@ public class ViewSanPham extends javax.swing.JPanel {
     private void btnThemSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSanPhamActionPerformed
         if (validateThem()) {
             SanPhamChiTietViewModel spct = nhapDuLieu();
-            JOptionPane.showMessageDialog(this, service.getAdd(spct));
-            listSPCTtable = service.getAllTable();
-            showDataTable(listSPCTtable);
-            //  showDataTablePhanTrang(ht, size);
-            clearFrom();
+            int confirmResult = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm dữ liệu không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (confirmResult == JOptionPane.YES_OPTION) {
+                String message = service.getAdd(spct);
+                JOptionPane.showMessageDialog(this, message);
+                listSPCTtable = service.getAllTable();
+                showDataTable(listSPCTtable);
+                clearFrom();
+            }
         }
+
 
     }//GEN-LAST:event_btnThemSanPhamActionPerformed
 
@@ -2081,8 +2079,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         }
         listSPCTtable = listLoc;
-        showDataTable(listSPCTtable);
+        showDataTable(listLoc);
         listSPCTtable = service.getAllTable();
+
     }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnThuongHieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThuongHieuActionPerformed
@@ -2112,58 +2111,64 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btlHienThiActionPerformed
 
     private void btnLuuDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuDanhSachActionPerformed
-        System.out.println("Create file excel");
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Customer_Info");
-        int rowNum = 0;
-        Row firstRow = sheet.createRow(rowNum++);
-        Cell firstCell = firstRow.createCell(0);
-        firstCell.setCellValue("Danh Sách Sản Phẩm");
-        listSPCTtable = service.getAllTable();
-        for (SPCTViewModel spct : listSPCTtable) {
-            Row row = sheet.createRow(rowNum++);
-            Cell cell1 = row.createCell(0);
-            cell1.setCellValue(spct.getId());
-            Cell cell2 = row.createCell(1);
-            cell2.setCellValue(spct.getMa());
-            Cell cell3 = row.createCell(2);
-            cell3.setCellValue(spct.getMaVach());
-            Cell cell4 = row.createCell(3);
-            cell4.setCellValue(spct.getMoTa());
-            Cell cell5 = row.createCell(4);
-            cell5.setCellValue(spct.getSoLuong());
-            Cell cell6 = row.createCell(5);
-            cell6.setCellValue(spct.getLoaiSanPham());
-            Cell cell7 = row.createCell(6);
-            cell7.setCellValue(spct.getThuongHieu());
-            Cell cell8 = row.createCell(7);
-            cell8.setCellValue(spct.getLoaiTheThao());
-            Cell cell9 = row.createCell(8);
-            cell9.setCellValue(spct.getKichCo());
-            Cell cell10 = row.createCell(9);
-            cell10.setCellValue(spct.getMauSac());
-            Cell cell11 = row.createCell(10);
-            cell11.setCellValue(spct.getChatLieu());
-            Cell cell12 = row.createCell(11);
-            cell12.setCellValue(spct.getGiaNhap());
-            Cell cell13 = row.createCell(12);
-            cell13.setCellValue(spct.getGiaBan());
-            Cell cell14 = row.createCell(13);
-            cell14.setCellValue(spct.isTrangThai());
+        int confirmResult = JOptionPane.showConfirmDialog(this, "Bạn có muốn lưu dữ liệu không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+        if (confirmResult == JOptionPane.YES_OPTION) {
+
+            System.out.println("Create file excel");
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Customer_Info");
+            int rowNum = 0;
+            Row firstRow = sheet.createRow(rowNum++);
+            Cell firstCell = firstRow.createCell(0);
+            firstCell.setCellValue("Danh Sách Sản Phẩm");
+            listSPCTtable = service.getAllTable();
+            for (SPCTViewModel spct : listSPCTtable) {
+                Row row = sheet.createRow(rowNum++);
+                Cell cell1 = row.createCell(0);
+                cell1.setCellValue(spct.getId());
+                Cell cell2 = row.createCell(1);
+                cell2.setCellValue(spct.getMa());
+                Cell cell3 = row.createCell(2);
+                cell3.setCellValue(spct.getMaVach());
+                Cell cell4 = row.createCell(3);
+                cell4.setCellValue(spct.getMoTa());
+                Cell cell5 = row.createCell(4);
+                cell5.setCellValue(spct.getSoLuong());
+                Cell cell6 = row.createCell(5);
+                cell6.setCellValue(spct.getLoaiSanPham());
+                Cell cell7 = row.createCell(6);
+                cell7.setCellValue(spct.getThuongHieu());
+                Cell cell8 = row.createCell(7);
+                cell8.setCellValue(spct.getLoaiTheThao());
+                Cell cell9 = row.createCell(8);
+                cell9.setCellValue(spct.getKichCo());
+                Cell cell10 = row.createCell(9);
+                cell10.setCellValue(spct.getMauSac());
+                Cell cell11 = row.createCell(10);
+                cell11.setCellValue(spct.getChatLieu());
+                Cell cell12 = row.createCell(11);
+                cell12.setCellValue(spct.getGiaNhap());
+                Cell cell13 = row.createCell(12);
+                cell13.setCellValue(spct.getGiaBan());
+                Cell cell14 = row.createCell(13);
+                cell14.setCellValue(spct.isTrangThai());
+            }
+            try {
+                FileOutputStream outputStream = new FileOutputStream("DanhSach.xlsx");
+                workbook.write(outputStream);
+                workbook.close();
+                JOptionPane.showMessageDialog(this, "Lưu Thành Công");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Lưu Thất Bại");
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Lưu Thất Bại");
+            }
+            System.out.println("Done");
         }
-        try {
-            FileOutputStream outputStream = new FileOutputStream("DanhSach.xlsx");
-            workbook.write(outputStream);
-            workbook.close();
-            JOptionPane.showMessageDialog(this, "Lưu Thành Công");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lưu Thất Bại");
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lưu Thất Bại");
-        }
-        System.out.println("Done");
+
     }//GEN-LAST:event_btnLuuDanhSachActionPerformed
 
     private void cboThuongHIeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThuongHIeuActionPerformed

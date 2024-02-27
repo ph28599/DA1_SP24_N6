@@ -70,6 +70,7 @@ public class ViewHeThong extends javax.swing.JPanel {
             tblQLNVVM.setRowSelectionInterval(0, 0);
             showDetailNV();
         }
+       // loadDataToTableNV(lstnv);
         showDataCboLocChucVu();
         showDataCboLocTinhTrang();
         clearFormNV();
@@ -846,6 +847,7 @@ public class ViewHeThong extends javax.swing.JPanel {
         txtLuotSuDung.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtLuotSuDung.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
+        txtDieuKhoan.setEditable(false);
         txtDieuKhoan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDieuKhoan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtDieuKhoan.addActionListener(new java.awt.event.ActionListener() {
@@ -1854,16 +1856,16 @@ private void loadDataToTable(List<PhieuGiamGiaVM> list) {
             dtm.addRow(new Object[]{
                 nvvm.getMa(),
                 nvvm.getTen(),
+                nvvm.getGioiTinh() == 1 ? "Nam" : "Nữ",
                 nvvm.getSdt(),
-                nvvm.getCccd(),
-                nvvm.getGioiTinh(),
+                nvvm.getCccd(),             
                 nvvm.getNgaySinh(),
                 nvvm.getDiaChi(),
                 nvvm.getEmail(),
-                nvvm.getChucVu() ==1?"Quản lý":"Nhân viên",
+                nvvm.getChucVu() == 1 ? "Quản lý" : "Nhân viên",
                 nvvm.getTenDN(),
                 nvvm.getMatKhau(),
-                nvvm.getTrangThai()==1?"Làm việc":"Nghỉ việc"
+                nvvm.getTrangThai() == 1 ? "Làm việc" : "Nghỉ việc"
             });
         }
     }
@@ -1953,7 +1955,7 @@ private void loadDataToTable(List<PhieuGiamGiaVM> list) {
                 chkTrangThaiNV.setSelected(false);
             }
         }
-       
+
     }
 
     public PhieuGiamGiaVM getPhieuGiamGiaVMFormInput() {
